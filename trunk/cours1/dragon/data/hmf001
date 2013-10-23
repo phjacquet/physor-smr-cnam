@@ -29,8 +29,8 @@ LIBMIX := LIB: :: EDIT 0
      CTRA WIMS
      SUBG
      ANIS 2
-     DEPL LIB: DRAGON FIL: DLIB_J2
-     MIXS LIB: DRAGON FIL: DLIB_J2
+     DEPL LIB: DRAGON FIL: DLIB_J2_295
+     MIXS LIB: DRAGON FIL: DLIB_J2_295
   MIX 1 300.0
      U234 = 'U234'    4.9184E-4  1
      U235 = 'U235'    4.4994E-2  1
@@ -57,8 +57,8 @@ TRACK := SYBILT: GCELL ::
 *----
 *  Self Shielding
 *----
-LIBMIXS := USS: LIBMIX TRACK :: EDIT 1  ;
-*LIBMIXS := SHI: LIBMIX TRACK :: EDIT 1 NOLJ ;
+LIBMIXS := USS: LIBMIX TRACK :: EDIT 5  ;
+*LIBMIXS := SHI: LIBMIX TRACK :: EDIT 5 NOLJ   ;
 
 *----
 *  Pij matrix problem definition
