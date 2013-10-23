@@ -14,8 +14,13 @@ if [ -f "$pos"/draglibJeff3p1p2SHEM295 ]
 fi
 if [ -f "$pos"/draglibJef2p2SHEM361 ]
    then
-    echo "link DLIB_J2 to $pos/draglibJef2p2SHEM361"
-    ln -s "$pos"/draglibJef2p2SHEM361 DLIB_J2
+    echo "link DLIB_J2_361 to $pos/draglibJef2p2SHEM361"
+    ln -s "$pos"/draglibJef2p2SHEM361 DLIB_J2_361
+fi
+if [ -f "$pos"/draglibJef2p2SHEM295 ]
+   then
+    echo "link DLIB_J2_295 to $pos/draglibJef2p2SHEM295"
+    ln -s "$pos"/draglibJef2p2SHEM295 DLIB_J2_295
 fi
 ls
 echo "tdraglib access script terminated"
