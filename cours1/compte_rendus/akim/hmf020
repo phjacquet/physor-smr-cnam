@@ -1,0 +1,61 @@
+/*
+TRIPOLI-4.3 Criticality sample calculation - hmf020 
+Calculations performed by Y. K. Lee - Nov. 2003
+
+Reference:
+NEA/NSC/DOC(95)03/II HEU-MET-FAST-020   9/2000 revision 2
+Polyethylene-Reflected Spherical Assembly of U-235(90%), geometry_simple
+*/
+
+GEOMETRIE
+TITRE
+
+TYPE 1 	SPHERE 9.80
+TYPE 2 	SPHERE 8.35
+
+VOLU 1  COMBI 1 0 0 0  FINV           /* Polyethylene reflector */
+VOLU 2  COMBI 2 0 0 0  ECRA 1 1 FINV  /* Uranium                */
+
+FING
+
+COMPOSITION
+	2
+	PONCTUAL 300  URANIUM   12
+                U234  5.2428E-4
+                U235  4.2315E-2
+                U238  4.3901E-3
+                C     1.0548E-3
+                FE54  1.1190E-05
+                FE56  1.7079E-04
+                FE57  3.9298E-06
+                FE58  5.2093E-07
+                W182  1.3902E-05
+                W183  7.4806E-06
+                W184  1.5972E-05
+                W186  1.4720E-05
+
+	PONCTUAL 300  POLYETHYLENE   2
+                H_CH2     7.7711E-2
+                C         3.8856E-2
+FIN_COMPO
+
+GEOMCOMP
+	URANIUM        1   2
+	POLYETHYLENE   1   1
+FIN_GEOMCOMP
+
+ 
+LIST_SOURCE 1    
+        SOURCE 
+	NEUTRON  PONCTUAL  0 0 0
+	ANGULAR_DISTRIBUTION   ISOTROPIC 
+	ENERGETIC_DISTRIBUTION SPECTRE   WATT_SPECTRE
+        TIME_DISTRIBUTION  DIRAC 0
+	FIN_SOURCE
+FIN_LIST_SOURCE
+
+SIMULATION
+  	CRITICITE  BATCH 1000  SIZE 5000 EDITION 1000
+	ENERGY_INF NEUTRON 1.E-11
+	PARTICULES   1 NEUTRON
+FIN_SIMULATION
