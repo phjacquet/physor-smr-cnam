@@ -35,7 +35,7 @@ LIBMIX := LIB: :: EDIT 0
 *  Spherical geometry
 *----
 GCELL := GEO: :: SPHERE  1
-           R+ REFL
+           R+ VOID
            MIX  1
            RADIUS 0.0 8.7407
            SPLITR 15
