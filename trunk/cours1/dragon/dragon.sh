@@ -33,7 +33,7 @@ do
          fi ;;
    esac
 done
-Code="/home/physor/bin/POLYMTL/VERSION4/Version4_lgpl/Dragon/bin/Linux*/Dragon"
+Code="/home/ruoyu/Version4_lgpl/Dragon/bin/Linux*/Dragon"
 echo 'execute' $xxx 'with' $Code
 
 RUN="run"
