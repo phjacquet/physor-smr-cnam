@@ -1,0 +1,15 @@
+leantoine dragon folder
+--This line, and those below, will be ignored--
+
+A    leantoine/dragon
+A    leantoine/dragon/data
+AM   leantoine/dragon/data/tdraglib.access
+AM   leantoine/dragon/data/hmf001
+AM   leantoine/dragon/dragon.sh
+A    leantoine/dragon/run
+AM   leantoine/dragon/run/DLIB_J3
+A    leantoine/dragon/run/hmf001.result
+AM   leantoine/dragon/run/code
+A    leantoine/dragon/run/hmf001.05.result
+AM   leantoine/dragon/run/DLIB_J2_361
+AM   leantoine/dragon/run/mydata
