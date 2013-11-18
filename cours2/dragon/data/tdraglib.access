@@ -5,7 +5,7 @@ if [ $# = 0 ]
    exit 1
 fi
 
-pos=/home/physor/data/neutro/VERSION4/LIB
+pos=/home/ruoyu/data/DragLib/l_endian/
 
 if [ -f "$pos"/draglibJeff3p1p2SHEM295 ]
    then
