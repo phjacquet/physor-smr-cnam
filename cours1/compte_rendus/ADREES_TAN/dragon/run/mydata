@@ -28,14 +28,14 @@ LIBMIX := LIB: :: EDIT 0
      MIXS LIB: DRAGON FIL: DLIB_J2_361
   MIX 1 300.0
      U234 = 'U234'    4.9184E-4  1
-     U235 = 'U235'    4.4994E-2  1
-     U238 = 'U238'    2.4984E-3  1
+     U235 = 'U235'    4.3213E-2  1
+     U238 = 'U238'    4.2573E-3  1
 ;
 *----
 *  Spherical geometry
 *----
 GCELL := GEO: :: SPHERE  1
-           R+ VOID
+           R+ REFL
            MIX  1
            RADIUS 0.0 8.7407
            SPLITR 15
@@ -53,7 +53,9 @@ TRACK := SNT: GCELL ::
 *----
 *  Self Shielding
 *----
-LIBMIXS := USS: LIBMIX TRACK :: EDIT 5 ARM ;
+LIBMIXS := USS: LIBMIX TRACK :: EDIT 5 ARM
+MAXST 200
+;
 
 *----
 *  SN problem definition

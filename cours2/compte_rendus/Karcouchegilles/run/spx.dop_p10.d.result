@@ -1,0 +1,2278 @@
+ DDDDDD   RRRRRR     AAA     GGGGG    OOOOO   NN     NN
+ DDDDDDD  RRRRRRR   AAAAA   GGGGGGG  OOOOOOO  NNN    NN
+ DD   DD  RR   RR  AA   AA  GG       OO   OO  NNNN   NN
+ DD   DD  RRRRRR   AA   AA  GG  GGG  OO   OO  NN NN  NN
+ DD   DD  RRRR     AAAAAAA  GG  GGG  OO   OO  NN  NN NN
+ DD   DD  RR RR    AAAAAAA  GG   GG  OO   OO  NN   NNNN
+ DDDDDDD  RR  RR   AA   AA  GGGGGGG  OOOOOOO  NN    NNN
+ DDDDDD   RR   RR  AA   AA   GGGGG    OOOOO   NN     NN
+
+ VERSION DRAGON 4  Version 4.0.6 ($Revision: 1666 $)                   $Date: 2012-12-10 10:12:13 -0500 (Mon, 10 Dec 2012) $           
+ GROUPE D'ANALYSE NUCLEAIRE
+ ECOLE POLYTECHNIQUE DE MONTREAL
+
+
+
+ COPYRIGHT NOTICE FOR THIS VERSION OF DRAGON:
+ --------------------------------------------
+ Copyright (C) 2002 Ecole Polytechnique de Montreal 
+ This library is free software; you can redistribute it
+ and/or modify it under the terms of the GNU Lesser General
+ Public License as published by the Free Software Foundation;
+ either version 2.1 of the License, or (at your option) any
+ later version 
+
+
+
+
+* CLE-2000 VERS 2.1 * R.ROY, EPM COPYRIGHT 1999 *                           LINE
+LINKED_LIST                                                                 0001
+  LIBRARY GEOMS GEOM TRACKS TRACK SYS FLUX BURNUP                           0002
+  EDITION DATABASE ISOT ;                                                   0003
+MODULE                                                                      0004
+  GEO: SYBILT: LIB: SHI: ASM: FLU: EVO: EDI: COMPO: DELETE: END: ;          0005
+                                                                            0006
+LIBRARY := LIB: ::                                                          0007
+  NMIX 3 CTRA WIMS                                                          0008
+    DEPL LIB: DRAGON FIL: DLIB_J2_361                                       0009
+    MIXS LIB: DRAGON FIL: DLIB_J2_361                                       0010
+  MIX 1 1510.0                                                              0011
+                                                                            0012
+Pu239 = 'Pu239' 2.1782E-03 1                                                0013
+Pu240 = 'Pu240' 7.2335E-04 1                                                0014
+Pu241 = 'Pu241' 1.5060E-04 1                                                0015
+Pu242 = 'Pu242' 5.1218E-05 1                                                0016
+Am241 = 'Am241' 3.2614E-05 1                                                0017
+Pu238 = 'Pu238' 1.1994E-05 1                                                0018
+U238 = 'U238' 1.6814E-02 1                                                  0019
+U235 = 'U235' 8.9010E-05 1                                                  0020
+O16 = 'O16' 3.9757E-02                                                      0021
+                                                                            0022
+  MIX 2 1300.0                                                              0023
+Fe56 = 'Fe56' 4.9852E-02                                                    0024
+Fe58 = 'Fe58' 1.5346E-04                                                    0025
+Cr52 = 'Cr52' 1.3100E-02                                                    0026
+Cr54 = 'Cr54' 3.6972E-04                                                    0027
+Ni60 = 'Ni60' 2.9912E-03                                                    0028
+Ni62 = 'Ni62' 4.1459E-04                                                    0029
+Fe54 = 'Fe54' 3.1761E-03                                                    0030
+Fe57 = 'Fe57' 1.1511E-03                                                    0031
+Cr50 = 'Cr50' 6.7944E-04                                                    0032
+Cr53 = 'Cr53' 1.4856E-03                                                    0033
+Ni58 = 'Ni58' 7.7656E-03                                                    0034
+Ni61 = 'Ni61' 1.2999E-04                                                    0035
+Ni64 = 'Ni64' 1.0557E-04                                                    0036
+Mn55 = 'Mn55' 1.3057E-03                                                    0037
+Mo = 'Mo0' 1.3711E-03                                                       0038
+Ti = 'Ti0' 3.9965E-04                                                       0039
+Cu = 'Cu0' 2.6340E-04                                                       0040
+Si = 'Si0' 9.3679E-04                                                       0041
+                                                                            0042
+                                                                            0043
+  MIX 3 800.0                                                               0044
+Na23 = 'Na23' 2.4874E-02                                                    0045
+                                                                            0046
+  ;                                                                         0047
+                                                                            0048
+                                                                            0049
+GEOM  := GEO: :: HEXCEL 2                                                   0050
+  HBC COMPLETE REFL                                                         0051
+         SIDE 0.56                                                          0052
+         RADIUS 0.0 0.368500 0.429260                                       0053
+         MIX  1 2 3                                                         0054
+  SPLITR 4  2                                                               0055
+  ;                                                                         0056
+                                                                            0057
+TRACK := SYBILT: GEOM ::                                                    0058
+  TITLE 'REP'                                                               0059
+  EDIT 1 MAXR 40 ;                                                          0060
+                                                                            0061
+LIBRARY := SHI: LIBRARY TRACK :: EDIT 0 NOLJ ;                              0062
+                                                                            0063
+SYS := ASM: LIBRARY TRACK ;                                                 0064
+                                                                            0065
+FLUX := FLU: SYS LIBRARY TRACK ::                                           0066
+  TYPE K B1 PNL BUCK 1.47878E-03 ;                                          0067
+                                                                            0068
+EDITION := EDI: LIBRARY TRACK FLUX ::                                       0069
+  EDIT 3 MICR RES MERG COMP COND 4.0 SAVE  ;                                0070
+                                                                            0071
+END: ;                                                                      0072
+                                                                            0073
+QUIT "LIST" .                                                               0074
+
+<|LINKED_LIST                                                             |<0001
+<|  LIBRARY GEOMS GEOM TRACKS TRACK SYS FLUX BURNUP                       |<0002
+<|  EDITION DATABASE ISOT ;                                               |<0003
+<|MODULE                                                                  |<0004
+<|  GEO: SYBILT: LIB: SHI: ASM: FLU: EVO: EDI: COMPO: DELETE: END: ;      |<0005
+<|LIBRARY := LIB: ::                                                      |<0007
+->@BEGIN MODULE : LIB:        
+->@DESCRIPTION  : Microscopic xs-library processing                                       
+->@CREDITS      : A. Hebert, G. Marleau                                                   
+->@COPYRIGHTS   : ECOLE POLYTECHNIQUE DE MONTREAL  
+                  GNU LESSER GENERAL PUBLIC LICENSE
+<|  NMIX 3 CTRA WIMS                                                      |<0008
+<|    DEPL LIB: DRAGON FIL: DLIB_J2_361                                   |<0009
+<|    MIXS LIB: DRAGON FIL: DLIB_J2_361                                   |<0010
+<|  MIX 1 1510.0                                                          |<0011
+<|Pu239 = 'Pu239' 2.1782E-03 1                                            |<0013
+<|Pu240 = 'Pu240' 7.2335E-04 1                                            |<0014
+<|Pu241 = 'Pu241' 1.5060E-04 1                                            |<0015
+<|Pu242 = 'Pu242' 5.1218E-05 1                                            |<0016
+<|Am241 = 'Am241' 3.2614E-05 1                                            |<0017
+<|Pu238 = 'Pu238' 1.1994E-05 1                                            |<0018
+<|U238 = 'U238' 1.6814E-02 1                                              |<0019
+<|U235 = 'U235' 8.9010E-05 1                                              |<0020
+<|O16 = 'O16' 3.9757E-02                                                  |<0021
+<|  MIX 2 1300.0                                                          |<0023
+<|Fe56 = 'Fe56' 4.9852E-02                                                |<0024
+<|Fe58 = 'Fe58' 1.5346E-04                                                |<0025
+<|Cr52 = 'Cr52' 1.3100E-02                                                |<0026
+<|Cr54 = 'Cr54' 3.6972E-04                                                |<0027
+<|Ni60 = 'Ni60' 2.9912E-03                                                |<0028
+<|Ni62 = 'Ni62' 4.1459E-04                                                |<0029
+<|Fe54 = 'Fe54' 3.1761E-03                                                |<0030
+<|Fe57 = 'Fe57' 1.1511E-03                                                |<0031
+<|Cr50 = 'Cr50' 6.7944E-04                                                |<0032
+<|Cr53 = 'Cr53' 1.4856E-03                                                |<0033
+<|Ni58 = 'Ni58' 7.7656E-03                                                |<0034
+<|Ni61 = 'Ni61' 1.2999E-04                                                |<0035
+<|Ni64 = 'Ni64' 1.0557E-04                                                |<0036
+<|Mn55 = 'Mn55' 1.3057E-03                                                |<0037
+<|Mo = 'Mo0' 1.3711E-03                                                   |<0038
+<|Ti = 'Ti0' 3.9965E-04                                                   |<0039
+<|Cu = 'Cu0' 2.6340E-04                                                   |<0040
+<|Si = 'Si0' 9.3679E-04                                                   |<0041
+<|  MIX 3 800.0                                                           |<0044
+<|Na23 = 'Na23' 2.4874E-02                                                |<0045
+<|  ;                                                                     |<0047
+
+ LIBEAD:  246 DEPLETING ISOTOPES HAVE BEEN ADDED IN MIXTURE    1.
+
+ LIBEAD:    1 DEPLETING ISOTOPES HAVE BEEN ADDED IN MIXTURE    2.
+
+ PROCESSING DRAGON LIBRARY NAMED DLIB_J2_361 .
+
+ X-SECTION LIBRARY INFO:
+ draglib from /tmp/shem361_Jef2.2 at Wed Oct 12 09:00:23 2011                    
+
+ PROCESSING ISOTOPE/MATERIAL 'Pu239   0001' (HNISOR='Pu239       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pu239 from /tmp/shem361_Jef2.2 (9437) at Wed Oct 12 17:58:24 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pu240   0001' (HNISOR='Pu240       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pu240 from /tmp/shem361_Jef2.2 (9440) at Wed Oct 12 18:15:05 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pu241   0001' (HNISOR='Pu241       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pu241 from /tmp/shem361_Jef2.2 (9443) at Wed Oct 12 18:30:01 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pu242   0001' (HNISOR='Pu242       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pu242 from /tmp/shem361_Jef2.2 (9446) at Wed Oct 12 18:44:52 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Am241   0001' (HNISOR='Am241       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Am241 from /tmp/shem361_Jef2.2 (9543) at Wed Oct 12 19:08:03 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pu238   0001' (HNISOR='Pu238       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pu238 from /tmp/shem361_Jef2.2 (9434) at Wed Oct 12 17:41:14 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'U238    0001' (HNISOR='U238        ').
+
+ ISOTOPE/MATERIAL INFO:
+ U238 from /tmp/shem361_Jef2.2 (9237) at Wed Oct 12 16:54:00 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'U235    0001' (HNISOR='U235        ').
+
+ ISOTOPE/MATERIAL INFO:
+ U235 from /tmp/shem361_Jef2.2 (9228) at Wed Oct 12 16:08:41 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'O16     0001' (HNISOR='O16         ').
+
+ ISOTOPE/MATERIAL INFO:
+ O16 from /tmp/shem361_Jef2.2 (825) at Wed Oct 12 11:09:36 2011                  
+
+ PROCESSING ISOTOPE/MATERIAL 'Fe56    0002' (HNISOR='Fe56        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Fe56 from /tmp/shem361_Jef2.2 (2631) at Wed Oct 12 13:10:45 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Fe58    0002' (HNISOR='Fe58        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Fe58 from /tmp/shem361_Jef2.2 (2637) at Wed Oct 12 13:21:46 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Cr52    0002' (HNISOR='Cr52        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cr52 from /tmp/shem361_Jef2.2 (2431) at Wed Oct 12 12:43:33 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Cr54    0002' (HNISOR='Cr54        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cr54 from /tmp/shem361_Jef2.2 (2437) at Wed Oct 12 12:54:11 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Ni60    0002' (HNISOR='Ni60        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ni60 from /tmp/shem361_Jef2.2 (2831) at Wed Oct 12 13:39:03 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Ni62    0002' (HNISOR='Ni62        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ni62 from /tmp/shem361_Jef2.2 (2837) at Wed Oct 12 13:49:56 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Fe54    0002' (HNISOR='Fe54        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Fe54 from /tmp/shem361_Jef2.2 (2625) at Wed Oct 12 13:05:00 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Fe57    0002' (HNISOR='Fe57        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Fe57 from /tmp/shem361_Jef2.2 (2634) at Wed Oct 12 13:16:16 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Cr50    0002' (HNISOR='Cr50        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cr50 from /tmp/shem361_Jef2.2 (2425) at Wed Oct 12 12:38:13 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Cr53    0002' (HNISOR='Cr53        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cr53 from /tmp/shem361_Jef2.2 (2434) at Wed Oct 12 12:48:54 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Ni58    0002' (HNISOR='Ni58        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ni58 from /tmp/shem361_Jef2.2 (2825) at Wed Oct 12 13:33:17 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Ni61    0002' (HNISOR='Ni61        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ni61 from /tmp/shem361_Jef2.2 (2834) at Wed Oct 12 13:44:30 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Ni64    0002' (HNISOR='Ni64        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ni64 from /tmp/shem361_Jef2.2 (2843) at Wed Oct 12 13:55:20 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Mn55    0002' (HNISOR='Mn55        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Mn55 from /tmp/shem361_Jef2.2 (2525) at Wed Oct 12 12:59:30 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Mo      0002' (HNISOR='Mo0         ').
+
+ ISOTOPE/MATERIAL INFO:
+ Mo0 from /tmp/shem361_Jef2.2 (4200) at Thu Oct 13 01:33:50 2011                 
+
+ PROCESSING ISOTOPE/MATERIAL 'Ti      0002' (HNISOR='Ti0         ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ti0 from /tmp/shem361_Jef2.2 (2200) at Wed Oct 12 12:27:45 2011                 
+
+ PROCESSING ISOTOPE/MATERIAL 'Cu      0002' (HNISOR='Cu0         ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cu0 from /tmp/shem361_Jef2.2 (2900) at Wed Oct 12 14:00:48 2011                 
+
+ PROCESSING ISOTOPE/MATERIAL 'Si      0002' (HNISOR='Si0         ').
+
+ ISOTOPE/MATERIAL INFO:
+ Si0 from /tmp/shem361_Jef2.2 (1400) at Wed Oct 12 11:40:35 2011                 
+
+ PROCESSING ISOTOPE/MATERIAL 'Na23    0003' (HNISOR='Na23        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Na23 from /tmp/shem361_Jef2.2 (1125) at Wed Oct 12 11:25:04 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'H1      0001' (HNISOR='H1          ').
+
+ ISOTOPE/MATERIAL INFO:
+ H1 from /tmp/shem361_Jef2.2 (125) at Wed Oct 12 10:10:44 2011                   
+
+ PROCESSING ISOTOPE/MATERIAL 'H2      0001' (HNISOR='H2          ').
+
+ ISOTOPE/MATERIAL INFO:
+ H2 from /tmp/shem361_Jef2.2 (128) at Wed Oct 12 10:15:34 2011                   
+
+ PROCESSING ISOTOPE/MATERIAL 'H3      0001' (HNISOR='H3          ').
+
+ ISOTOPE/MATERIAL INFO:
+ H3 from /tmp/shem361_Jef2.2 (131) at Wed Oct 12 10:20:06 2011                   
+
+ PROCESSING ISOTOPE/MATERIAL 'He3     0001' (HNISOR='He3         ').
+
+ ISOTOPE/MATERIAL INFO:
+ He3 from /tmp/shem361_Jef2.2 (225) at Wed Oct 12 10:24:42 2011                  
+
+ PROCESSING ISOTOPE/MATERIAL 'He4     0001' (HNISOR='He4         ').
+
+ ISOTOPE/MATERIAL INFO:
+ He4 from /tmp/shem361_Jef2.2 (228) at Wed Oct 12 10:29:28 2011                  
+
+ PROCESSING ISOTOPE/MATERIAL 'Li6     0001' (HNISOR='Li6         ').
+
+ ISOTOPE/MATERIAL INFO:
+ Li6 from /tmp/shem361_Jef2.2 (325) at Wed Oct 12 10:34:25 2011                  
+
+ PROCESSING ISOTOPE/MATERIAL 'Li7     0001' (HNISOR='Li7         ').
+
+ ISOTOPE/MATERIAL INFO:
+ Li7 from /tmp/shem361_Jef2.2 (328) at Wed Oct 12 10:39:24 2011                  
+
+ PROCESSING ISOTOPE/MATERIAL 'Be9     0001' (HNISOR='Be9         ').
+
+ ISOTOPE/MATERIAL INFO:
+ Be9 from /tmp/shem361_Jef2.2 (425) at Wed Oct 12 09:42:45 2011                  
+
+ PROCESSING ISOTOPE/MATERIAL 'B10     0001' (HNISOR='B10         ').
+
+ ISOTOPE/MATERIAL INFO:
+ B10 from /tmp/shem361_Jef2.2 (525) at Wed Oct 12 10:44:18 2011                  
+
+ PROCESSING ISOTOPE/MATERIAL 'B11     0001' (HNISOR='B11         ').
+
+ ISOTOPE/MATERIAL INFO:
+ B11 from /tmp/shem361_Jef2.2 (528) at Wed Oct 12 10:49:23 2011                  
+
+ PROCESSING ISOTOPE/MATERIAL 'N14     0001' (HNISOR='N14         ').
+
+ ISOTOPE/MATERIAL INFO:
+ N14 from /tmp/shem361_Jef2.2 (725) at Wed Oct 12 10:59:29 2011                  
+
+ PROCESSING ISOTOPE/MATERIAL 'N15     0001' (HNISOR='N15         ').
+
+ ISOTOPE/MATERIAL INFO:
+ N15 from /tmp/shem361_Jef2.2 (728) at Wed Oct 12 11:04:34 2011                  
+
+ PROCESSING ISOTOPE/MATERIAL 'O17     0001' (HNISOR='O17         ').
+
+ ISOTOPE/MATERIAL INFO:
+ O17 from /tmp/shem361_Jef2.2 (828) at Wed Oct 12 11:14:30 2011                  
+
+ PROCESSING ISOTOPE/MATERIAL 'Fe57    0001' (HNISOR='Fe57        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Fe57 from /tmp/shem361_Jef2.2 (2634) at Wed Oct 12 13:16:16 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Fe58    0001' (HNISOR='Fe58        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Fe58 from /tmp/shem361_Jef2.2 (2637) at Wed Oct 12 13:21:46 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Co59    0001' (HNISOR='Co59        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Co59 from /tmp/shem361_Jef2.2 (2725) at Wed Oct 12 13:27:18 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Ni60    0001' (HNISOR='Ni60        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ni60 from /tmp/shem361_Jef2.2 (2831) at Wed Oct 12 13:39:03 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Ni61    0001' (HNISOR='Ni61        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ni61 from /tmp/shem361_Jef2.2 (2834) at Wed Oct 12 13:44:30 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Ni62    0001' (HNISOR='Ni62        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ni62 from /tmp/shem361_Jef2.2 (2837) at Wed Oct 12 13:49:56 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Ni64    0001' (HNISOR='Ni64        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ni64 from /tmp/shem361_Jef2.2 (2843) at Wed Oct 12 13:55:20 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Ge72    0001' (HNISOR='Ge72        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ge72 from /tmp/shem361_Jef2.2 (3231) at Wed Oct 12 21:18:47 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Ge73    0001' (HNISOR='Ge73        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ge73 from /tmp/shem361_Jef2.2 (3234) at Wed Oct 12 21:25:28 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Ge74    0001' (HNISOR='Ge74        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ge74 from /tmp/shem361_Jef2.2 (3237) at Wed Oct 12 21:32:00 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Ge76    0001' (HNISOR='Ge76        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ge76 from /tmp/shem361_Jef2.2 (3243) at Wed Oct 12 21:38:41 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'As75    0001' (HNISOR='As75        ').
+
+ ISOTOPE/MATERIAL INFO:
+ As75 from /tmp/shem361_Jef2.2 (3325) at Wed Oct 12 21:45:36 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Se76    0001' (HNISOR='Se76        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Se76 from /tmp/shem361_Jef2.2 (3431) at Wed Oct 12 21:52:18 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Se77    0001' (HNISOR='Se77        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Se77 from /tmp/shem361_Jef2.2 (3434) at Wed Oct 12 21:58:59 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Se78    0001' (HNISOR='Se78        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Se78 from /tmp/shem361_Jef2.2 (3437) at Wed Oct 12 22:05:34 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Se80    0001' (HNISOR='Se80        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Se80 from /tmp/shem361_Jef2.2 (3443) at Wed Oct 12 22:12:12 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Se82    0001' (HNISOR='Se82        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Se82 from /tmp/shem361_Jef2.2 (3449) at Wed Oct 12 22:18:46 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Br79    0001' (HNISOR='Br79        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Br79 from /tmp/shem361_Jef2.2 (3525) at Wed Oct 12 22:25:32 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Br81    0001' (HNISOR='Br81        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Br81 from /tmp/shem361_Jef2.2 (3531) at Wed Oct 12 22:32:29 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Kr80    0001' (HNISOR='Kr80        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Kr80 from /tmp/shem361_Jef2.2 (3631) at Wed Oct 12 22:39:09 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Kr82    0001' (HNISOR='Kr82        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Kr82 from /tmp/shem361_Jef2.2 (3637) at Wed Oct 12 22:45:49 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Kr83    0001' (HNISOR='Kr83        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Kr83 from /tmp/shem361_Jef2.2 (3640) at Wed Oct 12 22:52:30 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Kr84    0001' (HNISOR='Kr84        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Kr84 from /tmp/shem361_Jef2.2 (3643) at Wed Oct 12 22:59:10 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Kr85    0001' (HNISOR='Kr85        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Kr85 from /tmp/shem361_Jef2.2 (3646) at Wed Oct 12 23:05:42 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Kr86    0001' (HNISOR='Kr86        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Kr86 from /tmp/shem361_Jef2.2 (3649) at Wed Oct 12 23:12:23 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Rb85    0001' (HNISOR='Rb85        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Rb85 from /tmp/shem361_Jef2.2 (3725) at Wed Oct 12 23:19:16 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Rb87    0001' (HNISOR='Rb87        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Rb87 from /tmp/shem361_Jef2.2 (3731) at Wed Oct 12 23:25:55 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Sr86    0001' (HNISOR='Sr86        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sr86 from /tmp/shem361_Jef2.2 (3831) at Wed Oct 12 23:32:39 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Sr87    0001' (HNISOR='Sr87        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sr87 from /tmp/shem361_Jef2.2 (3834) at Wed Oct 12 23:39:19 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Sr88    0001' (HNISOR='Sr88        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sr88 from /tmp/shem361_Jef2.2 (3837) at Wed Oct 12 23:45:56 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Sr89    0001' (HNISOR='Sr89        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sr89 from /tmp/shem361_Jef2.2 (3840) at Wed Oct 12 23:52:29 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Sr90    0001' (HNISOR='Sr90        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sr90 from /tmp/shem361_Jef2.2 (3843) at Wed Oct 12 23:59:06 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Y89     0001' (HNISOR='Y89         ').
+
+ ISOTOPE/MATERIAL INFO:
+ Y89 from /tmp/shem361_Jef2.2 (3925) at Thu Oct 13 00:05:56 2011                 
+
+ PROCESSING ISOTOPE/MATERIAL 'Y90     0001' (HNISOR='Y90         ').
+
+ ISOTOPE/MATERIAL INFO:
+ Y90 from /tmp/shem361_Jef2.2 (3928) at Thu Oct 13 00:12:32 2011                 
+
+ PROCESSING ISOTOPE/MATERIAL 'Y91     0001' (HNISOR='Y91         ').
+
+ ISOTOPE/MATERIAL INFO:
+ Y91 from /tmp/shem361_Jef2.2 (3931) at Thu Oct 13 00:19:08 2011                 
+
+ PROCESSING ISOTOPE/MATERIAL 'Zr90    0001' (HNISOR='Zr90        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Zr90 from /tmp/shem361_Jef2.2 (4025) at Thu Oct 13 00:25:55 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Zr91    0001' (HNISOR='Zr91        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Zr91 from /tmp/shem361_Jef2.2 (4028) at Thu Oct 13 00:32:45 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Zr92    0001' (HNISOR='Zr92        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Zr92 from /tmp/shem361_Jef2.2 (4031) at Thu Oct 13 00:39:27 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Zr93    0001' (HNISOR='Zr93        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Zr93 from /tmp/shem361_Jef2.2 (4034) at Thu Oct 13 00:46:05 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Zr94    0001' (HNISOR='Zr94        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Zr94 from /tmp/shem361_Jef2.2 (4037) at Thu Oct 13 00:52:51 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Zr95    0001' (HNISOR='Zr95        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Zr95 from /tmp/shem361_Jef2.2 (4040) at Thu Oct 13 00:59:29 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Zr96    0001' (HNISOR='Zr96        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Zr96 from /tmp/shem361_Jef2.2 (4043) at Thu Oct 13 01:06:10 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Nb93    0001' (HNISOR='Nb93        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Nb93 from /tmp/shem361_Jef2.2 (4125) at Thu Oct 13 01:13:24 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Nb94    0001' (HNISOR='Nb94        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Nb94 from /tmp/shem361_Jef2.2 (4128) at Thu Oct 13 01:20:04 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Nb95    0001' (HNISOR='Nb95        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Nb95 from /tmp/shem361_Jef2.2 (4131) at Thu Oct 13 01:26:47 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Mo95    0001' (HNISOR='Mo95        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Mo95 from /tmp/shem361_Jef2.2 (4234) at Thu Oct 13 01:40:52 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Mo96    0001' (HNISOR='Mo96        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Mo96 from /tmp/shem361_Jef2.2 (4237) at Thu Oct 13 01:47:40 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Mo97    0001' (HNISOR='Mo97        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Mo97 from /tmp/shem361_Jef2.2 (4240) at Thu Oct 13 01:54:37 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Mo98    0001' (HNISOR='Mo98        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Mo98 from /tmp/shem361_Jef2.2 (4243) at Thu Oct 13 02:01:31 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Mo99    0001' (HNISOR='Mo99        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Mo99 from /tmp/shem361_Jef2.2 (4246) at Thu Oct 13 02:08:11 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Mo100   0001' (HNISOR='Mo100       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Mo100 from /tmp/shem361_Jef2.2 (4249) at Thu Oct 13 02:15:07 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Tc99    0001' (HNISOR='Tc99        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Tc99 from /tmp/shem361_Jef2.2 (4331) at Thu Oct 13 02:22:10 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Ru99    0001' (HNISOR='Ru99        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ru99 from /tmp/shem361_Jef2.2 (4434) at Thu Oct 13 02:29:02 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Ru100   0001' (HNISOR='Ru100       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ru100 from /tmp/shem361_Jef2.2 (4437) at Thu Oct 13 02:35:38 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ru101   0001' (HNISOR='Ru101       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ru101 from /tmp/shem361_Jef2.2 (4440) at Thu Oct 13 02:42:27 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ru102   0001' (HNISOR='Ru102       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ru102 from /tmp/shem361_Jef2.2 (4443) at Thu Oct 13 02:49:03 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ru103   0001' (HNISOR='Ru103       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ru103 from /tmp/shem361_Jef2.2 (4446) at Thu Oct 13 02:55:45 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ru104   0001' (HNISOR='Ru104       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ru104 from /tmp/shem361_Jef2.2 (4449) at Thu Oct 13 03:02:26 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ru105   0001' (HNISOR='Ru105       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ru105 from /tmp/shem361_Jef2.2 (4452) at Thu Oct 13 03:09:13 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ru106   0001' (HNISOR='Ru106       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ru106 from /tmp/shem361_Jef2.2 (4455) at Thu Oct 13 03:15:48 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Rh103   0001' (HNISOR='Rh103       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Rh103 from /tmp/shem361_Jef2.2 (4525) at Thu Oct 13 03:22:59 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Rh105   0001' (HNISOR='Rh105       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Rh105 from /tmp/shem361_Jef2.2 (4531) at Thu Oct 13 03:29:40 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pd104   0001' (HNISOR='Pd104       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pd104 from /tmp/shem361_Jef2.2 (4631) at Thu Oct 13 03:36:31 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pd105   0001' (HNISOR='Pd105       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pd105 from /tmp/shem361_Jef2.2 (4634) at Thu Oct 13 03:43:59 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pd106   0001' (HNISOR='Pd106       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pd106 from /tmp/shem361_Jef2.2 (4637) at Thu Oct 13 03:51:00 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pd107   0001' (HNISOR='Pd107       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pd107 from /tmp/shem361_Jef2.2 (4640) at Thu Oct 13 03:57:51 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pd108   0001' (HNISOR='Pd108       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pd108 from /tmp/shem361_Jef2.2 (4643) at Thu Oct 13 04:04:42 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pd110   0001' (HNISOR='Pd110       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pd110 from /tmp/shem361_Jef2.2 (4649) at Thu Oct 13 04:11:27 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ag107   0001' (HNISOR='Ag107       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ag107 from /tmp/shem361_Jef2.2 (4725) at Thu Oct 13 04:18:23 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ag109   0001' (HNISOR='Ag109       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ag109 from /tmp/shem361_Jef2.2 (4731) at Thu Oct 13 04:25:35 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ag111   0001' (HNISOR='Ag111       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ag111 from /tmp/shem361_Jef2.2 (4737) at Thu Oct 13 04:32:23 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cd110   0001' (HNISOR='Cd110       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cd110 from /tmp/shem361_Jef2.2 (4837) at Thu Oct 13 04:39:22 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cd111   0001' (HNISOR='Cd111       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cd111 from /tmp/shem361_Jef2.2 (4840) at Thu Oct 13 04:46:34 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cd112   0001' (HNISOR='Cd112       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cd112 from /tmp/shem361_Jef2.2 (4843) at Thu Oct 13 04:53:39 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cd113   0001' (HNISOR='Cd113       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cd113 from /tmp/shem361_Jef2.2 (4846) at Thu Oct 13 05:00:25 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cd114   0001' (HNISOR='Cd114       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cd114 from /tmp/shem361_Jef2.2 (4849) at Thu Oct 13 05:07:18 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cd115m  0001' (HNISOR='Cd115m      ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cd115m from /tmp/shem361_Jef2.2 (4852) at Thu Oct 13 05:13:58 2011              
+
+ PROCESSING ISOTOPE/MATERIAL 'Cd116   0001' (HNISOR='Cd116       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cd116 from /tmp/shem361_Jef2.2 (4855) at Thu Oct 13 05:20:44 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'In113   0001' (HNISOR='In113       ').
+
+ ISOTOPE/MATERIAL INFO:
+ In113 from /tmp/shem361_Jef2.2 (4925) at Thu Oct 13 05:27:35 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'In115   0001' (HNISOR='In115       ').
+
+ ISOTOPE/MATERIAL INFO:
+ In115 from /tmp/shem361_Jef2.2 (4931) at Thu Oct 13 05:35:01 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sn115   0001' (HNISOR='Sn115       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sn115 from /tmp/shem361_Jef2.2 (5034) at Thu Oct 13 05:41:53 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sn116   0001' (HNISOR='Sn116       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sn116 from /tmp/shem361_Jef2.2 (5037) at Thu Oct 13 05:48:40 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sn117   0001' (HNISOR='Sn117       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sn117 from /tmp/shem361_Jef2.2 (5040) at Thu Oct 13 05:55:29 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sn118   0001' (HNISOR='Sn118       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sn118 from /tmp/shem361_Jef2.2 (5043) at Thu Oct 13 06:02:11 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sn119   0001' (HNISOR='Sn119       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sn119 from /tmp/shem361_Jef2.2 (5046) at Thu Oct 13 06:08:54 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sn120   0001' (HNISOR='Sn120       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sn120 from /tmp/shem361_Jef2.2 (5049) at Thu Oct 13 06:15:47 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sn122   0001' (HNISOR='Sn122       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sn122 from /tmp/shem361_Jef2.2 (5055) at Thu Oct 13 06:22:29 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sn123   0001' (HNISOR='Sn123       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sn123 from /tmp/shem361_Jef2.2 (5058) at Thu Oct 13 06:29:11 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sn124   0001' (HNISOR='Sn124       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sn124 from /tmp/shem361_Jef2.2 (5061) at Thu Oct 13 06:36:00 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sn125   0001' (HNISOR='Sn125       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sn125 from /tmp/shem361_Jef2.2 (5064) at Thu Oct 13 06:42:45 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sn126   0001' (HNISOR='Sn126       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sn126 from /tmp/shem361_Jef2.2 (5067) at Thu Oct 13 06:49:36 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sb121   0001' (HNISOR='Sb121       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sb121 from /tmp/shem361_Jef2.2 (5125) at Thu Oct 13 06:56:46 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sb123   0001' (HNISOR='Sb123       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sb123 from /tmp/shem361_Jef2.2 (5131) at Thu Oct 13 07:03:49 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sb124   0001' (HNISOR='Sb124       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sb124 from /tmp/shem361_Jef2.2 (5134) at Thu Oct 13 07:10:33 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sb125   0001' (HNISOR='Sb125       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sb125 from /tmp/shem361_Jef2.2 (5137) at Thu Oct 13 07:17:18 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sb126   0001' (HNISOR='Sb126       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sb126 from /tmp/shem361_Jef2.2 (5140) at Thu Oct 13 07:24:07 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Te122   0001' (HNISOR='Te122       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Te122 from /tmp/shem361_Jef2.2 (5231) at Thu Oct 13 07:30:59 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Te123   0001' (HNISOR='Te123       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Te123 from /tmp/shem361_Jef2.2 (5234) at Thu Oct 13 07:37:47 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Te124   0001' (HNISOR='Te124       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Te124 from /tmp/shem361_Jef2.2 (5237) at Thu Oct 13 07:44:50 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Te125   0001' (HNISOR='Te125       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Te125 from /tmp/shem361_Jef2.2 (5240) at Thu Oct 13 07:51:40 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Te126   0001' (HNISOR='Te126       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Te126 from /tmp/shem361_Jef2.2 (5243) at Thu Oct 13 07:58:33 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Te127m  0001' (HNISOR='Te127m      ').
+
+ ISOTOPE/MATERIAL INFO:
+ Te127m from /tmp/shem361_Jef2.2 (5246) at Thu Oct 13 08:05:18 2011              
+
+ PROCESSING ISOTOPE/MATERIAL 'Te128   0001' (HNISOR='Te128       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Te128 from /tmp/shem361_Jef2.2 (5249) at Thu Oct 13 08:12:06 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Te129m  0001' (HNISOR='Te129m      ').
+
+ ISOTOPE/MATERIAL INFO:
+ Te129m from /tmp/shem361_Jef2.2 (5252) at Thu Oct 13 08:18:47 2011              
+
+ PROCESSING ISOTOPE/MATERIAL 'Te130   0001' (HNISOR='Te130       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Te130 from /tmp/shem361_Jef2.2 (5255) at Thu Oct 13 08:25:32 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Te132   0001' (HNISOR='Te132       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Te132 from /tmp/shem361_Jef2.2 (5261) at Thu Oct 13 08:32:20 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'I127    0001' (HNISOR='I127        ').
+
+ ISOTOPE/MATERIAL INFO:
+ I127 from /tmp/shem361_Jef2.2 (5325) at Thu Oct 13 08:39:50 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'I129    0001' (HNISOR='I129        ').
+
+ ISOTOPE/MATERIAL INFO:
+ I129 from /tmp/shem361_Jef2.2 (5331) at Thu Oct 13 08:47:07 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'I130    0001' (HNISOR='I130        ').
+
+ ISOTOPE/MATERIAL INFO:
+ I130 from /tmp/shem361_Jef2.2 (5334) at Thu Oct 13 08:53:49 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'I131    0001' (HNISOR='I131        ').
+
+ ISOTOPE/MATERIAL INFO:
+ I131 from /tmp/shem361_Jef2.2 (5337) at Thu Oct 13 09:00:29 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'I135    0001' (HNISOR='I135        ').
+
+ ISOTOPE/MATERIAL INFO:
+ I135 from /tmp/shem361_Jef2.2 (5349) at Thu Oct 13 09:07:11 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Xe128   0001' (HNISOR='Xe128       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Xe128 from /tmp/shem361_Jef2.2 (5437) at Thu Oct 13 09:14:02 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Xe129   0001' (HNISOR='Xe129       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Xe129 from /tmp/shem361_Jef2.2 (5440) at Thu Oct 13 09:21:06 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Xe130   0001' (HNISOR='Xe130       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Xe130 from /tmp/shem361_Jef2.2 (5443) at Thu Oct 13 09:27:55 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Xe131   0001' (HNISOR='Xe131       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Xe131 from /tmp/shem361_Jef2.2 (5446) at Thu Oct 13 09:34:52 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Xe132   0001' (HNISOR='Xe132       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Xe132 from /tmp/shem361_Jef2.2 (5449) at Thu Oct 13 09:41:38 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Xe133   0001' (HNISOR='Xe133       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Xe133 from /tmp/shem361_Jef2.2 (5452) at Thu Oct 13 09:48:24 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Xe134   0001' (HNISOR='Xe134       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Xe134 from /tmp/shem361_Jef2.2 (5455) at Thu Oct 13 09:55:11 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Xe135   0001' (HNISOR='Xe135       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Xe135 from /tmp/shem361_Jef2.2 (5458) at Thu Oct 13 10:01:54 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Xe136   0001' (HNISOR='Xe136       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Xe136 from /tmp/shem361_Jef2.2 (5461) at Thu Oct 13 10:08:37 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cs133   0001' (HNISOR='Cs133       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cs133 from /tmp/shem361_Jef2.2 (5525) at Thu Oct 13 10:16:00 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cs134   0001' (HNISOR='Cs134       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cs134 from /tmp/shem361_Jef2.2 (5528) at Thu Oct 13 10:22:44 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cs135   0001' (HNISOR='Cs135       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cs135 from /tmp/shem361_Jef2.2 (5531) at Thu Oct 13 10:29:28 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cs136   0001' (HNISOR='Cs136       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cs136 from /tmp/shem361_Jef2.2 (5534) at Thu Oct 13 10:36:18 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cs137   0001' (HNISOR='Cs137       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cs137 from /tmp/shem361_Jef2.2 (5537) at Thu Oct 13 10:43:02 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ba134   0001' (HNISOR='Ba134       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ba134 from /tmp/shem361_Jef2.2 (5637) at Thu Oct 13 10:49:48 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ba135   0001' (HNISOR='Ba135       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ba135 from /tmp/shem361_Jef2.2 (5640) at Thu Oct 13 10:56:36 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ba136   0001' (HNISOR='Ba136       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ba136 from /tmp/shem361_Jef2.2 (5643) at Thu Oct 13 11:03:20 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ba137   0001' (HNISOR='Ba137       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ba137 from /tmp/shem361_Jef2.2 (5646) at Thu Oct 13 11:10:10 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ba138   0001' (HNISOR='Ba138       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ba138 from /tmp/shem361_Jef2.2 (5649) at Thu Oct 13 11:17:05 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ba140   0001' (HNISOR='Ba140       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ba140 from /tmp/shem361_Jef2.2 (5655) at Thu Oct 13 11:23:55 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'La139   0001' (HNISOR='La139       ').
+
+ ISOTOPE/MATERIAL INFO:
+ La139 from /tmp/shem361_Jef2.2 (5728) at Thu Oct 13 11:31:03 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'La140   0001' (HNISOR='La140       ').
+
+ ISOTOPE/MATERIAL INFO:
+ La140 from /tmp/shem361_Jef2.2 (5731) at Thu Oct 13 11:37:51 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ce140   0001' (HNISOR='Ce140       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ce140 from /tmp/shem361_Jef2.2 (5837) at Thu Oct 13 11:44:45 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ce141   0001' (HNISOR='Ce141       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ce141 from /tmp/shem361_Jef2.2 (5840) at Thu Oct 13 11:51:40 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ce142   0001' (HNISOR='Ce142       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ce142 from /tmp/shem361_Jef2.2 (5843) at Thu Oct 13 11:58:25 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ce143   0001' (HNISOR='Ce143       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ce143 from /tmp/shem361_Jef2.2 (5846) at Thu Oct 13 12:05:17 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ce144   0001' (HNISOR='Ce144       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ce144 from /tmp/shem361_Jef2.2 (5849) at Thu Oct 13 12:12:09 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pr141   0001' (HNISOR='Pr141       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pr141 from /tmp/shem361_Jef2.2 (5925) at Thu Oct 13 12:19:23 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pr142   0001' (HNISOR='Pr142       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pr142 from /tmp/shem361_Jef2.2 (5928) at Thu Oct 13 12:26:21 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pr143   0001' (HNISOR='Pr143       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pr143 from /tmp/shem361_Jef2.2 (5931) at Thu Oct 13 12:33:05 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Nd142   0001' (HNISOR='Nd142       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Nd142 from /tmp/shem361_Jef2.2 (6025) at Thu Oct 13 12:39:59 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Nd143   0001' (HNISOR='Nd143       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Nd143 from /tmp/shem361_Jef2.2 (6028) at Thu Oct 13 12:47:13 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Nd144   0001' (HNISOR='Nd144       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Nd144 from /tmp/shem361_Jef2.2 (6031) at Thu Oct 13 12:54:07 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Nd145   0001' (HNISOR='Nd145       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Nd145 from /tmp/shem361_Jef2.2 (6034) at Thu Oct 13 13:01:25 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Nd146   0001' (HNISOR='Nd146       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Nd146 from /tmp/shem361_Jef2.2 (6037) at Thu Oct 13 13:08:24 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Nd147   0001' (HNISOR='Nd147       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Nd147 from /tmp/shem361_Jef2.2 (6040) at Thu Oct 13 13:15:08 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Nd148   0001' (HNISOR='Nd148       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Nd148 from /tmp/shem361_Jef2.2 (6043) at Thu Oct 13 13:22:12 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Nd150   0001' (HNISOR='Nd150       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Nd150 from /tmp/shem361_Jef2.2 (6049) at Thu Oct 13 13:29:07 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pm147   0001' (HNISOR='Pm147       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pm147 from /tmp/shem361_Jef2.2 (6149) at Thu Oct 13 13:36:00 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pm148   0001' (HNISOR='Pm148       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pm148 from /tmp/shem361_Jef2.2 (6152) at Thu Oct 13 13:42:45 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pm148m  0001' (HNISOR='Pm148m      ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pm148m from /tmp/shem361_Jef2.2 (6153) at Thu Oct 13 13:49:30 2011              
+
+ PROCESSING ISOTOPE/MATERIAL 'Pm149   0001' (HNISOR='Pm149       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pm149 from /tmp/shem361_Jef2.2 (6155) at Thu Oct 13 13:56:14 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pm151   0001' (HNISOR='Pm151       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pm151 from /tmp/shem361_Jef2.2 (6161) at Thu Oct 13 14:02:59 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sm147   0001' (HNISOR='Sm147       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sm147 from /tmp/shem361_Jef2.2 (6234) at Thu Oct 13 14:10:18 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sm148   0001' (HNISOR='Sm148       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sm148 from /tmp/shem361_Jef2.2 (6237) at Thu Oct 13 14:17:02 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sm149   0001' (HNISOR='Sm149       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sm149 from /tmp/shem361_Jef2.2 (6240) at Thu Oct 13 14:24:01 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sm150   0001' (HNISOR='Sm150       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sm150 from /tmp/shem361_Jef2.2 (6243) at Thu Oct 13 14:30:52 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sm151   0001' (HNISOR='Sm151       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sm151 from /tmp/shem361_Jef2.2 (6246) at Thu Oct 13 14:38:09 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sm152   0001' (HNISOR='Sm152       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sm152 from /tmp/shem361_Jef2.2 (6249) at Thu Oct 13 14:45:29 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sm153   0001' (HNISOR='Sm153       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sm153 from /tmp/shem361_Jef2.2 (6252) at Thu Oct 13 14:52:12 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Sm154   0001' (HNISOR='Sm154       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Sm154 from /tmp/shem361_Jef2.2 (6255) at Thu Oct 13 14:59:09 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Eu151   0001' (HNISOR='Eu151       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Eu151 from /tmp/shem361_Jef2.2 (6325) at Thu Oct 13 15:06:19 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Eu152   0001' (HNISOR='Eu152       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Eu152 from /tmp/shem361_Jef2.2 (6328) at Thu Oct 13 15:13:26 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Eu153   0001' (HNISOR='Eu153       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Eu153 from /tmp/shem361_Jef2.2 (6331) at Thu Oct 13 15:20:34 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Eu154   0001' (HNISOR='Eu154       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Eu154 from /tmp/shem361_Jef2.2 (6334) at Thu Oct 13 15:27:39 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Eu155   0001' (HNISOR='Eu155       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Eu155 from /tmp/shem361_Jef2.2 (6337) at Thu Oct 13 15:34:27 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Eu156   0001' (HNISOR='Eu156       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Eu156 from /tmp/shem361_Jef2.2 (6340) at Thu Oct 13 15:41:12 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Eu157   0001' (HNISOR='Eu157       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Eu157 from /tmp/shem361_Jef2.2 (6343) at Thu Oct 13 15:47:55 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Gd154   0001' (HNISOR='Gd154       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Gd154 from /tmp/shem361_Jef2.2 (6431) at Thu Oct 13 15:54:49 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Gd155   0001' (HNISOR='Gd155       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Gd155 from /tmp/shem361_Jef2.2 (6434) at Thu Oct 13 16:02:23 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Gd156   0001' (HNISOR='Gd156       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Gd156 from /tmp/shem361_Jef2.2 (6437) at Thu Oct 13 16:09:41 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Gd157   0001' (HNISOR='Gd157       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Gd157 from /tmp/shem361_Jef2.2 (6440) at Thu Oct 13 16:16:56 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Gd158   0001' (HNISOR='Gd158       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Gd158 from /tmp/shem361_Jef2.2 (6443) at Thu Oct 13 16:24:21 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Gd160   0001' (HNISOR='Gd160       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Gd160 from /tmp/shem361_Jef2.2 (6449) at Thu Oct 13 16:31:28 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Tb159   0001' (HNISOR='Tb159       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Tb159 from /tmp/shem361_Jef2.2 (6525) at Thu Oct 13 16:38:35 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Tb160   0001' (HNISOR='Tb160       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Tb160 from /tmp/shem361_Jef2.2 (6528) at Thu Oct 13 16:45:22 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Dy160   0001' (HNISOR='Dy160       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Dy160 from /tmp/shem361_Jef2.2 (6637) at Thu Oct 13 16:52:15 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Dy161   0001' (HNISOR='Dy161       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Dy161 from /tmp/shem361_Jef2.2 (6640) at Thu Oct 13 16:59:21 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Dy162   0001' (HNISOR='Dy162       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Dy162 from /tmp/shem361_Jef2.2 (6643) at Thu Oct 13 17:06:26 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Dy163   0001' (HNISOR='Dy163       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Dy163 from /tmp/shem361_Jef2.2 (6646) at Thu Oct 13 17:13:48 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Dy164   0001' (HNISOR='Dy164       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Dy164 from /tmp/shem361_Jef2.2 (6649) at Thu Oct 13 17:20:56 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Ho165   0001' (HNISOR='Ho165       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Ho165 from /tmp/shem361_Jef2.2 (6725) at Thu Oct 13 18:14:26 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Er166   0001' (HNISOR='Er166       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Er166 from /tmp/shem361_Jef2.2 (6837) at Thu Oct 13 18:21:49 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Er167   0001' (HNISOR='Er167       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Er167 from /tmp/shem361_Jef2.2 (6840) at Thu Oct 13 18:29:00 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Hf176   0001' (HNISOR='Hf176       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Hf176 from /tmp/shem361_Jef2.2 (7231) at Thu Oct 13 17:35:38 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Hf177   0001' (HNISOR='Hf177       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Hf177 from /tmp/shem361_Jef2.2 (7234) at Thu Oct 13 17:44:01 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Hf178   0001' (HNISOR='Hf178       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Hf178 from /tmp/shem361_Jef2.2 (7237) at Thu Oct 13 17:51:36 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Hf179   0001' (HNISOR='Hf179       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Hf179 from /tmp/shem361_Jef2.2 (7240) at Thu Oct 13 17:59:32 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Hf180   0001' (HNISOR='Hf180       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Hf180 from /tmp/shem361_Jef2.2 (7243) at Thu Oct 13 18:07:06 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'W182    0001' (HNISOR='W182        ').
+
+ ISOTOPE/MATERIAL INFO:
+ W182 from /tmp/shem361_Jef2.2 (7431) at Wed Oct 12 14:12:29 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'W183    0001' (HNISOR='W183        ').
+
+ ISOTOPE/MATERIAL INFO:
+ W183 from /tmp/shem361_Jef2.2 (7434) at Wed Oct 12 14:18:17 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'W184    0001' (HNISOR='W184        ').
+
+ ISOTOPE/MATERIAL INFO:
+ W184 from /tmp/shem361_Jef2.2 (7437) at Wed Oct 12 14:24:06 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'W186    0001' (HNISOR='W186        ').
+
+ ISOTOPE/MATERIAL INFO:
+ W186 from /tmp/shem361_Jef2.2 (7443) at Wed Oct 12 14:30:08 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Th232   0001' (HNISOR='Th232       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Th232 from /tmp/shem361_Jef2.2 (9040) at Wed Oct 12 15:08:53 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pa231   0001' (HNISOR='Pa231       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pa231 from /tmp/shem361_Jef2.2 (9131) at Wed Oct 12 15:15:23 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pa233   0001' (HNISOR='Pa233       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pa233 from /tmp/shem361_Jef2.2 (9137) at Wed Oct 12 15:21:55 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'U232    0001' (HNISOR='U232        ').
+
+ ISOTOPE/MATERIAL INFO:
+ U232 from /tmp/shem361_Jef2.2 (9219) at Wed Oct 12 15:28:07 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'U233    0001' (HNISOR='U233        ').
+
+ ISOTOPE/MATERIAL INFO:
+ U233 from /tmp/shem361_Jef2.2 (9222) at Wed Oct 12 15:34:32 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'U234    0001' (HNISOR='U234        ').
+
+ ISOTOPE/MATERIAL INFO:
+ U234 from /tmp/shem361_Jef2.2 (9225) at Wed Oct 12 15:41:52 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'U236    0001' (HNISOR='U236        ').
+
+ ISOTOPE/MATERIAL INFO:
+ U236 from /tmp/shem361_Jef2.2 (9231) at Wed Oct 12 16:16:44 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'U237    0001' (HNISOR='U237        ').
+
+ ISOTOPE/MATERIAL INFO:
+ U237 from /tmp/shem361_Jef2.2 (9234) at Wed Oct 12 16:23:32 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Np237   0001' (HNISOR='Np237       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Np237 from /tmp/shem361_Jef2.2 (9346) at Wed Oct 12 17:01:26 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Np238   0001' (HNISOR='Np238       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Np238 from /tmp/shem361_Jef2.2 (9349) at Wed Oct 12 17:08:04 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Np239   0001' (HNISOR='Np239       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Np239 from /tmp/shem361_Jef2.2 (9352) at Wed Oct 12 17:14:23 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pu236   0001' (HNISOR='Pu236       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pu236 from /tmp/shem361_Jef2.2 (9428) at Wed Oct 12 17:21:00 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pu237   0001' (HNISOR='Pu237       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pu237 from /tmp/shem361_Jef2.2 (9431) at Wed Oct 12 17:27:25 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Pu243   0001' (HNISOR='Pu243       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Pu243 from /tmp/shem361_Jef2.2 (9449) at Wed Oct 12 18:52:00 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Am242   0001' (HNISOR='Am242       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Am242 from /tmp/shem361_Jef2.2 (9546) at Wed Oct 12 19:14:54 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Am242m  0001' (HNISOR='Am242m      ').
+
+ ISOTOPE/MATERIAL INFO:
+ Am242m from /tmp/shem361_Jef2.2 (9547) at Wed Oct 12 19:21:45 2011              
+
+ PROCESSING ISOTOPE/MATERIAL 'Am243   0001' (HNISOR='Am243       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Am243 from /tmp/shem361_Jef2.2 (9549) at Wed Oct 12 19:29:50 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cm242   0001' (HNISOR='Cm242       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cm242 from /tmp/shem361_Jef2.2 (9631) at Wed Oct 12 19:43:39 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cm243   0001' (HNISOR='Cm243       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cm243 from /tmp/shem361_Jef2.2 (9634) at Wed Oct 12 19:50:44 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cm244   0001' (HNISOR='Cm244       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cm244 from /tmp/shem361_Jef2.2 (9637) at Wed Oct 12 19:58:34 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cm245   0001' (HNISOR='Cm245       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cm245 from /tmp/shem361_Jef2.2 (9640) at Wed Oct 12 20:05:44 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cm246   0001' (HNISOR='Cm246       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cm246 from /tmp/shem361_Jef2.2 (9643) at Wed Oct 12 20:12:59 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cm247   0001' (HNISOR='Cm247       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cm247 from /tmp/shem361_Jef2.2 (9646) at Wed Oct 12 20:20:13 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cm248   0001' (HNISOR='Cm248       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cm248 from /tmp/shem361_Jef2.2 (9649) at Wed Oct 12 20:27:38 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Bk249   0001' (HNISOR='Bk249       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Bk249 from /tmp/shem361_Jef2.2 (9752) at Wed Oct 12 20:35:24 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cf249   0001' (HNISOR='Cf249       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cf249 from /tmp/shem361_Jef2.2 (9852) at Wed Oct 12 20:42:42 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cf250   0001' (HNISOR='Cf250       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cf250 from /tmp/shem361_Jef2.2 (9855) at Wed Oct 12 20:50:04 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cf251   0001' (HNISOR='Cf251       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cf251 from /tmp/shem361_Jef2.2 (9858) at Wed Oct 12 20:57:13 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cf252   0001' (HNISOR='Cf252       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cf252 from /tmp/shem361_Jef2.2 (9861) at Wed Oct 12 21:04:25 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cf253   0001' (HNISOR='Cf253       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cf253 from /tmp/shem361_Jef2.2 (9864) at Wed Oct 12 21:11:52 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cr52    0001' (HNISOR='Cr52        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cr52 from /tmp/shem361_Jef2.2 (2431) at Wed Oct 12 12:43:33 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Cr53    0001' (HNISOR='Cr53        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cr53 from /tmp/shem361_Jef2.2 (2434) at Wed Oct 12 12:48:54 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Cr54    0001' (HNISOR='Cr54        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cr54 from /tmp/shem361_Jef2.2 (2437) at Wed Oct 12 12:54:11 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Mn55    0001' (HNISOR='Mn55        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Mn55 from /tmp/shem361_Jef2.2 (2525) at Wed Oct 12 12:59:30 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Fe56    0001' (HNISOR='Fe56        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Fe56 from /tmp/shem361_Jef2.2 (2631) at Wed Oct 12 13:10:45 2011                
+
+ PROCESSING ISOTOPE/MATERIAL 'Hf174   0001' (HNISOR='Hf174       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Hf174 from /tmp/shem361_Jef2.2 (7225) at Thu Oct 13 17:28:11 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Bi209   0001' (HNISOR='Bi209       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Bi209 from /tmp/shem361_Jef2.2 (8325) at Wed Oct 12 14:41:40 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Th230   0001' (HNISOR='Th230       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Th230 from /tmp/shem361_Jef2.2 (9034) at Wed Oct 12 14:53:35 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Cm241   0001' (HNISOR='Cm241       ').
+
+ ISOTOPE/MATERIAL INFO:
+ Cm241 from /tmp/shem361_Jef2.2 (9628) at Wed Oct 12 19:36:34 2011               
+
+ PROCESSING ISOTOPE/MATERIAL 'Co59    0002' (HNISOR='Co59        ').
+
+ ISOTOPE/MATERIAL INFO:
+ Co59 from /tmp/shem361_Jef2.2 (2725) at Wed Oct 12 13:27:18 2011                
+
+ OPTIONS
+ -------
+ IMPX       1   (0=NO PRINT/1=SHORT/2=MORE)
+ IPROB      0   (0=DIRECT/1=ADJOINT)
+ ITIME      1   (1=STEADY-STATE/2=PROMPT)
+ NLIB       1   (NUMBER OF SETS OF LIBRARIES)
+ NGF       30   (NUMBER OF FAST GROUP WITHOUT SELF-SHIELDING)
+ IGRMAX   173   (LAST GROUP INDEX WITH SELF-SHIELDING)
+ NBISO    275   (NUMBER OF ISOTOPES OR MATERIALS)
+ NBMIX      3   (NUMBER OF MIXTURES)
+ NRES       1   (NUMBER OF SETS OF RESONANT MIXTURES)
+ NCOMB      3   (NUMBER OF DEPLETING MIXTURES)
+ NEDMAC    12   (NUMBER OF CROSS SECTION EDITS)
+ NGRO     361   (NUMBER OF ENERGY GROUPS)
+ NL         2   (NUMBER OF LEGENDRE ORDERS)
+ ITRANC     2   (0=NO TRANSPORT CORRECTION/1=APOLLO TYPE/2=RECOVER FROM LIBRARY/3=WIMS-D TYPE/4=LEAKAGE CORRECTION)
+ IPROC      0   (-1=SKIP LIBRARY PROCESSING/0=DILUTION INTERPOLATION/1=USE PHYSICAL TABLES/2=BUILD A DRAGLIB/3=COMPUTE CALENDF TABLES/4=SLOWING-DOWN TABLES/5=ALL CALENDF)
+ IMAC       1   (0=DO NOT/1=DO BUILD AN EMBEDDED MACROLIB)
+ NDEL       6   (NUMBER OF PRECURSOR GROUPS)
+ NDEPL    283   (NUMBER OF DEPLETING ISOTOPES)
+ NFISS     21   (NUMBER OF FISSILE ISOTOPES)
+ ISOADD     0   (0=COMPLETE BURNUP CHAIN/1=DO NOT)
+ MAXISM   300   (MAX. NUMBER OF ISOTOPES PER MIXTURE)
+ IPRECI     4   (CALENDF ACCURACY FLAG:1/2/3/4)
+
+ CROSS SECTION EDIT NAME (LCM DIRECTORY NAME)
+ --------------------------------------------
+   1  NFTOT        2  NG           3  N2N   
+   4  N3N          5  N4N          6  NA    
+   7  NP           8  N2A          9  NNP   
+  10  ND          11  NT          12  TRANC 
+
+ AVAILABLE CROSS-SECTION LIBRARIES:
+    1 -- DLIB_J2_361                                                     
+
+                                                        NUMBER
+ SPEC   LOCAL NAME    ISOTOPE       FROM LIBRARY  MIX   DENSITY     TEMP(K)    SIGZERO    SELF-SHIEL  THERMAL CORRECTION
+ -----  ------------  ------------  ------------  ----  ----------  ---------  ---------  ----------  ------------------
+     1  Pu239   0001  Pu239         DRAGON     1     1  2.1782E-03  1.510E+03  1.000E+10   1             0                 
+     2  Pu240   0001  Pu240         DRAGON     1     1  7.2335E-04  1.510E+03  1.000E+10   1             0                 
+     3  Pu241   0001  Pu241         DRAGON     1     1  1.5060E-04  1.510E+03  1.000E+10   1             0                 
+     4  Pu242   0001  Pu242         DRAGON     1     1  5.1218E-05  1.510E+03  1.000E+10   1             0                 
+     5  Am241   0001  Am241         DRAGON     1     1  3.2614E-05  1.510E+03  1.000E+10   1             0                 
+     6  Pu238   0001  Pu238         DRAGON     1     1  1.1994E-05  1.510E+03  1.000E+10   1             0                 
+     7  U238    0001  U238          DRAGON     1     1  1.6814E-02  1.510E+03  1.000E+10   1             0                 
+     8  U235    0001  U235          DRAGON     1     1  8.9010E-05  1.510E+03  1.000E+10   1             0                 
+     9  O16     0001  O16           DRAGON     1     1  3.9757E-02  1.510E+03  1.000E+10   0             0                 
+    10  Fe56    0002  Fe56          DRAGON     1     2  4.9852E-02  1.300E+03  1.000E+10   0             0                 
+    11  Fe58    0002  Fe58          DRAGON     1     2  1.5346E-04  1.300E+03  1.000E+10   0             0                 
+    12  Cr52    0002  Cr52          DRAGON     1     2  1.3100E-02  1.300E+03  1.000E+10   0             0                 
+    13  Cr54    0002  Cr54          DRAGON     1     2  3.6972E-04  1.300E+03  1.000E+10   0             0                 
+    14  Ni60    0002  Ni60          DRAGON     1     2  2.9912E-03  1.300E+03  1.000E+10   0             0                 
+    15  Ni62    0002  Ni62          DRAGON     1     2  4.1459E-04  1.300E+03  1.000E+10   0             0                 
+    16  Fe54    0002  Fe54          DRAGON     1     2  3.1761E-03  1.300E+03  1.000E+10   0             0                 
+    17  Fe57    0002  Fe57          DRAGON     1     2  1.1511E-03  1.300E+03  1.000E+10   0             0                 
+    18  Cr50    0002  Cr50          DRAGON     1     2  6.7944E-04  1.300E+03  1.000E+10   0             0                 
+    19  Cr53    0002  Cr53          DRAGON     1     2  1.4856E-03  1.300E+03  1.000E+10   0             0                 
+    20  Ni58    0002  Ni58          DRAGON     1     2  7.7656E-03  1.300E+03  1.000E+10   0             0                 
+    21  Ni61    0002  Ni61          DRAGON     1     2  1.2999E-04  1.300E+03  1.000E+10   0             0                 
+    22  Ni64    0002  Ni64          DRAGON     1     2  1.0557E-04  1.300E+03  1.000E+10   0             0                 
+    23  Mn55    0002  Mn55          DRAGON     1     2  1.3057E-03  1.300E+03  1.000E+10   0             0                 
+    24  Mo      0002  Mo0           DRAGON     1     2  1.3711E-03  1.300E+03  1.000E+10   0             0                 
+    25  Ti      0002  Ti0           DRAGON     1     2  3.9965E-04  1.300E+03  1.000E+10   0             0                 
+    26  Cu      0002  Cu0           DRAGON     1     2  2.6340E-04  1.300E+03  1.000E+10   0             0                 
+    27  Si      0002  Si0           DRAGON     1     2  9.3679E-04  1.300E+03  1.000E+10   0             0                 
+    28  Na23    0003  Na23          DRAGON     1     3  2.4874E-02  8.000E+02  1.000E+10   0             0                 
+    29  H1      0001  H1            DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    30  H2      0001  H2            DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    31  H3      0001  H3            DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    32  He3     0001  He3           DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    33  He4     0001  He4           DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    34  Li6     0001  Li6           DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    35  Li7     0001  Li7           DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    36  Be9     0001  Be9           DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    37  B10     0001  B10           DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    38  B11     0001  B11           DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    39  N14     0001  N14           DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    40  N15     0001  N15           DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    41  O17     0001  O17           DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    42  Fe57    0001  Fe57          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    43  Fe58    0001  Fe58          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    44  Co59    0001  Co59          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    45  Ni60    0001  Ni60          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    46  Ni61    0001  Ni61          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    47  Ni62    0001  Ni62          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    48  Ni64    0001  Ni64          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    49  Ge72    0001  Ge72          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    50  Ge73    0001  Ge73          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    51  Ge74    0001  Ge74          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    52  Ge76    0001  Ge76          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    53  As75    0001  As75          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    54  Se76    0001  Se76          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    55  Se77    0001  Se77          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    56  Se78    0001  Se78          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    57  Se80    0001  Se80          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    58  Se82    0001  Se82          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    59  Br79    0001  Br79          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    60  Br81    0001  Br81          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    61  Kr80    0001  Kr80          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    62  Kr82    0001  Kr82          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    63  Kr83    0001  Kr83          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    64  Kr84    0001  Kr84          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    65  Kr85    0001  Kr85          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    66  Kr86    0001  Kr86          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    67  Rb85    0001  Rb85          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    68  Rb87    0001  Rb87          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    69  Sr86    0001  Sr86          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    70  Sr87    0001  Sr87          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    71  Sr88    0001  Sr88          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    72  Sr89    0001  Sr89          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    73  Sr90    0001  Sr90          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    74  Y89     0001  Y89           DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    75  Y90     0001  Y90           DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    76  Y91     0001  Y91           DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    77  Zr90    0001  Zr90          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    78  Zr91    0001  Zr91          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    79  Zr92    0001  Zr92          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    80  Zr93    0001  Zr93          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    81  Zr94    0001  Zr94          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    82  Zr95    0001  Zr95          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    83  Zr96    0001  Zr96          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    84  Nb93    0001  Nb93          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    85  Nb94    0001  Nb94          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    86  Nb95    0001  Nb95          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    87  Mo95    0001  Mo95          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    88  Mo96    0001  Mo96          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    89  Mo97    0001  Mo97          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    90  Mo98    0001  Mo98          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    91  Mo99    0001  Mo99          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    92  Mo100   0001  Mo100         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    93  Tc99    0001  Tc99          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    94  Ru99    0001  Ru99          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    95  Ru100   0001  Ru100         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    96  Ru101   0001  Ru101         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    97  Ru102   0001  Ru102         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    98  Ru103   0001  Ru103         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+    99  Ru104   0001  Ru104         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   100  Ru105   0001  Ru105         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   101  Ru106   0001  Ru106         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   102  Rh103   0001  Rh103         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   103  Rh105   0001  Rh105         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   104  Pd104   0001  Pd104         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   105  Pd105   0001  Pd105         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   106  Pd106   0001  Pd106         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   107  Pd107   0001  Pd107         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   108  Pd108   0001  Pd108         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   109  Pd110   0001  Pd110         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   110  Ag107   0001  Ag107         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   111  Ag109   0001  Ag109         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   112  Ag111   0001  Ag111         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   113  Cd110   0001  Cd110         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   114  Cd111   0001  Cd111         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   115  Cd112   0001  Cd112         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   116  Cd113   0001  Cd113         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   117  Cd114   0001  Cd114         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   118  Cd115m  0001  Cd115m        DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   119  Cd116   0001  Cd116         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   120  In113   0001  In113         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   121  In115   0001  In115         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   122  Sn115   0001  Sn115         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   123  Sn116   0001  Sn116         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   124  Sn117   0001  Sn117         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   125  Sn118   0001  Sn118         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   126  Sn119   0001  Sn119         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   127  Sn120   0001  Sn120         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   128  Sn122   0001  Sn122         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   129  Sn123   0001  Sn123         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   130  Sn124   0001  Sn124         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   131  Sn125   0001  Sn125         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   132  Sn126   0001  Sn126         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   133  Sb121   0001  Sb121         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   134  Sb123   0001  Sb123         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   135  Sb124   0001  Sb124         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   136  Sb125   0001  Sb125         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   137  Sb126   0001  Sb126         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   138  Te122   0001  Te122         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   139  Te123   0001  Te123         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   140  Te124   0001  Te124         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   141  Te125   0001  Te125         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   142  Te126   0001  Te126         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   143  Te127m  0001  Te127m        DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   144  Te128   0001  Te128         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   145  Te129m  0001  Te129m        DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   146  Te130   0001  Te130         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   147  Te132   0001  Te132         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   148  I127    0001  I127          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   149  I129    0001  I129          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   150  I130    0001  I130          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   151  I131    0001  I131          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   152  I135    0001  I135          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   153  Xe128   0001  Xe128         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   154  Xe129   0001  Xe129         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   155  Xe130   0001  Xe130         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   156  Xe131   0001  Xe131         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   157  Xe132   0001  Xe132         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   158  Xe133   0001  Xe133         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   159  Xe134   0001  Xe134         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   160  Xe135   0001  Xe135         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   161  Xe136   0001  Xe136         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   162  Cs133   0001  Cs133         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   163  Cs134   0001  Cs134         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   164  Cs135   0001  Cs135         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   165  Cs136   0001  Cs136         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   166  Cs137   0001  Cs137         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   167  Ba134   0001  Ba134         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   168  Ba135   0001  Ba135         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   169  Ba136   0001  Ba136         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   170  Ba137   0001  Ba137         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   171  Ba138   0001  Ba138         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   172  Ba140   0001  Ba140         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   173  La139   0001  La139         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   174  La140   0001  La140         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   175  Ce140   0001  Ce140         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   176  Ce141   0001  Ce141         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   177  Ce142   0001  Ce142         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   178  Ce143   0001  Ce143         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   179  Ce144   0001  Ce144         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   180  Pr141   0001  Pr141         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   181  Pr142   0001  Pr142         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   182  Pr143   0001  Pr143         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   183  Nd142   0001  Nd142         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   184  Nd143   0001  Nd143         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   185  Nd144   0001  Nd144         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   186  Nd145   0001  Nd145         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   187  Nd146   0001  Nd146         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   188  Nd147   0001  Nd147         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   189  Nd148   0001  Nd148         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   190  Nd150   0001  Nd150         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   191  Pm147   0001  Pm147         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   192  Pm148   0001  Pm148         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   193  Pm148m  0001  Pm148m        DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   194  Pm149   0001  Pm149         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   195  Pm151   0001  Pm151         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   196  Sm147   0001  Sm147         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   197  Sm148   0001  Sm148         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   198  Sm149   0001  Sm149         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   199  Sm150   0001  Sm150         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   200  Sm151   0001  Sm151         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   201  Sm152   0001  Sm152         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   202  Sm153   0001  Sm153         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   203  Sm154   0001  Sm154         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   204  Eu151   0001  Eu151         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   205  Eu152   0001  Eu152         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   206  Eu153   0001  Eu153         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   207  Eu154   0001  Eu154         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   208  Eu155   0001  Eu155         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   209  Eu156   0001  Eu156         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   210  Eu157   0001  Eu157         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   211  Gd154   0001  Gd154         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   212  Gd155   0001  Gd155         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   213  Gd156   0001  Gd156         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   214  Gd157   0001  Gd157         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   215  Gd158   0001  Gd158         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   216  Gd160   0001  Gd160         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   217  Tb159   0001  Tb159         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   218  Tb160   0001  Tb160         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   219  Dy160   0001  Dy160         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   220  Dy161   0001  Dy161         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   221  Dy162   0001  Dy162         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   222  Dy163   0001  Dy163         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   223  Dy164   0001  Dy164         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   224  Ho165   0001  Ho165         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   225  Er166   0001  Er166         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   226  Er167   0001  Er167         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   227  Hf176   0001  Hf176         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   228  Hf177   0001  Hf177         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   229  Hf178   0001  Hf178         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   230  Hf179   0001  Hf179         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   231  Hf180   0001  Hf180         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   232  W182    0001  W182          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   233  W183    0001  W183          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   234  W184    0001  W184          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   235  W186    0001  W186          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   236  Th232   0001  Th232         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   237  Pa231   0001  Pa231         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   238  Pa233   0001  Pa233         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   239  U232    0001  U232          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   240  U233    0001  U233          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   241  U234    0001  U234          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   242  U236    0001  U236          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   243  U237    0001  U237          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   244  Np237   0001  Np237         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   245  Np238   0001  Np238         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   246  Np239   0001  Np239         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   247  Pu236   0001  Pu236         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   248  Pu237   0001  Pu237         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   249  Pu243   0001  Pu243         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   250  Am242   0001  Am242         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   251  Am242m  0001  Am242m        DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   252  Am243   0001  Am243         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   253  Cm242   0001  Cm242         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   254  Cm243   0001  Cm243         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   255  Cm244   0001  Cm244         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   256  Cm245   0001  Cm245         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   257  Cm246   0001  Cm246         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   258  Cm247   0001  Cm247         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   259  Cm248   0001  Cm248         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   260  Bk249   0001  Bk249         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   261  Cf249   0001  Cf249         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   262  Cf250   0001  Cf250         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   263  Cf251   0001  Cf251         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   264  Cf252   0001  Cf252         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   265  Cf253   0001  Cf253         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   266  Cr52    0001  Cr52          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   267  Cr53    0001  Cr53          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   268  Cr54    0001  Cr54          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   269  Mn55    0001  Mn55          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   270  Fe56    0001  Fe56          DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   271  Hf174   0001  Hf174         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   272  Bi209   0001  Bi209         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   273  Th230   0001  Th230         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   274  Cm241   0001  Cm241         DRAGON     1     1  0.0000E+00  1.510E+03  1.000E+10   0             0                 
+   275  Co59    0002  Co59          DRAGON     1     2  0.0000E+00  1.300E+03  1.000E+10   0             0                 
+->@END MODULE   : LIB:        
+-->>TIME SPENT IN MODULE LIB:        :      6.000
+<|GEOM  := GEO: :: HEXCEL 2                                               |<0050
+->@BEGIN MODULE : GEO:        
+->@DESCRIPTION  : Geometry definition                                                     
+->@CREDITS      : A. Hebert                                                               
+->@COPYRIGHTS   : ECOLE POLYTECHNIQUE DE MONTREAL  
+                  GNU LESSER GENERAL PUBLIC LICENSE
+<|  HBC COMPLETE REFL                                                     |<0051
+<|         SIDE 0.56                                                      |<0052
+<|         RADIUS 0.0 0.368500 0.429260                                   |<0053
+<|         MIX  1 2 3                                                     |<0054
+<|  SPLITR 4  2                                                           |<0055
+<|  ;                                                                     |<0056
+
+ CREATION OF A LEVEL  1 GEOMETRY ON THE DIRECTORY NAMED '/           ' OF THE LCM OBJECT 'GEOM        ' WITH TYPE 2-D HEX. CELL   .
+->@END MODULE   : GEO:        
+-->>TIME SPENT IN MODULE GEO:        :      0.000
+<|TRACK := SYBILT: GEOM ::                                                |<0058
+->@BEGIN MODULE : SYBILT:     
+->@DESCRIPTION  : Sybil 2-D tracking                                                      
+->@CREDITS      : A. Hebert                                                               
+->@COPYRIGHTS   : ECOLE POLYTECHNIQUE DE MONTREAL  
+                  GNU LESSER GENERAL PUBLIC LICENSE
+<|  TITLE 'REP'                                                           |<0059
+<|  EDIT 1 MAXR 40 ;                                                      |<0060
+
+ HEXAGONAL MULTICELL OPTION (EURYDICE-2) BASED ON GEOMETRY LOCATED IN 'GEOM        '.
+
+
+ NUMBER OF HEXAGONS IN ONE PLANE =   1     AVAILABLE STORAGE MAXPTS =  40
+ NUMBER OF MERGED VOLUMES =    7
+ NUMBER OF DISTINCT PHYSICAL MIXTURES =    3
+
+
+     GENERATING CELL   RADIUS
+
+    1 'GEOM        '   0.00000E+00 9.21250E-02 1.84250E-01 2.76375E-01 3.68500E-01 3.98880E-01 4.29260E-01
+                       SIDE = 5.60000E-01
+
+
+ INFINITE DOMAIN.
+
+
+ DP-0 APPROXIMATION AROUND EACH HEXAGON.
+
+ QUADRATURE PARAMETERS:
+ HETEROGENEOUS CELLS   -    ANGLES   NA =  3 IN (0,PI/6)
+                          SEGMENTS   NX =  3
+
+ HOMOGENEOUS CELLS     -    ANGLES   NH =  5
+
+ CYLINDRICAL CELLS     -  SEGMENTS   MR =  5
+
+
+
+ TOTAL NUMBER OF CELLS IN THE DOMAIN =    1
+ TOTAL NUMBER OF MERGED CELLS =    1
+ TOTAL NUMBER OF GENERATING CELLS =    1     AVAILABLE STORAGE MAXCEL =   40
+
+
+ TOTAL NUMBER OF DISTINCT OUT-CURRENTS =    6
+ TOTAL NUMBER OF OUT-CURRENTS SURROUNDING ALL THE CELLS =    6     AVAILABLE STORAGE MAXJ =  160
+
+
+ SYBEUR: MAXIMUM STORAGE REQUIRED BY THE TRACKS =    1246 +   3318        AVAILABLE STORAGE MAXZ =   10000
+
+
+ SYBEUR: EXACT STORAGE REQUIRED BY THE TRACKS =    323 INT +    788 REAL        ACCURACY =  2.598E-06
+
+
+ NUMBER OF VOLUMES =    7     AVAILABLE STORAGE MAXBLK =   40
+
+
+ STATE VECTOR:
+ NREG       7   (NUMBER OF REGIONS)
+ NUN        7   (NUMBER OF FLUX UNKNOWNS)
+ ILK        1   (0=LEAKAGE PRESENT/1=LEAKAGE ABSENT)
+ NBMIX      3   (MAXIMUM NUMBER OF MIXTURES USED)
+ NSURF      0   (NUMBER OF OUTER SURFACES)
+ ITG        4   (TYPE OF GEOMETRY)
+ MAXZ   10000   (TRACKING LENGTH)
+ MAXJ     160   (INTERNAL STORAGE LENGTH FOR CURRENTS)
+ NUNCUR     6   (NUMBER OF ADDITIONAL INTERFACE CURRENT COMPONENTS)
+ IBIHET     0   (0/1=DOUBLE HETEROGENEITY IS NOT/IS ACTIVE)
+->@END MODULE   : SYBILT:     
+-->>TIME SPENT IN MODULE SYBILT:     :      0.000
+<|LIBRARY := SHI: LIBRARY TRACK :: EDIT 0 NOLJ ;                          |<0062
+->@BEGIN MODULE : SHI:        
+->@DESCRIPTION  : Self-shielding by improved Stammler method                              
+->@CREDITS      : A. Hebert                                                               
+->@COPYRIGHTS   : ECOLE POLYTECHNIQUE DE MONTREAL  
+                  GNU LESSER GENERAL PUBLIC LICENSE
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.467E+00) IN GROUP 105. DILUTION=  3.107E+01 (  3.107E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.077E+00) IN GROUP 106. DILUTION=  3.367E+01 (  3.367E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.292E+00) IN GROUP 107. DILUTION=  4.254E+01 (  4.254E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.704E+00) IN GROUP 127. DILUTION=  3.244E+01 (  3.244E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.668E+00) IN GROUP 128. DILUTION=  3.263E+01 (  3.263E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.246E+00) IN GROUP 143. DILUTION=  5.430E+01 (  5.430E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.349E+00) IN GROUP 105. DILUTION=  3.107E+01 (  3.107E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.149E+00) IN GROUP 106. DILUTION=  3.367E+01 (  3.367E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.349E+00) IN GROUP 107. DILUTION=  4.254E+01 (  4.254E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.686E+00) IN GROUP 127. DILUTION=  3.244E+01 (  3.244E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.760E+00) IN GROUP 128. DILUTION=  3.263E+01 (  3.263E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.211E+00) IN GROUP 144. DILUTION=  3.377E+01 (  3.377E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.236E+00) IN GROUP 105. DILUTION=  3.107E+01 (  3.107E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.207E+00) IN GROUP 106. DILUTION=  3.367E+01 (  3.367E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.403E+00) IN GROUP 107. DILUTION=  4.254E+01 (  4.254E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.601E+00) IN GROUP 127. DILUTION=  3.244E+01 (  3.244E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.831E+00) IN GROUP 128. DILUTION=  3.263E+01 (  3.263E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.256E+00) IN GROUP 144. DILUTION=  3.377E+01 (  3.377E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.335E+00) IN GROUP 106. DILUTION=  3.367E+01 (  3.367E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.555E+00) IN GROUP 107. DILUTION=  4.254E+01 (  4.254E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.956E+00) IN GROUP 128. DILUTION=  3.263E+01 (  3.263E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.273E+00) IN GROUP 144. DILUTION=  3.377E+01 (  3.377E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.466E+00) IN GROUP 105. DILUTION=  3.093E+01 (  3.093E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.086E+00) IN GROUP 106. DILUTION=  3.289E+01 (  3.289E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.296E+00) IN GROUP 107. DILUTION=  4.155E+01 (  4.155E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.702E+00) IN GROUP 127. DILUTION=  3.192E+01 (  3.192E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.671E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.243E+00) IN GROUP 143. DILUTION=  5.296E+01 (  5.296E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.348E+00) IN GROUP 105. DILUTION=  3.093E+01 (  3.093E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.158E+00) IN GROUP 106. DILUTION=  3.289E+01 (  3.289E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.354E+00) IN GROUP 107. DILUTION=  4.155E+01 (  4.155E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.683E+00) IN GROUP 127. DILUTION=  3.192E+01 (  3.192E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.763E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.210E+00) IN GROUP 144. DILUTION=  3.310E+01 (  3.310E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.235E+00) IN GROUP 105. DILUTION=  3.093E+01 (  3.093E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.216E+00) IN GROUP 106. DILUTION=  3.289E+01 (  3.289E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.408E+00) IN GROUP 107. DILUTION=  4.155E+01 (  4.155E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.597E+00) IN GROUP 127. DILUTION=  3.192E+01 (  3.192E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.833E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.254E+00) IN GROUP 144. DILUTION=  3.310E+01 (  3.310E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.343E+00) IN GROUP 106. DILUTION=  3.289E+01 (  3.289E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.561E+00) IN GROUP 107. DILUTION=  4.155E+01 (  4.155E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.958E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.270E+00) IN GROUP 144. DILUTION=  3.310E+01 (  3.310E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.466E+00) IN GROUP 105. DILUTION=  3.093E+01 (  3.093E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.086E+00) IN GROUP 106. DILUTION=  3.289E+01 (  3.289E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.296E+00) IN GROUP 107. DILUTION=  4.155E+01 (  4.155E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.702E+00) IN GROUP 127. DILUTION=  3.192E+01 (  3.192E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.671E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.242E+00) IN GROUP 143. DILUTION=  5.267E+01 (  5.267E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.348E+00) IN GROUP 105. DILUTION=  3.093E+01 (  3.093E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.158E+00) IN GROUP 106. DILUTION=  3.289E+01 (  3.289E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.354E+00) IN GROUP 107. DILUTION=  4.155E+01 (  4.155E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.683E+00) IN GROUP 127. DILUTION=  3.192E+01 (  3.192E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.763E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.210E+00) IN GROUP 144. DILUTION=  3.310E+01 (  3.310E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.235E+00) IN GROUP 105. DILUTION=  3.093E+01 (  3.093E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.216E+00) IN GROUP 106. DILUTION=  3.289E+01 (  3.289E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.408E+00) IN GROUP 107. DILUTION=  4.155E+01 (  4.155E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.597E+00) IN GROUP 127. DILUTION=  3.192E+01 (  3.192E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.833E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.254E+00) IN GROUP 144. DILUTION=  3.310E+01 (  3.310E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.343E+00) IN GROUP 106. DILUTION=  3.289E+01 (  3.289E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.561E+00) IN GROUP 107. DILUTION=  4.155E+01 (  4.155E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.958E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.270E+00) IN GROUP 144. DILUTION=  3.310E+01 (  3.310E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.466E+00) IN GROUP 105. DILUTION=  3.093E+01 (  3.093E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.086E+00) IN GROUP 106. DILUTION=  3.289E+01 (  3.289E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.296E+00) IN GROUP 107. DILUTION=  4.155E+01 (  4.155E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.702E+00) IN GROUP 127. DILUTION=  3.192E+01 (  3.192E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.671E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.242E+00) IN GROUP 143. DILUTION=  5.267E+01 (  5.267E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.348E+00) IN GROUP 105. DILUTION=  3.093E+01 (  3.093E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.158E+00) IN GROUP 106. DILUTION=  3.289E+01 (  3.289E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.354E+00) IN GROUP 107. DILUTION=  4.155E+01 (  4.155E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.683E+00) IN GROUP 127. DILUTION=  3.192E+01 (  3.192E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.763E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.210E+00) IN GROUP 144. DILUTION=  3.310E+01 (  3.310E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.235E+00) IN GROUP 105. DILUTION=  3.093E+01 (  3.093E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.216E+00) IN GROUP 106. DILUTION=  3.289E+01 (  3.289E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.408E+00) IN GROUP 107. DILUTION=  4.155E+01 (  4.155E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.597E+00) IN GROUP 127. DILUTION=  3.192E+01 (  3.192E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.833E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.254E+00) IN GROUP 144. DILUTION=  3.310E+01 (  3.310E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.343E+00) IN GROUP 106. DILUTION=  3.289E+01 (  3.289E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.561E+00) IN GROUP 107. DILUTION=  4.155E+01 (  4.155E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.958E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.270E+00) IN GROUP 144. DILUTION=  3.310E+01 (  3.310E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.466E+00) IN GROUP 105. DILUTION=  3.093E+01 (  3.093E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.086E+00) IN GROUP 106. DILUTION=  3.289E+01 (  3.289E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.296E+00) IN GROUP 107. DILUTION=  4.155E+01 (  4.155E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.702E+00) IN GROUP 127. DILUTION=  3.192E+01 (  3.192E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.671E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.242E+00) IN GROUP 143. DILUTION=  5.267E+01 (  5.267E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.348E+00) IN GROUP 105. DILUTION=  3.093E+01 (  3.093E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.158E+00) IN GROUP 106. DILUTION=  3.289E+01 (  3.289E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.354E+00) IN GROUP 107. DILUTION=  4.155E+01 (  4.155E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.683E+00) IN GROUP 127. DILUTION=  3.192E+01 (  3.192E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.763E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.210E+00) IN GROUP 144. DILUTION=  3.310E+01 (  3.310E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.235E+00) IN GROUP 105. DILUTION=  3.093E+01 (  3.093E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.216E+00) IN GROUP 106. DILUTION=  3.289E+01 (  3.289E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.408E+00) IN GROUP 107. DILUTION=  4.155E+01 (  4.155E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.597E+00) IN GROUP 127. DILUTION=  3.192E+01 (  3.192E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.833E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.254E+00) IN GROUP 144. DILUTION=  3.310E+01 (  3.310E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.343E+00) IN GROUP 106. DILUTION=  3.289E+01 (  3.289E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.561E+00) IN GROUP 107. DILUTION=  4.155E+01 (  4.155E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.958E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.270E+00) IN GROUP 144. DILUTION=  3.310E+01 (  3.310E+01). KPHIR= 173.                         
+->@END MODULE   : SHI:        
+-->>TIME SPENT IN MODULE SHI:        :      3.000
+<|SYS := ASM: LIBRARY TRACK ;                                             |<0064
+->@BEGIN MODULE : ASM:        
+->@DESCRIPTION  : To built system matrices (CP and IC)                                    
+->@CREDITS      : A. Hebert, G. Marleau, R. Roy                                           
+->@COPYRIGHTS   : ECOLE POLYTECHNIQUE DE MONTREAL  
+                  GNU LESSER GENERAL PUBLIC LICENSE
+
+
+ COMPUTATION OF DRAGON COMPLETE CP BY DOOR =   SYBIL       
+
+
+ USE TRANSPORT CORRECTED CROSS-SECTIONS (ITRANC=   2 )
+
+ OPTIONS
+ -------
+ IMPX       1   (0=NO PRINT/1=SHORT/2=MORE)
+ ITPIJ      1   (1=WIJ/2=PIJ/3=WIJK/4=PIJK)
+ LNORM      1   (0=NORMALIZE PIJ TO 1/1=DO NOT)
+ LALBS      1   (0=RECOVER AND SAVE WIS/1=DO NOT)
+ IPHASE     2   (1=GENERAL FLUX SOLUTION/2=PIJ APPROACH)
+ ISTRM      1   (1=HOMO BN OR NO LEAKAGE/2=ECCO/3=TIBERE)
+ KNORM      4   (0=NO/1=GELBARD/2=DIAGONAL/3=NON-LINEAR/4=HELIOS)
+ NGRP     361   (NUMBER OF GROUPS)
+ NUN        7   (NUMBER OF UNKNOWNS)
+ NBMIX      3   (NUMBER OF MIXTURES)
+ NANI       1   (NUMBER OF LEGENDRE ORDERS SCATTERING XS)
+ IDIFF      0   (0/1: DIFFUSION COEFFICIENTS ABSENT/PRESENT)
+ DOOR           (SYBIL       )
+->@END MODULE   : ASM:        
+-->>TIME SPENT IN MODULE ASM:        :      1.000
+<|FLUX := FLU: SYS LIBRARY TRACK ::                                       |<0066
+->@BEGIN MODULE : FLU:        
+->@DESCRIPTION  : Solve the flux equations                                                
+->@CREDITS      : R. Roy, A. Hebert, G. Marleau                                           
+->@COPYRIGHTS   : ECOLE POLYTECHNIQUE DE MONTREAL  
+                  GNU LESSER GENERAL PUBLIC LICENSE
+<|  TYPE K B1 PNL BUCK 1.47878E-03 ;                                      |<0067
+
+
+
+
+ P. I. M.    SOLUTION TO TRANSPORT EQUATION
+
+ CALCULATION TYPE            =     K-EFF
+ FORWARD/BACKWARD OPTION     =    DIRECT
+ (AN)ISOTROPY OPTION         = ISOTROPIC
+ LEAKAGE TYPE                =      B1  
+ LEAKAGE OPTION              =       PNL
+ BUCKLING                    =   IMPOSED
+ INITIAL TOTAL BUCKLING      =  0.14788E-02
+ FLUX SOLUTION DOOR          =    TRAFIC
+ NB. OF GROUPS               =       361
+ NB. OF REGIONS              =         7
+ NB. OF UNKNOWNS PER GROUP   =         7
+ MAX. OUTER ITERATIONS       =       401
+ MAX. THERMAL ITERATIONS     =       722
+ ACCELERATION SCHEME         =( 3 FREE, 3 ACCELERATED)
+ REBALANCING OPTION          = ON 
+ SELF-SCATTERING REDUCTION   = ON 
+ FUNDAMENTAL MODE            = ON 
+ EIGENVALUE TOLERANCE        =  1.000E-05
+ UNKNOWN OUTER TOLERANCE     =  5.000E-05
+ UNKNOWN INNER TOLERANCE     =  5.000E-05
+
+
+ USE TRANSPORT CORRECTED CROSS-SECTIONS
+ OUT(  0) EIG: PRC= 1.00E+00 TAR= 1.00E-05 KEFF= 2.438282E-01 BUCK= 1.47878E-03
+          IN(  1) FLX: PRC= 8.45E+06 TAR= 5.00E-05 IGDEB=            1 ACCE=     1.00000
+          IN(  2) FLX: PRC= 8.09E-01 TAR= 5.00E-05 IGDEB=            1 ACCE=     1.00000
+          IN(  3) FLX: PRC= 1.81E-01 TAR= 5.00E-05 IGDEB=          282 ACCE=     1.00000
+                  FIRST UNCONVERGED GROUP PRC= 0.11E-03
+          IN(  4) FLX: PRC= 4.77E-03 TAR= 5.00E-05 IGDEB=          304 ACCE=     1.01300
+                  FIRST UNCONVERGED GROUP PRC= 0.50E-04
+          IN(  5) FLX: PRC= 9.00E-05 TAR= 5.00E-05 IGDEB=          309 ACCE=     1.01841
+                  FIRST UNCONVERGED GROUP PRC= 0.69E-04
+ FLU2DR: NO LEAKAGE-> REBALANCING ON
+ FLU2DR: CPU TIME=        0. INTERNAL CONVERGENCE *NOT* REACHED AFTER     5 ITERATIONS.
+
+ B1DIF: SOLUTION OF B1   EQUATIONS WITH TYPE K   
+        NUMBER OF ITERATIONS =  1
+        BUCKLING =  1.47878E-03
+        K-EFFECTIVE =  0.999922  (  0.999922 )
+        K-INFINITE =  1.304886
+        MIGRATION AREA =  2.06243E+02
+
+ OUT(  1) EIG: PRC= 7.56E-01 TAR= 1.00E-05 KEFF= 9.999218E-01 BUCK= 1.47878E-03
+ OUT(  1) FLX:                             FNOR= 1.000078E+00 ACCE=     1.00000
+          IN(  1) FLX: PRC= 4.18E-03 TAR= 5.00E-05 IGDEB=            1 ACCE=     1.00000
+          IN(  2) FLX: PRC= 8.03E-05 TAR= 5.00E-05 IGDEB=          309 ACCE=     1.00000
+                  FIRST UNCONVERGED GROUP PRC= 0.51E-04
+ FLU2DR: NO LEAKAGE-> REBALANCING ON
+ FLU2DR: CPU TIME=        0. INTERNAL CONVERGENCE *NOT* REACHED AFTER     2 ITERATIONS.
+
+ B1DIF: SOLUTION OF B1   EQUATIONS WITH TYPE K   
+        NUMBER OF ITERATIONS =  1
+        BUCKLING =  1.47878E-03
+        K-EFFECTIVE =  0.999944  (  0.999944 )
+        K-INFINITE =  1.304908
+        MIGRATION AREA =  2.06238E+02
+
+ OUT(  2) EIG: PRC= 2.17E-05 TAR= 1.00E-05 KEFF= 9.999436E-01 BUCK= 1.47878E-03
+ OUT(  2) FLX:                             FNOR= 1.000056E+00 ACCE=     1.00000
+          IN(  1) FLX: PRC= 2.74E-06 TAR= 5.00E-05 IGDEB=          362 ACCE=     1.00000
+ FLU2DR: NO LEAKAGE-> REBALANCING ON
+ FLU2DR: CPU TIME=        1. INTERNAL CONVERGENCE       REACHED AFTER     1 ITERATIONS.
+
+ B1DIF: SOLUTION OF B1   EQUATIONS WITH TYPE K   
+        NUMBER OF ITERATIONS =  1
+        BUCKLING =  1.47878E-03
+        K-EFFECTIVE =  0.999943  (  0.999943 )
+        K-INFINITE =  1.304908
+        MIGRATION AREA =  2.06238E+02
+
+ OUT(  3) EIG: PRC= 7.55E-08 TAR= 1.00E-05 KEFF= 9.999435E-01 BUCK= 1.47878E-03
+ OUT(  3) FLX: PRC= 3.05E-06 TAR= 5.00E-05 FNOR= 1.000057E+00 ACCE=     1.00000
+ FLU2DR: CPU TIME=        1. EXTERNAL CONVERGENCE       REACHED AFTER     3 ITERATIONS.
+
+ ++ TRACKING CALLED=   8 TIMES FINAL KINF=1.304908E+00 FINAL KEFF=9.999435E-01 B2= 1.47878E-03 PRECISION= 7.55E-08
+ ++ TOTAL NUMBER OF FLUX CALCULATIONS=      2304
+->@END MODULE   : FLU:        
+-->>TIME SPENT IN MODULE FLU:        :      1.000
+<|EDITION := EDI: LIBRARY TRACK FLUX ::                                   |<0069
+->@BEGIN MODULE : EDI:        
+->@DESCRIPTION  : Editing module                                                          
+->@CREDITS      : A. Hebert, G. Marleau                                                   
+->@COPYRIGHTS   : ECOLE POLYTECHNIQUE DE MONTREAL  
+                  GNU LESSER GENERAL PUBLIC LICENSE
+<|  EDIT 3 MICR RES MERG COMP COND 4.0 SAVE  ;                            |<0070
+
+ EDITION-RELATED OPTIONS
+ -----------------------
+ NMERGE       1   (NUMBER OF MERGED REGIONS)
+ NGCOND       2   (NUMBER OF CONDENSED ENERGY GROUPS)
+ IFFAC        0   (=1: 4 FACTORS CALCULATION REQUESTED)
+ ILUPS        0   (=1: REMOVE UP-SCATTERING CONTRIBUTIONS)
+ NACTI        0   (NUMBER OF MIXTURES WITH ACTIVATION EDITS)
+ NSTATS       0   (TYPE OF STATISTIC CALCULATIONS)
+ IADF         0   (=0: DO NOT COMPUTE ADF INFO; =1: USE ALBS INFO; =2: USE BOUNDARY REGION AVERAGED FLUX INFO)
+ IEUR         0   (=1/2/3: SYBIL OR EXCELL MACRO-TRACKING/NXT MACRO-TRACKING/ELSE)
+ NBMICR      -2   (=-1: PROCESS ALL ISOTOPES; >1 NUMBER OF ISOTOPES TO PROCESS)
+ IPRINT       3   (PRINT LEVEL)
+ NSAVES       2   (=0: NO COMPUTE/NO SAVE; =1: COMPUTE/NO SAVE; =2: COMPUTE/SAVE)
+ NWGTH        0   (=0: FLUX WEIGHTING FOR P1 INFO; =1: CURRENT WEIGHTING FOR P1 INFO)
+ MAXPTS       7   (ALLOCATED STORAGE LENGTH FOR REGION-DEPENDENT ARRAYS)
+ IHF          1   (=1: H-FACTOR CALCULATION REQUESTED)
+ NDEL         6   (NUMBER OF DELAYED PRECURSOR GROUPS)
+ LGEO         0   (=0: MACRO-GEOMETRY NOT AVAILABLE; =1: IS AVAILABLE)
+ IADJ         0   (=0: DIRECT FLUX; =1: ADJOINT FLUX)
+
+
+ MERGING INDEX:
+     1    1    1    1    1    1    1
+
+ EDI: SAVE MICROLIB INFO ON DIRECTORY 'REF-CASE0001'.
+
+
+
+
+     REGION      VOLUME       REGION      VOLUME       REGION      VOLUME       REGION      VOLUME       REGION      VOLUME  
+        1     8.14757E-01
+
+ E N E R G Y   L I M I T S   (EV)
+  1.9640E+07 >   1 >   4.0000E+00 >   2 >   1.1000E-04
+
+ F L U X E S   A N D    R E A C T I O N    R A T E S
+ ---------------------------------------------------
+
+ G R O U P   :   1
+ REGION   AVERAGE     INTEGRATED     COLLISION    ABSORPTION    NU*FISSION      LEAKAGE     PRODUCTION        SCATTERING RATES
+           FLUX          FLUX          RATE          RATE          RATE          RATE          RATE      WITHIN GROUP  OUT OF GROUP
+    1   1.45124E+02   1.18241E+02   3.77710E+01   7.66289E-01   9.99936E-01   2.33706E-01   9.99941E-01   3.70047E+01   5.62672E-06
+
+ G R O U P   :   2
+ REGION   AVERAGE     INTEGRATED     COLLISION    ABSORPTION    NU*FISSION      LEAKAGE     PRODUCTION        SCATTERING RATES
+           FLUX          FLUX          RATE          RATE          RATE          RATE          RATE      WITHIN GROUP  OUT OF GROUP
+    1   1.21989E-05   9.93910E-06   9.45125E-06   5.63392E-06   6.59973E-06   6.06198E-09   1.47354E-08   3.81586E-06   1.46897E-09
+
+ MERGED/CONDENSED SET OF X-S SAVED IN LCM DIRECTORY 'REF-CASE0001'.
+
+
+ F L U X E S   A N D   H O M O G E N I Z E D   X - S
+ ---------------------------------------------------
+
+ G R O U P   :   1
+ REGION   AVERAGE         SPH          NTOT0       DIFFUSION     ABSORPTION     NUSIGF        FISSION          SCATTERING X-S
+           FLUX          FACTOR         X-S       COEFFICIENT       X-S          X-S          SPECTRUM   WITHIN GROUP  OUT OF GROUP
+    1   1.45124E+02   1.00000E+00   3.19441E-01   1.33659E+00   6.48074E-03   8.45676E-03   1.00000E+00   3.12960E-01   4.75869E-08
+
+ FLUX DISADVANTAGE FACTOR =   1.00022E+00
+
+ G R O U P   :   2
+ REGION   AVERAGE         SPH          NTOT0       DIFFUSION     ABSORPTION     NUSIGF        FISSION          SCATTERING X-S
+           FLUX          FACTOR         X-S       COEFFICIENT       X-S          X-S          SPECTRUM   WITHIN GROUP  OUT OF GROUP
+    1   1.21989E-05   1.00000E+00   9.50916E-01   4.12443E-01   5.66844E-01   6.64017E-01   1.47363E-08   3.83924E-01   1.47797E-04
+
+ FLUX DISADVANTAGE FACTOR =   8.22876E-01
+
+
+ CROSS SECTION OF MERGED/CONDENSED ISOTOPE '*MAC*RES0001':
+
+
+ LCMLIB: CONTENT OF ACTIVE DIRECTORY '/           ' OF THE TABLE    'EDITION     ':
+
+ BLOCK NAME----------    LENGTH    TYPE
+
+    1  'SIGNATURE   '         3    CHARACTER       ='L_EDIT      '
+    2  'TITLE       '        18    CHARACTER       
+    3  'STATE-VECTOR'        40    INTEGER         
+    4  'LAST-EDIT   '         3    CHARACTER       
+    5  'REF-CASE0001'        -1    DIRECTORY       
+    6  'REF:IMERGE  '         7    INTEGER         
+    7  'REF:MATCOD  '         7    INTEGER         
+    8  'REF:VOLUME  '         7    REAL            
+    9  'REF:IGCOND  '         2    INTEGER         
+
+
+ TOTAL NUMBER OF WORDS ON DIRECTORY '/           ' =        87
+
+->@END MODULE   : EDI:        
+-->>TIME SPENT IN MODULE EDI:        :      0.000
+<|END: ;                                                                  |<0072
+
+
+ NORMAL END OF EXECUTION FOR DRAGON 4  Version 4.0.6 ($Revision: 1666 $)               
+ CHECK FOR WARNING IN LISTING
+ BEFORE ASSUMING YOUR RUN WAS SUCCESSFUL
