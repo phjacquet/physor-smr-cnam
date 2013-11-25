@@ -26,74 +26,416 @@
 
 
 * CLE-2000 VERS 2.1 * R.ROY, EPM COPYRIGHT 1999 *                           LINE
-/*                                                                          0001
-TRIPOLI-4.3 Criticality sample calculation - hmf001                         0002
-Calculations performed by Y. K. Lee - Oct. 2003                             0003
+*----                                                                       0001
+* GODIVA                                                                    0002
+*----                                                                       0003
                                                                             0004
-Reference:                                                                  0005
-NEA/NSC/DOC(95)03/II HEU-MET-FAST-001   9/2002 revision 2                   0006
-Bare, Highly Enriched Uranium Sphere (Godiva), geometry_simple              0007
-*/                                                                          0008
-                                                                            0009
-GEOMETRIE                                                                   0010
-TITRE                                                                       0011
-                                                                            0012
-TYPE 1 	SPHERE 600                                                          0013
-       ?                                                                
-! CLELOG: UNEXPECTED CHARACTERS TO BE REPLACED WITH BLANKS              
-VOLU 1  COMBI  1       0 0 0  FINV                                          0014
-FING                                                                        0015
-                                                                            0016
-COMPOSITION 1                                                               0017
-	PONCTUAL 300  URANIUM   3                                                  0018
-?                                                                       
-! CLELOG: UNEXPECTED CHARACTERS TO BE REPLACED WITH BLANKS              
-          U234  4.9184E-4                                                   0019
-          U235  2.4007E-3                                                   0020
-          U238  4.4555E-2                                                   0021
-FIN_COMPO                                                                   0022
-                                                                            0023
-GEOMCOMP                                                                    0024
-	URANIUM   1   1                                                            0025
-?                                                                       
-! CLELOG: UNEXPECTED CHARACTERS TO BE REPLACED WITH BLANKS              
-FIN_GEOMCOMP                                                                0026
-                                                                            0027
-LIST_SOURCE 1                                                               0028
-        SOURCE                                                              0029
-	NEUTRON  PONCTUAL  0 0 0                                                   0030
-?                                                                       
-! CLELOG: UNEXPECTED CHARACTERS TO BE REPLACED WITH BLANKS              
-	ANGULAR_DISTRIBUTION   ISOTROPIC                                           0031
-?                                                                       
-! CLELOG: UNEXPECTED CHARACTERS TO BE REPLACED WITH BLANKS              
-	ENERGETIC_DISTRIBUTION SPECTRE   WATT_SPECTRE                              0032
-?                                                                       
-! CLELOG: UNEXPECTED CHARACTERS TO BE REPLACED WITH BLANKS              
-        TIME_DISTRIBUTION  DIRAC 0                                          0033
-	FIN_SOURCE                                                                 0034
-?                                                                       
-! CLELOG: UNEXPECTED CHARACTERS TO BE REPLACED WITH BLANKS              
-FIN_LIST_SOURCE                                                             0035
-                                                                            0036
-SIMULATION                                                                  0037
-  	CRITICITE  BATCH 1000  SIZE 1000 EDITION 1000                            0038
-  ?                                                                     
-! CLELOG: UNEXPECTED CHARACTERS TO BE REPLACED WITH BLANKS              
-	ENERGY_INF NEUTRON 1.E-11                                                  0039
-?                                                                       
-! CLELOG: UNEXPECTED CHARACTERS TO BE REPLACED WITH BLANKS              
-	PARTICULES 1 NEUTRON                                                       0040
-?                                                                       
-! CLELOG: UNEXPECTED CHARACTERS TO BE REPLACED WITH BLANKS              
-FIN_SIMULATION                                                              0041
-                                                                            0042
+LINKED_LIST                                                                 0005
+  LIBMIX   LIBMIXS                                                          0006
+  GCELL                                                                     0007
+  TRACK SYS FLUX                                                            0008
+  EDC                                                                       0009
+  DATABASE DBC                                                              0010
+  ;                                                                         0011
+MODULE                                                                      0012
+  GEO: LIB:                                                                 0013
+  SHI: USS:                                                                 0014
+  SYBILT: EXCELT: SNT: ASM: FLU: EDI:                                       0015
+  DELETE: END:                                                              0016
+  PSP: UTL: COMPO: EVO:                                                     0017
+  ;                                                                         0018
+*----                                                                       0019
+*  Microscopic cross sections from JEF2 draglib file                        0020
+*----                                                                       0021
+LIBMIX := LIB: :: EDIT 0                                                    0022
+     NMIX 1                                                                 0023
+     CTRA WIMS                                                              0024
+     SUBG                                                                   0025
+     ANIS 2                                                                 0026
+     DEPL LIB: DRAGON FIL: DLIB_J2_361                                      0027
+     MIXS LIB: DRAGON FIL: DLIB_J2_361                                      0028
+  MIX 1 300.0                                                               0029
+     U234 = 'U234'  4.9184E-4    1                                          0030
+     U235 = 'U235'  2.4007E-3    1                                          0031
+     U238 = 'U238'  4.4555E-2    1                                          0032
+;                                                                           0033
+*----                                                                       0034
+*  Spherical geometry                                                       0035
+*----                                                                       0036
+GCELL := GEO: :: SPHERE  1                                                  0037
+           R+ VOID                                                          0038
+           MIX  1                                                           0039
+           RADIUS 0.0 600                                                   0040
+           SPLITR 15                                                        0041
+           ;                                                                0042
+*----                                                                       0043
+*  Analysis of geometry                                                     0044
+*----                                                                       0045
+TRACK := SNT: GCELL ::                                                      0046
+  TITLE 'Fuel'                                                              0047
+  EDIT 1 MAXR 30                                                            0048
+  DIAM 1 SN 16                                                              0049
+  SCAT 2                                                                    0050
+  QUAB 7                                                                    0051
+;                                                                           0052
+*----                                                                       0053
+*  Self Shielding                                                           0054
+*----                                                                       0055
+LIBMIXS := USS: LIBMIX TRACK ::                                             0056
+PASS 100                                                                    0057
+MAXST 100                                                                   0058
+EDIT 5 ARM                                                                  0059
+;                                                                           0060
+                                                                            0061
+*----                                                                       0062
+*  SN problem definition                                                    0063
+*----                                                                       0064
+SYS := ASM: LIBMIXS TRACK :: ARM ;                                          0065
+                                                                            0066
+*----                                                                       0067
+*  Problem solution                                                         0068
+*----                                                                       0069
+FLUX := FLU: SYS LIBMIXS TRACK  ::                                          0070
+     TYPE K                                                                 0071
+     EXTE 200 1E-4 THER 5 1E-4 ;                                            0072
+                                                                            0073
+*----                                                                       0074
+*  Solution edition and processing                                          0075
+*----                                                                       0076
+EDC := EDI: LIBMIXS TRACK FLUX ::                                           0077
+  EDIT 0                                                                    0078
+  MERG COMP COND 7.4080E06 3.6790E06 6.7210E05 1.1110E05 1.9310E04          0079
+          3.3550E03 1.5850E03 7.4850E02 2.7540E02 1.3010E02                 0080
+          6.1440E01 2.9000E01 1.3700E01 8.3200E00 5.0400E00                 0081
+          2.3800E00 1.2900E00 6.5000E-01 3.5000E-01 2.0000E-01              0082
+          1.2000E-01 8.0000E-02 5.0000E-02 2.0000E-02                       0083
+          1.0000E-02                                                        0084
+  SAVE ON 'FCCg' ;                                                          0085
+                                                                            0086
+                                                                            0087
+END: ;                                                                      0088
 QUIT .                                                                  IMPLICIT
 
- ! CLEPIL: ERROR CODE IN >> CLELOG       << ERROR NUMBER (          10 )
-* KERNEL: COMPILING _MAIN.c2m FILE (ERROR CODE)                         IRC=  10
- KERNEL ERROR CODE=         666
- DRAGON: KERNEL ERROR
+->@BEGIN MODULE : LIB:        
+->@DESCRIPTION  : Microscopic xs-library processing                                       
+->@CREDITS      : A. Hebert, G. Marleau                                                   
+->@COPYRIGHTS   : ECOLE POLYTECHNIQUE DE MONTREAL  
+                  GNU LESSER GENERAL PUBLIC LICENSE
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.211E+00) IN GROUP 107. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.241E+00) IN GROUP 107. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.260E+00) IN GROUP 107. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.245E+00) IN GROUP 107. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.250E+00) IN GROUP 107. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.287E+00) IN GROUP 107. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.319E+00) IN GROUP 107. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.328E+00) IN GROUP 107. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.210E+00) IN GROUP 107. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.243E+00) IN GROUP 107. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.273E+00) IN GROUP 107. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.288E+00) IN GROUP 107. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.474E+00) IN GROUP 106. DILUTION=  1.500E+00 (  1.500E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.732E+00) IN GROUP 107. DILUTION=  1.500E+00 (  1.500E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.478E+00) IN GROUP 106. DILUTION=  1.500E+00 (  1.500E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.809E+00) IN GROUP 107. DILUTION=  1.500E+00 (  1.500E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.458E+00) IN GROUP 106. DILUTION=  1.500E+00 (  1.500E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.908E+00) IN GROUP 107. DILUTION=  1.500E+00 (  1.500E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.425E+00) IN GROUP 106. DILUTION=  1.500E+00 (  1.500E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.989E+00) IN GROUP 107. DILUTION=  1.500E+00 (  1.500E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.699E+00) IN GROUP 106. DILUTION=  2.518E+00 (  2.518E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.816E+00) IN GROUP 107. DILUTION=  2.518E+00 (  2.518E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.303E+00) IN GROUP 128. DILUTION=  2.518E+00 (  2.518E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.710E+00) IN GROUP 106. DILUTION=  2.518E+00 (  2.518E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.890E+00) IN GROUP 107. DILUTION=  2.518E+00 (  2.518E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.330E+00) IN GROUP 128. DILUTION=  2.518E+00 (  2.518E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.706E+00) IN GROUP 106. DILUTION=  2.518E+00 (  2.518E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.992E+00) IN GROUP 107. DILUTION=  2.518E+00 (  2.518E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.351E+00) IN GROUP 128. DILUTION=  2.518E+00 (  2.518E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.690E+00) IN GROUP 106. DILUTION=  2.518E+00 (  2.518E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.080E+00) IN GROUP 107. DILUTION=  2.518E+00 (  2.518E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.356E+00) IN GROUP 128. DILUTION=  2.518E+00 (  2.518E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.751E+00) IN GROUP 106. DILUTION=  4.226E+00 (  4.226E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.785E+00) IN GROUP 107. DILUTION=  4.226E+00 (  4.226E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.502E+00) IN GROUP 128. DILUTION=  4.226E+00 (  4.226E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.771E+00) IN GROUP 106. DILUTION=  4.226E+00 (  4.226E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.853E+00) IN GROUP 107. DILUTION=  4.226E+00 (  4.226E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.539E+00) IN GROUP 128. DILUTION=  4.226E+00 (  4.226E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.787E+00) IN GROUP 106. DILUTION=  4.226E+00 (  4.226E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.950E+00) IN GROUP 107. DILUTION=  4.226E+00 (  4.226E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.577E+00) IN GROUP 128. DILUTION=  4.226E+00 (  4.226E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.791E+00) IN GROUP 106. DILUTION=  4.226E+00 (  4.226E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.037E+00) IN GROUP 107. DILUTION=  4.226E+00 (  4.226E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.595E+00) IN GROUP 128. DILUTION=  4.226E+00 (  4.226E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.654E+00) IN GROUP 106. DILUTION=  7.094E+00 (  7.094E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.678E+00) IN GROUP 107. DILUTION=  7.094E+00 (  7.094E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.346E+00) IN GROUP 127. DILUTION=  7.094E+00 (  7.094E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.624E+00) IN GROUP 128. DILUTION=  7.094E+00 (  7.094E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.686E+00) IN GROUP 106. DILUTION=  7.094E+00 (  7.094E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.739E+00) IN GROUP 107. DILUTION=  7.094E+00 (  7.094E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.306E+00) IN GROUP 127. DILUTION=  7.094E+00 (  7.094E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.673E+00) IN GROUP 128. DILUTION=  7.094E+00 (  7.094E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.722E+00) IN GROUP 106. DILUTION=  7.094E+00 (  7.094E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.828E+00) IN GROUP 107. DILUTION=  7.094E+00 (  7.094E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.211E+00) IN GROUP 127. DILUTION=  7.094E+00 (  7.094E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.729E+00) IN GROUP 128. DILUTION=  7.094E+00 (  7.094E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.746E+00) IN GROUP 106. DILUTION=  7.094E+00 (  7.094E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.910E+00) IN GROUP 107. DILUTION=  7.094E+00 (  7.094E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.764E+00) IN GROUP 128. DILUTION=  7.094E+00 (  7.094E+00). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.347E+00) IN GROUP 105. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.465E+00) IN GROUP 106. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.543E+00) IN GROUP 107. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.520E+00) IN GROUP 127. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.667E+00) IN GROUP 128. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.264E+00) IN GROUP 105. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.507E+00) IN GROUP 106. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.596E+00) IN GROUP 107. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.495E+00) IN GROUP 127. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.728E+00) IN GROUP 128. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.561E+00) IN GROUP 106. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.676E+00) IN GROUP 107. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.417E+00) IN GROUP 127. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.801E+00) IN GROUP 128. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.602E+00) IN GROUP 106. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.750E+00) IN GROUP 107. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.283E+00) IN GROUP 127. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.852E+00) IN GROUP 128. DILUTION=  1.191E+01 (  1.191E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.465E+00) IN GROUP 105. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.242E+00) IN GROUP 106. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.411E+00) IN GROUP 107. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.636E+00) IN GROUP 127. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.649E+00) IN GROUP 128. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.390E+00) IN GROUP 105. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.292E+00) IN GROUP 106. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.457E+00) IN GROUP 107. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.633E+00) IN GROUP 127. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.718E+00) IN GROUP 128. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.262E+00) IN GROUP 105. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.358E+00) IN GROUP 106. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.528E+00) IN GROUP 107. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.582E+00) IN GROUP 127. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.803E+00) IN GROUP 128. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.410E+00) IN GROUP 106. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.594E+00) IN GROUP 107. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.468E+00) IN GROUP 127. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.867E+00) IN GROUP 128. DILUTION=  1.999E+01 (  1.999E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.540E+00) IN GROUP 105. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.024E+00) IN GROUP 106. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.298E+00) IN GROUP 107. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.213E+00) IN GROUP 120. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.687E+00) IN GROUP 127. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.592E+00) IN GROUP 128. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.478E+00) IN GROUP 105. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.079E+00) IN GROUP 106. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.338E+00) IN GROUP 107. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.707E+00) IN GROUP 127. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.665E+00) IN GROUP 128. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.362E+00) IN GROUP 105. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.150E+00) IN GROUP 106. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.400E+00) IN GROUP 107. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.691E+00) IN GROUP 127. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.757E+00) IN GROUP 128. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.211E+00) IN GROUP 144. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.250E+00) IN GROUP 105. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.208E+00) IN GROUP 106. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.457E+00) IN GROUP 107. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.608E+00) IN GROUP 127. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.828E+00) IN GROUP 128. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.255E+00) IN GROUP 144. DILUTION=  3.355E+01 (  3.355E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.572E+00) IN GROUP 105. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.832E+00) IN GROUP 106. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.210E+00) IN GROUP 107. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.220E+00) IN GROUP 120. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.682E+00) IN GROUP 127. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.517E+00) IN GROUP 128. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.259E+00) IN GROUP 143. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.526E+00) IN GROUP 105. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.888E+00) IN GROUP 106. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.244E+00) IN GROUP 107. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.722E+00) IN GROUP 127. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.591E+00) IN GROUP 128. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.251E+00) IN GROUP 143. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.428E+00) IN GROUP 105. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.960E+00) IN GROUP 106. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.296E+00) IN GROUP 107. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.739E+00) IN GROUP 127. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.683E+00) IN GROUP 128. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.235E+00) IN GROUP 144. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.332E+00) IN GROUP 105. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  2.018E+00) IN GROUP 106. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.345E+00) IN GROUP 107. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.692E+00) IN GROUP 127. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.756E+00) IN GROUP 128. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.281E+00) IN GROUP 144. DILUTION=  5.632E+01 (  5.632E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.566E+00) IN GROUP 105. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.672E+00) IN GROUP 106. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.213E+00) IN GROUP 120. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.638E+00) IN GROUP 127. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.439E+00) IN GROUP 128. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.290E+00) IN GROUP 143. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.538E+00) IN GROUP 105. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.726E+00) IN GROUP 106. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.692E+00) IN GROUP 127. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.510E+00) IN GROUP 128. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.301E+00) IN GROUP 143. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.464E+00) IN GROUP 105. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.795E+00) IN GROUP 106. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.216E+00) IN GROUP 107. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.734E+00) IN GROUP 127. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.599E+00) IN GROUP 128. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.214E+00) IN GROUP 143. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.235E+00) IN GROUP 144. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.214E+00) IN GROUP 167. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.386E+00) IN GROUP 105. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.850E+00) IN GROUP 106. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.256E+00) IN GROUP 107. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.720E+00) IN GROUP 127. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.667E+00) IN GROUP 128. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.278E+00) IN GROUP 144. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.226E+00) IN GROUP 167. DILUTION=  9.453E+01 (  9.453E+01). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.530E+00) IN GROUP 105. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.542E+00) IN GROUP 106. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.245E+00) IN GROUP 126. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.574E+00) IN GROUP 127. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.367E+00) IN GROUP 128. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.293E+00) IN GROUP 143. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.522E+00) IN GROUP 105. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.593E+00) IN GROUP 106. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.635E+00) IN GROUP 127. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.433E+00) IN GROUP 128. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.318E+00) IN GROUP 143. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.223E+00) IN GROUP 167. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.471E+00) IN GROUP 105. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.655E+00) IN GROUP 106. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.691E+00) IN GROUP 127. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.513E+00) IN GROUP 128. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.266E+00) IN GROUP 143. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.217E+00) IN GROUP 144. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.283E+00) IN GROUP 167. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.413E+00) IN GROUP 105. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.704E+00) IN GROUP 106. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.700E+00) IN GROUP 127. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.574E+00) IN GROUP 128. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.256E+00) IN GROUP 144. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.312E+00) IN GROUP 167. DILUTION=  1.587E+02 (  1.587E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.476E+00) IN GROUP 105. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.438E+00) IN GROUP 106. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.290E+00) IN GROUP 126. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.503E+00) IN GROUP 127. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.303E+00) IN GROUP 128. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.278E+00) IN GROUP 143. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.482E+00) IN GROUP 105. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.483E+00) IN GROUP 106. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.564E+00) IN GROUP 127. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.362E+00) IN GROUP 128. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.309E+00) IN GROUP 143. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.234E+00) IN GROUP 167. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.454E+00) IN GROUP 105. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.537E+00) IN GROUP 106. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.623E+00) IN GROUP 127. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.430E+00) IN GROUP 128. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.284E+00) IN GROUP 143. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.304E+00) IN GROUP 167. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.414E+00) IN GROUP 105. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.577E+00) IN GROUP 106. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.644E+00) IN GROUP 127. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.481E+00) IN GROUP 128. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.224E+00) IN GROUP 143. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.222E+00) IN GROUP 144. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.343E+00) IN GROUP 167. DILUTION=  2.663E+02 (  2.663E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.411E+00) IN GROUP 105. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.352E+00) IN GROUP 106. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.300E+00) IN GROUP 126. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.431E+00) IN GROUP 127. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.249E+00) IN GROUP 128. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.251E+00) IN GROUP 143. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.427E+00) IN GROUP 105. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.392E+00) IN GROUP 106. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.232E+00) IN GROUP 126. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.487E+00) IN GROUP 127. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.297E+00) IN GROUP 128. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.282E+00) IN GROUP 143. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.218E+00) IN GROUP 167. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.416E+00) IN GROUP 105. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.435E+00) IN GROUP 106. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.541E+00) IN GROUP 127. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.352E+00) IN GROUP 128. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.275E+00) IN GROUP 143. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.287E+00) IN GROUP 167. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.391E+00) IN GROUP 105. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.466E+00) IN GROUP 106. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.565E+00) IN GROUP 127. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.392E+00) IN GROUP 128. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.237E+00) IN GROUP 143. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.331E+00) IN GROUP 167. DILUTION=  4.471E+02 (  4.471E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.342E+00) IN GROUP 105. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.281E+00) IN GROUP 106. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.284E+00) IN GROUP 126. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.360E+00) IN GROUP 127. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.201E+00) IN GROUP 128. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.217E+00) IN GROUP 143. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.249E+00) IN GROUP 166. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.362E+00) IN GROUP 105. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.313E+00) IN GROUP 106. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.245E+00) IN GROUP 126. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.408E+00) IN GROUP 127. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.240E+00) IN GROUP 128. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.244E+00) IN GROUP 143. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.361E+00) IN GROUP 105. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.345E+00) IN GROUP 106. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.452E+00) IN GROUP 127. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.281E+00) IN GROUP 128. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.244E+00) IN GROUP 143. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.249E+00) IN GROUP 167. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.347E+00) IN GROUP 105. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.368E+00) IN GROUP 106. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.473E+00) IN GROUP 127. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.310E+00) IN GROUP 128. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.222E+00) IN GROUP 143. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.291E+00) IN GROUP 167. DILUTION=  7.504E+02 (  7.504E+02). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.275E+00) IN GROUP 105. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.221E+00) IN GROUP 106. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.251E+00) IN GROUP 126. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.294E+00) IN GROUP 127. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.276E+00) IN GROUP 166. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.294E+00) IN GROUP 105. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.244E+00) IN GROUP 106. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.231E+00) IN GROUP 126. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.330E+00) IN GROUP 127. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.235E+00) IN GROUP 166. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.296E+00) IN GROUP 105. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.266E+00) IN GROUP 106. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.362E+00) IN GROUP 127. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.216E+00) IN GROUP 128. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.202E+00) IN GROUP 143. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.201E+00) IN GROUP 167. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.288E+00) IN GROUP 105. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.280E+00) IN GROUP 106. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.377E+00) IN GROUP 127. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.235E+00) IN GROUP 128. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.236E+00) IN GROUP 167. DILUTION=  1.260E+03 (  1.260E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.213E+00) IN GROUP 105. DILUTION=  2.114E+03 (  2.114E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.208E+00) IN GROUP 126. DILUTION=  2.114E+03 (  2.114E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.231E+00) IN GROUP 127. DILUTION=  2.114E+03 (  2.114E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.270E+00) IN GROUP 166. DILUTION=  2.114E+03 (  2.114E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.227E+00) IN GROUP 105. DILUTION=  2.114E+03 (  2.114E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.257E+00) IN GROUP 127. DILUTION=  2.114E+03 (  2.114E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.247E+00) IN GROUP 166. DILUTION=  2.114E+03 (  2.114E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.229E+00) IN GROUP 105. DILUTION=  2.114E+03 (  2.114E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.276E+00) IN GROUP 127. DILUTION=  2.114E+03 (  2.114E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.224E+00) IN GROUP 105. DILUTION=  2.114E+03 (  2.114E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.205E+00) IN GROUP 106. DILUTION=  2.114E+03 (  2.114E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.285E+00) IN GROUP 127. DILUTION=  2.114E+03 (  2.114E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.241E+00) IN GROUP 166. DILUTION=  3.549E+03 (  3.549E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.229E+00) IN GROUP 166. DILUTION=  3.549E+03 (  3.549E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.201E+00) IN GROUP 127. DILUTION=  3.549E+03 (  3.549E+03). KPHIR= 173.                         
+ LIBDRB: INVALID VALUE OF ZNPHI (  1.205E+00) IN GROUP 127. DILUTION=  3.549E+03 (  3.549E+03). KPHIR= 173.                         
+->@END MODULE   : LIB:        
+-->>TIME SPENT IN MODULE LIB:        :      9.000
+->@BEGIN MODULE : GEO:        
+->@DESCRIPTION  : Geometry definition                                                     
+->@CREDITS      : A. Hebert                                                               
+->@COPYRIGHTS   : ECOLE POLYTECHNIQUE DE MONTREAL  
+                  GNU LESSER GENERAL PUBLIC LICENSE
+ GEOIN1: REAL DATA EXPECTED.
  DESTROY DA FILE = _FIL001       UNIT =         99
 
  ABORT REQUESTED.

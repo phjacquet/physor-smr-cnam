@@ -8,7 +8,7 @@ LIBRARY := LIB: ::
   NMIX 3 CTRA WIMS
     DEPL LIB: DRAGON FIL: DLIB_J2_361
     MIXS LIB: DRAGON FIL: DLIB_J2_361
-  MIX 1 1510.0                        
+  MIX 1 1500.0                        
 
 Pu239 = 'Pu239' 2.1782E-03 1
 Pu240 = 'Pu240' 7.2335E-04 1
@@ -20,7 +20,7 @@ U238 = 'U238' 1.6814E-02 1
 U235 = 'U235' 8.9010E-05 1
 O16 = 'O16' 3.9757E-02
 
-  MIX 2 1310.0
+  MIX 2 1300.0
 Fe56 = 'Fe56' 4.9852E-02
 Fe58 = 'Fe58' 1.5346E-04
 Cr52 = 'Cr52' 1.3100E-02
@@ -42,7 +42,7 @@ Si = 'Si0' 9.3679E-04
 
 
   MIX 3 800.0
-Na23 = 'Na23' 2.4874E-02
+Na23 = 'Na23' 2.3096E-02
   
   ;
 
