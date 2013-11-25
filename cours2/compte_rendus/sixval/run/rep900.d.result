@@ -2967,7 +2967,7 @@ QUIT "LIST" .                                                               0056
  IDIFF      0   (0/1: DIFFUSION COEFFICIENTS ABSENT/PRESENT)
  DOOR           (SYBIL       )
 ->@END MODULE   : ASM:        
--->>TIME SPENT IN MODULE ASM:        :      0.000
+-->>TIME SPENT IN MODULE ASM:        :      1.000
 <|FLUX := FLU: SYS LIBRARY TRACK ::                                       |<0048
 ->@BEGIN MODULE : FLU:        
 ->@DESCRIPTION  : Solve the flux equations                                                

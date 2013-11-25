@@ -3010,7 +3010,7 @@ QUIT "LIST" .                                                               0056
           IN(  3) FLX: PRC= 2.40E-03 TAR= 5.00E-05 IGDEB=            1 ACCE=     1.00000
           IN(  4) FLX: PRC= 2.80E-05 TAR= 5.00E-05 IGDEB=          362 ACCE=     1.04144
  FLU2DR: NO LEAKAGE-> REBALANCING ON
- FLU2DR: CPU TIME=        1. INTERNAL CONVERGENCE       REACHED AFTER     4 ITERATIONS.
+ FLU2DR: CPU TIME=        0. INTERNAL CONVERGENCE       REACHED AFTER     4 ITERATIONS.
 
  B1DIF: SOLUTION OF B1   EQUATIONS WITH TYPE K   
         NUMBER OF ITERATIONS =  1
@@ -3048,12 +3048,12 @@ QUIT "LIST" .                                                               0056
 
  OUT(  3) EIG: PRC= 2.24E-09 TAR= 1.00E-05 KEFF= 9.999996E-01 BUCK= 4.57567E-03
  OUT(  3) FLX: PRC= 5.87E-06 TAR= 5.00E-05 FNOR= 1.000000E+00 ACCE=     1.00000
- FLU2DR: CPU TIME=        2. EXTERNAL CONVERGENCE       REACHED AFTER     3 ITERATIONS.
+ FLU2DR: CPU TIME=        1. EXTERNAL CONVERGENCE       REACHED AFTER     3 ITERATIONS.
 
  ++ TRACKING CALLED=   7 TIMES FINAL KINF=1.273153E+00 FINAL KEFF=9.999996E-01 B2= 4.57567E-03 PRECISION= 2.24E-09
  ++ TOTAL NUMBER OF FLUX CALCULATIONS=      2527
 ->@END MODULE   : FLU:        
--->>TIME SPENT IN MODULE FLU:        :      2.000
+-->>TIME SPENT IN MODULE FLU:        :      1.000
 <|EDITION := EDI: LIBRARY TRACK FLUX ::                                   |<0051
 ->@BEGIN MODULE : EDI:        
 ->@DESCRIPTION  : Editing module                                                          
@@ -3152,7 +3152,7 @@ QUIT "LIST" .                                                               0056
  TOTAL NUMBER OF WORDS ON DIRECTORY '/           ' =        90
 
 ->@END MODULE   : EDI:        
--->>TIME SPENT IN MODULE EDI:        :      0.000
+-->>TIME SPENT IN MODULE EDI:        :      1.000
 <|END: ;                                                                  |<0054
 
 
