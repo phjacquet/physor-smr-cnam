@@ -2823,7 +2823,7 @@ QUIT "LIST" .                                                               0056
    443  N14     0003  N14           DRAGON     1     3  0.0000E+00  6.000E+02  1.000E+10   0             0                 
    444  He4     0003  He4           DRAGON     1     3  0.0000E+00  6.000E+02  1.000E+10   0             0                 
 ->@END MODULE   : LIB:        
--->>TIME SPENT IN MODULE LIB:        :      6.000
+-->>TIME SPENT IN MODULE LIB:        :      5.000
 <|GEOM  := GEO: :: CARCEL 3                                               |<0027
 ->@BEGIN MODULE : GEO:        
 ->@DESCRIPTION  : Geometry definition                                                     
@@ -3010,7 +3010,7 @@ QUIT "LIST" .                                                               0056
           IN(  3) FLX: PRC= 2.36E-03 TAR= 5.00E-05 IGDEB=            1 ACCE=     1.00000
           IN(  4) FLX: PRC= 2.78E-05 TAR= 5.00E-05 IGDEB=          362 ACCE=     1.04094
  FLU2DR: NO LEAKAGE-> REBALANCING ON
- FLU2DR: CPU TIME=        0. INTERNAL CONVERGENCE       REACHED AFTER     4 ITERATIONS.
+ FLU2DR: CPU TIME=        1. INTERNAL CONVERGENCE       REACHED AFTER     4 ITERATIONS.
 
  B1DIF: SOLUTION OF B1   EQUATIONS WITH TYPE K   
         NUMBER OF ITERATIONS =  1
@@ -3024,7 +3024,7 @@ QUIT "LIST" .                                                               0056
           IN(  1) FLX: PRC= 1.89E-03 TAR= 5.00E-05 IGDEB=            1 ACCE=     1.00000
           IN(  2) FLX: PRC= 1.23E-05 TAR= 5.00E-05 IGDEB=          362 ACCE=     1.00000
  FLU2DR: NO LEAKAGE-> REBALANCING ON
- FLU2DR: CPU TIME=        1. INTERNAL CONVERGENCE       REACHED AFTER     2 ITERATIONS.
+ FLU2DR: CPU TIME=        0. INTERNAL CONVERGENCE       REACHED AFTER     2 ITERATIONS.
 
  B1DIF: SOLUTION OF B1   EQUATIONS WITH TYPE K   
         NUMBER OF ITERATIONS =  1

@@ -1,4 +1,4 @@
-                                                                                                                                                         LINKED_LIST
+LINKED_LIST
   LIBRARY GEOMS GEOM TRACKS TRACK SYS FLUX BURNUP
   EDITION DATABASE ISOT ;
 MODULE
@@ -17,8 +17,8 @@ LIBRARY := LIB: ::
   MIX 3 600.0
     H1H2O    = 'H1_H2O'   4.7508E-2   O16H2O   = 'O16'   2.3754E-2
 
-    B10     = 'B10'   0.2E-10
-    B11     = 'B11'   0.8E-10
+    B10     = 'B10'   7.77E-8
+    B11     = 'B11'   3.11E-7
     
   ;
 

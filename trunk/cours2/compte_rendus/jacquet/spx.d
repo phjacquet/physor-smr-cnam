@@ -50,7 +50,7 @@ Na23 = 'Na23' 2.4874E-02
 GEOM  := GEO: :: HEXCEL 2
   HBC COMPLETE REFL
          SIDE 0.56 
-         RADIUS 0.0 0.368500 0.429260
+         RADIUS 0.368500 0.429260
          MIX  1 2 3
   SPLITR 4  2 
   ;

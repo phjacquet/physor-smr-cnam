@@ -1846,7 +1846,7 @@ QUIT "LIST" .                                                               0074
    274  Cm241   0001  Cm241         DRAGON     1     1  0.0000E+00  1.500E+03  1.000E+10   0             0                 
    275  Co59    0002  Co59          DRAGON     1     2  0.0000E+00  1.300E+03  1.000E+10   0             0                 
 ->@END MODULE   : LIB:        
--->>TIME SPENT IN MODULE LIB:        :      5.000
+-->>TIME SPENT IN MODULE LIB:        :      6.000
 <|GEOM  := GEO: :: HEXCEL 2                                               |<0050
 ->@BEGIN MODULE : GEO:        
 ->@DESCRIPTION  : Geometry definition                                                     
@@ -1913,7 +1913,7 @@ QUIT "LIST" .                                                               0074
  SYBEUR: MAXIMUM STORAGE REQUIRED BY THE TRACKS =    1246 +   3318        AVAILABLE STORAGE MAXZ =   10000
 
 
- SYBEUR: EXACT STORAGE REQUIRED BY THE TRACKS =    323 INT +    788 REAL        ACCURACY =  1.498E-06
+ SYBEUR: EXACT STORAGE REQUIRED BY THE TRACKS =    323 INT +    788 REAL        ACCURACY =  2.598E-06
 
 
  NUMBER OF VOLUMES =    7     AVAILABLE STORAGE MAXBLK =   40
@@ -2049,7 +2049,7 @@ QUIT "LIST" .                                                               0074
  LIBDRB: INVALID VALUE OF ZNPHI (  1.958E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
  LIBDRB: INVALID VALUE OF ZNPHI (  1.270E+00) IN GROUP 144. DILUTION=  3.308E+01 (  3.308E+01). KPHIR= 173.                         
 ->@END MODULE   : SHI:        
--->>TIME SPENT IN MODULE SHI:        :      4.000
+-->>TIME SPENT IN MODULE SHI:        :      3.000
 <|SYS := ASM: LIBRARY TRACK ;                                             |<0064
 ->@BEGIN MODULE : ASM:        
 ->@DESCRIPTION  : To built system matrices (CP and IC)                                    
@@ -2116,29 +2116,29 @@ QUIT "LIST" .                                                               0074
 
 
  USE TRANSPORT CORRECTED CROSS-SECTIONS
- OUT(  0) EIG: PRC= 1.00E+00 TAR= 1.00E-05 KEFF= 2.439525E-01 BUCK= 1.47878E-03
+ OUT(  0) EIG: PRC= 1.00E+00 TAR= 1.00E-05 KEFF= 2.439523E-01 BUCK= 1.47878E-03
           IN(  1) FLX: PRC= 8.43E+06 TAR= 5.00E-05 IGDEB=            1 ACCE=     1.00000
           IN(  2) FLX: PRC= 8.10E-01 TAR= 5.00E-05 IGDEB=            1 ACCE=     1.00000
           IN(  3) FLX: PRC= 1.80E-01 TAR= 5.00E-05 IGDEB=          282 ACCE=     1.00000
                   FIRST UNCONVERGED GROUP PRC= 0.11E-03
-          IN(  4) FLX: PRC= 4.72E-03 TAR= 5.00E-05 IGDEB=          305 ACCE=     1.01303
+          IN(  4) FLX: PRC= 4.72E-03 TAR= 5.00E-05 IGDEB=          305 ACCE=     1.01298
                   FIRST UNCONVERGED GROUP PRC= 0.93E-04
-          IN(  5) FLX: PRC= 1.06E-04 TAR= 5.00E-05 IGDEB=          309 ACCE=     1.01088
-                  FIRST UNCONVERGED GROUP PRC= 0.79E-04
+          IN(  5) FLX: PRC= 1.08E-04 TAR= 5.00E-05 IGDEB=          309 ACCE=     1.01003
+                  FIRST UNCONVERGED GROUP PRC= 0.80E-04
  FLU2DR: NO LEAKAGE-> REBALANCING ON
- FLU2DR: CPU TIME=        1. INTERNAL CONVERGENCE *NOT* REACHED AFTER     5 ITERATIONS.
+ FLU2DR: CPU TIME=        0. INTERNAL CONVERGENCE *NOT* REACHED AFTER     5 ITERATIONS.
 
  B1DIF: SOLUTION OF B1   EQUATIONS WITH TYPE K   
         NUMBER OF ITERATIONS =  1
         BUCKLING =  1.47878E-03
-        K-EFFECTIVE =  0.999978  (  0.999978 )
+        K-EFFECTIVE =  0.999979  (  0.999979 )
         K-INFINITE =  1.304971
         MIGRATION AREA =  2.06250E+02
 
- OUT(  1) EIG: PRC= 7.56E-01 TAR= 1.00E-05 KEFF= 9.999784E-01 BUCK= 1.47878E-03
- OUT(  1) FLX:                             FNOR= 1.000022E+00 ACCE=     1.00000
+ OUT(  1) EIG: PRC= 7.56E-01 TAR= 1.00E-05 KEFF= 9.999785E-01 BUCK= 1.47878E-03
+ OUT(  1) FLX:                             FNOR= 1.000021E+00 ACCE=     1.00000
           IN(  1) FLX: PRC= 4.17E-03 TAR= 5.00E-05 IGDEB=            1 ACCE=     1.00000
-          IN(  2) FLX: PRC= 8.03E-05 TAR= 5.00E-05 IGDEB=          309 ACCE=     1.00000
+          IN(  2) FLX: PRC= 8.00E-05 TAR= 5.00E-05 IGDEB=          309 ACCE=     1.00000
                   FIRST UNCONVERGED GROUP PRC= 0.51E-04
  FLU2DR: NO LEAKAGE-> REBALANCING ON
  FLU2DR: CPU TIME=        0. INTERNAL CONVERGENCE *NOT* REACHED AFTER     2 ITERATIONS.
@@ -2150,8 +2150,8 @@ QUIT "LIST" .                                                               0074
         K-INFINITE =  1.304993
         MIGRATION AREA =  2.06246E+02
 
- OUT(  2) EIG: PRC= 2.21E-05 TAR= 1.00E-05 KEFF= 1.000001E+00 BUCK= 1.47878E-03
- OUT(  2) FLX:                             FNOR= 9.999995E-01 ACCE=     1.00000
+ OUT(  2) EIG: PRC= 2.23E-05 TAR= 1.00E-05 KEFF= 1.000001E+00 BUCK= 1.47878E-03
+ OUT(  2) FLX:                             FNOR= 9.999992E-01 ACCE=     1.00000
           IN(  1) FLX: PRC= 2.78E-06 TAR= 5.00E-05 IGDEB=          362 ACCE=     1.00000
  FLU2DR: NO LEAKAGE-> REBALANCING ON
  FLU2DR: CPU TIME=        0. INTERNAL CONVERGENCE       REACHED AFTER     1 ITERATIONS.
@@ -2163,14 +2163,14 @@ QUIT "LIST" .                                                               0074
         K-INFINITE =  1.304993
         MIGRATION AREA =  2.06246E+02
 
- OUT(  3) EIG: PRC= 7.78E-09 TAR= 1.00E-05 KEFF= 1.000001E+00 BUCK= 1.47878E-03
- OUT(  3) FLX: PRC= 2.96E-06 TAR= 5.00E-05 FNOR= 9.999995E-01 ACCE=     1.00000
- FLU2DR: CPU TIME=        1. EXTERNAL CONVERGENCE       REACHED AFTER     3 ITERATIONS.
+ OUT(  3) EIG: PRC= 2.35E-09 TAR= 1.00E-05 KEFF= 1.000001E+00 BUCK= 1.47878E-03
+ OUT(  3) FLX: PRC= 3.07E-06 TAR= 5.00E-05 FNOR= 9.999992E-01 ACCE=     1.00000
+ FLU2DR: CPU TIME=        2. EXTERNAL CONVERGENCE       REACHED AFTER     3 ITERATIONS.
 
- ++ TRACKING CALLED=   8 TIMES FINAL KINF=1.304993E+00 FINAL KEFF=1.000001E+00 B2= 1.47878E-03 PRECISION= 7.78E-09
+ ++ TRACKING CALLED=   8 TIMES FINAL KINF=1.304993E+00 FINAL KEFF=1.000001E+00 B2= 1.47878E-03 PRECISION= 2.35E-09
  ++ TOTAL NUMBER OF FLUX CALCULATIONS=      2303
 ->@END MODULE   : FLU:        
--->>TIME SPENT IN MODULE FLU:        :      1.000
+-->>TIME SPENT IN MODULE FLU:        :      2.000
 <|EDITION := EDI: LIBRARY TRACK FLUX ::                                   |<0069
 ->@BEGIN MODULE : EDI:        
 ->@DESCRIPTION  : Editing module                                                          
@@ -2220,7 +2220,7 @@ QUIT "LIST" .                                                               0074
  G R O U P   :   1
  REGION   AVERAGE     INTEGRATED     COLLISION    ABSORPTION    NU*FISSION      LEAKAGE     PRODUCTION        SCATTERING RATES
            FLUX          FLUX          RATE          RATE          RATE          RATE          RATE      WITHIN GROUP  OUT OF GROUP
-    1   1.45128E+02   1.18244E+02   3.77719E+01   7.66282E-01   9.99991E-01   2.33712E-01   9.99999E-01   3.70055E+01   5.62672E-06
+    1   1.45128E+02   1.18244E+02   3.77719E+01   7.66283E-01   9.99992E-01   2.33712E-01   9.99999E-01   3.70056E+01   5.62672E-06
 
  G R O U P   :   2
  REGION   AVERAGE     INTEGRATED     COLLISION    ABSORPTION    NU*FISSION      LEAKAGE     PRODUCTION        SCATTERING RATES
@@ -2243,7 +2243,7 @@ QUIT "LIST" .                                                               0074
  G R O U P   :   2
  REGION   AVERAGE         SPH          NTOT0       DIFFUSION     ABSORPTION     NUSIGF        FISSION          SCATTERING X-S
            FLUX          FACTOR         X-S       COEFFICIENT       X-S          X-S          SPECTRUM   WITHIN GROUP  OUT OF GROUP
-    1   1.22021E-05   1.00000E+00   9.50747E-01   4.12481E-01   5.66693E-01   6.63900E-01   1.47364E-08   3.83907E-01   1.47213E-04
+    1   1.22021E-05   1.00000E+00   9.50747E-01   4.12481E-01   5.66693E-01   6.63900E-01   1.47364E-08   3.83907E-01   1.47214E-04
 
  FLUX DISADVANTAGE FACTOR =   8.22938E-01
 
@@ -2269,7 +2269,7 @@ QUIT "LIST" .                                                               0074
  TOTAL NUMBER OF WORDS ON DIRECTORY '/           ' =        87
 
 ->@END MODULE   : EDI:        
--->>TIME SPENT IN MODULE EDI:        :      1.000
+-->>TIME SPENT IN MODULE EDI:        :      0.000
 <|END: ;                                                                  |<0072
 
 
