@@ -1,0 +1,20 @@
+
+TRACK := SNT: GCELL ::
+     EDIT 0
+     MAXR 1000
+     DIAM 1 SN 8
+     SCAT 2
+     QUAB 7
+     TITLE 'CORE'
+     ;
+
+LIBMIXS := USS: LIBMIX TRACK :: EDIT 0 
+GRMAX 1 ARM ;
+
+SYS := ASM: LIBMIXS TRACK :: EDIT 0 ARM ;
+
+FLUX := FLU: SYS LIBMIXS  TRACK  ::
+     EDIT 1
+     TYPE K
+     EXTE 100 1E-4 THER 10 1E-4
+     ;
