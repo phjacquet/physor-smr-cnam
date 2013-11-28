@@ -43,46 +43,45 @@ LIBRARY := LIB: ::                                                          0007
   MIX 2 1000.0                                                              0015
     Zr91     = 'Zr91'     3.83243E-2                                        0016
   MIX 3 620.0                                                               0017
-*    H1H2O    = 'H1_H2O'   4.7508E-2   O16H2O   = 'O16'   2.3754E-2         0018
-    H1H2O    = 'H1_H2O'   4.8846E-02   O16H2O   = 'O16'   2.4423E-02        0019
-                                                                            0020
-    B10     = 'B10'   0.2E-10                                               0021
-    B11     = 'B11'   0.8E-10                                               0022
-                                                                            0023
-  ;                                                                         0024
+    H1H2O    = 'H1_H2O'   4.8846E-02   O16H2O   = 'O16'   2.4423E-02        0018
+                                                                            0019
+    B10     = 'B10'   0.2E-10                                               0020
+    B11     = 'B11'   0.8E-10                                               0021
+                                                                            0022
+  ;                                                                         0023
+                                                                            0024
                                                                             0025
                                                                             0026
-                                                                            0027
-GEOM  := GEO: :: CARCEL 3                                                   0028
-  X- REFL X+ REFL                                                           0029
-  Y- REFL Y+ REFL                                                           0030
-         MESHX 0.0 1.26                                                     0031
-         MESHY 0.0 1.26                                                     0032
-         RADIUS 0.0 0.410 0.418 0.480                                       0033
-         MIX  1 0 2 3                                                       0034
-  SPLITR 4  1  2                                                            0035
-  ;                                                                         0036
+GEOM  := GEO: :: CARCEL 3                                                   0027
+  X- REFL X+ REFL                                                           0028
+  Y- REFL Y+ REFL                                                           0029
+         MESHX 0.0 1.26                                                     0030
+         MESHY 0.0 1.26                                                     0031
+         RADIUS 0.0 0.410 0.418 0.480                                       0032
+         MIX  1 0 2 3                                                       0033
+  SPLITR 4  1  2                                                            0034
+  ;                                                                         0035
+                                                                            0036
                                                                             0037
                                                                             0038
                                                                             0039
-                                                                            0040
-TRACK := SYBILT: GEOM ::                                                    0041
-  TITLE 'REP'                                                               0042
-  EDIT 1 MAXR 40 ;                                                          0043
-                                                                            0044
-LIBRARY := SHI: LIBRARY TRACK :: EDIT 0 NOLJ ;                              0045
-                                                                            0046
-SYS := ASM: LIBRARY TRACK ;                                                 0047
-                                                                            0048
-FLUX := FLU: SYS LIBRARY TRACK ::                                           0049
-  TYPE K B1 PNL BUCK BUCK 4.57567E-03 ;                                     0050
-                                                                            0051
-EDITION := EDI: LIBRARY TRACK FLUX ::                                       0052
-  EDIT 3 MICR RES MERG COMP COND 4.0 SAVE  ;                                0053
-                                                                            0054
-END: ;                                                                      0055
-                                                                            0056
-QUIT "LIST" .                                                               0057
+TRACK := SYBILT: GEOM ::                                                    0040
+  TITLE 'REP'                                                               0041
+  EDIT 1 MAXR 40 ;                                                          0042
+                                                                            0043
+LIBRARY := SHI: LIBRARY TRACK :: EDIT 0 NOLJ ;                              0044
+                                                                            0045
+SYS := ASM: LIBRARY TRACK ;                                                 0046
+                                                                            0047
+FLUX := FLU: SYS LIBRARY TRACK ::                                           0048
+  TYPE K B1 PNL BUCK BUCK 4.57567E-03 ;                                     0049
+                                                                            0050
+EDITION := EDI: LIBRARY TRACK FLUX ::                                       0051
+  EDIT 3 MICR RES MERG COMP COND 4.0 SAVE  ;                                0052
+                                                                            0053
+END: ;                                                                      0054
+                                                                            0055
+QUIT "LIST" .                                                               0056
 
 <|LINKED_LIST                                                             |<0001
 <|  LIBRARY GEOMS GEOM TRACKS TRACK SYS FLUX BURNUP                       |<0002
@@ -105,10 +104,10 @@ QUIT "LIST" .                                                               0057
 <|  MIX 2 1000.0                                                          |<0015
 <|    Zr91     = 'Zr91'     3.83243E-2                                    |<0016
 <|  MIX 3 620.0                                                           |<0017
-<|    H1H2O    = 'H1_H2O'   4.8846E-02   O16H2O   = 'O16'   2.4423E-02    |<0019
-<|    B10     = 'B10'   0.2E-10                                           |<0021
-<|    B11     = 'B11'   0.8E-10                                           |<0022
-<|  ;                                                                     |<0024
+<|    H1H2O    = 'H1_H2O'   4.8846E-02   O16H2O   = 'O16'   2.4423E-02    |<0018
+<|    B10     = 'B10'   0.2E-10                                           |<0020
+<|    B11     = 'B11'   0.8E-10                                           |<0021
+<|  ;                                                                     |<0023
 
  LIBEAD:  252 DEPLETING ISOTOPES HAVE BEEN ADDED IN MIXTURE    1.
 
@@ -2824,33 +2823,33 @@ QUIT "LIST" .                                                               0057
    443  N14     0003  N14           DRAGON     1     3  0.0000E+00  6.200E+02  1.000E+10   0             0                 
    444  He4     0003  He4           DRAGON     1     3  0.0000E+00  6.200E+02  1.000E+10   0             0                 
 ->@END MODULE   : LIB:        
--->>TIME SPENT IN MODULE LIB:        :      5.000
-<|GEOM  := GEO: :: CARCEL 3                                               |<0028
+-->>TIME SPENT IN MODULE LIB:        :      6.000
+<|GEOM  := GEO: :: CARCEL 3                                               |<0027
 ->@BEGIN MODULE : GEO:        
 ->@DESCRIPTION  : Geometry definition                                                     
 ->@CREDITS      : A. Hebert                                                               
 ->@COPYRIGHTS   : ECOLE POLYTECHNIQUE DE MONTREAL  
                   GNU LESSER GENERAL PUBLIC LICENSE
-<|  X- REFL X+ REFL                                                       |<0029
-<|  Y- REFL Y+ REFL                                                       |<0030
-<|         MESHX 0.0 1.26                                                 |<0031
-<|         MESHY 0.0 1.26                                                 |<0032
-<|         RADIUS 0.0 0.410 0.418 0.480                                   |<0033
-<|         MIX  1 0 2 3                                                   |<0034
-<|  SPLITR 4  1  2                                                        |<0035
-<|  ;                                                                     |<0036
+<|  X- REFL X+ REFL                                                       |<0028
+<|  Y- REFL Y+ REFL                                                       |<0029
+<|         MESHX 0.0 1.26                                                 |<0030
+<|         MESHY 0.0 1.26                                                 |<0031
+<|         RADIUS 0.0 0.410 0.418 0.480                                   |<0032
+<|         MIX  1 0 2 3                                                   |<0033
+<|  SPLITR 4  1  2                                                        |<0034
+<|  ;                                                                     |<0035
 
  CREATION OF A LEVEL  1 GEOMETRY ON THE DIRECTORY NAMED '/           ' OF THE LCM OBJECT 'GEOM        ' WITH TYPE 2-D RECT. CELL  .
 ->@END MODULE   : GEO:        
 -->>TIME SPENT IN MODULE GEO:        :      0.000
-<|TRACK := SYBILT: GEOM ::                                                |<0041
+<|TRACK := SYBILT: GEOM ::                                                |<0040
 ->@BEGIN MODULE : SYBILT:     
 ->@DESCRIPTION  : Sybil 2-D tracking                                                      
 ->@CREDITS      : A. Hebert                                                               
 ->@COPYRIGHTS   : ECOLE POLYTECHNIQUE DE MONTREAL  
                   GNU LESSER GENERAL PUBLIC LICENSE
-<|  TITLE 'REP'                                                           |<0042
-<|  EDIT 1 MAXR 40 ;                                                      |<0043
+<|  TITLE 'REP'                                                           |<0041
+<|  EDIT 1 MAXR 40 ;                                                      |<0042
 
  CARTESIAN MULTICELL OPTION (EURYDICE-2) BASED ON GEOMETRY LOCATED IN 'GEOM        '.
 
@@ -2894,7 +2893,7 @@ QUIT "LIST" .                                                               0057
  SYBEUR: MAXIMUM STORAGE REQUIRED BY THE TRACKS =    1042 +   2869        AVAILABLE STORAGE MAXZ =   10000
 
 
- SYBEUR: EXACT STORAGE REQUIRED BY THE TRACKS =    341 INT +    798 REAL        ACCURACY =  3.808E-06
+ SYBEUR: EXACT STORAGE REQUIRED BY THE TRACKS =    341 INT +    798 REAL        ACCURACY =  6.417E-06
 
 
  NUMBER OF VOLUMES =    8     AVAILABLE STORAGE MAXBLK =   40
@@ -2913,7 +2912,7 @@ QUIT "LIST" .                                                               0057
  IBIHET     0   (0/1=DOUBLE HETEROGENEITY IS NOT/IS ACTIVE)
 ->@END MODULE   : SYBILT:     
 -->>TIME SPENT IN MODULE SYBILT:     :      0.000
-<|LIBRARY := SHI: LIBRARY TRACK :: EDIT 0 NOLJ ;                          |<0045
+<|LIBRARY := SHI: LIBRARY TRACK :: EDIT 0 NOLJ ;                          |<0044
 ->@BEGIN MODULE : SHI:        
 ->@DESCRIPTION  : Self-shielding by improved Stammler method                              
 ->@CREDITS      : A. Hebert                                                               
@@ -2939,7 +2938,7 @@ QUIT "LIST" .                                                               0057
  LIBDRB: INVALID VALUE OF ZNPHI (  1.279E+00) IN GROUP 144. DILUTION=  5.128E+01 (  5.128E+01). KPHIR= 173.                         
 ->@END MODULE   : SHI:        
 -->>TIME SPENT IN MODULE SHI:        :      1.000
-<|SYS := ASM: LIBRARY TRACK ;                                             |<0047
+<|SYS := ASM: LIBRARY TRACK ;                                             |<0046
 ->@BEGIN MODULE : ASM:        
 ->@DESCRIPTION  : To built system matrices (CP and IC)                                    
 ->@CREDITS      : A. Hebert, G. Marleau, R. Roy                                           
@@ -2968,14 +2967,14 @@ QUIT "LIST" .                                                               0057
  IDIFF      0   (0/1: DIFFUSION COEFFICIENTS ABSENT/PRESENT)
  DOOR           (SYBIL       )
 ->@END MODULE   : ASM:        
--->>TIME SPENT IN MODULE ASM:        :      1.000
-<|FLUX := FLU: SYS LIBRARY TRACK ::                                       |<0049
+-->>TIME SPENT IN MODULE ASM:        :      0.000
+<|FLUX := FLU: SYS LIBRARY TRACK ::                                       |<0048
 ->@BEGIN MODULE : FLU:        
 ->@DESCRIPTION  : Solve the flux equations                                                
 ->@CREDITS      : R. Roy, A. Hebert, G. Marleau                                           
 ->@COPYRIGHTS   : ECOLE POLYTECHNIQUE DE MONTREAL  
                   GNU LESSER GENERAL PUBLIC LICENSE
-<|  TYPE K B1 PNL BUCK BUCK 4.57567E-03 ;                                 |<0050
+<|  TYPE K B1 PNL BUCK BUCK 4.57567E-03 ;                                 |<0049
 
 
 
@@ -3005,11 +3004,11 @@ QUIT "LIST" .                                                               0057
 
 
  USE TRANSPORT CORRECTED CROSS-SECTIONS
- OUT(  0) EIG: PRC= 1.00E+00 TAR= 1.00E-05 KEFF= 4.705832E-02 BUCK= 4.57567E-03
+ OUT(  0) EIG: PRC= 1.00E+00 TAR= 1.00E-05 KEFF= 4.705830E-02 BUCK= 4.57567E-03
           IN(  1) FLX: PRC= 5.08E+00 TAR= 5.00E-05 IGDEB=            1 ACCE=     1.00000
           IN(  2) FLX: PRC= 4.57E-02 TAR= 5.00E-05 IGDEB=            1 ACCE=     1.00000
           IN(  3) FLX: PRC= 2.39E-03 TAR= 5.00E-05 IGDEB=            1 ACCE=     1.00000
-          IN(  4) FLX: PRC= 3.00E-05 TAR= 5.00E-05 IGDEB=          362 ACCE=     1.04175
+          IN(  4) FLX: PRC= 2.98E-05 TAR= 5.00E-05 IGDEB=          362 ACCE=     1.04171
  FLU2DR: NO LEAKAGE-> REBALANCING ON
  FLU2DR: CPU TIME=        0. INTERNAL CONVERGENCE       REACHED AFTER     4 ITERATIONS.
 
@@ -3021,9 +3020,9 @@ QUIT "LIST" .                                                               0057
         MIGRATION AREA =  5.77400E+01
 
  OUT(  1) EIG: PRC= 9.53E-01 TAR= 1.00E-05 KEFF= 1.011437E+00 BUCK= 4.57567E-03
- OUT(  1) FLX:                             FNOR= 9.886923E-01 ACCE=     1.00000
+ OUT(  1) FLX:                             FNOR= 9.886920E-01 ACCE=     1.00000
           IN(  1) FLX: PRC= 1.79E-03 TAR= 5.00E-05 IGDEB=            1 ACCE=     1.00000
-          IN(  2) FLX: PRC= 1.25E-05 TAR= 5.00E-05 IGDEB=          362 ACCE=     1.00000
+          IN(  2) FLX: PRC= 1.21E-05 TAR= 5.00E-05 IGDEB=          362 ACCE=     1.00000
  FLU2DR: NO LEAKAGE-> REBALANCING ON
  FLU2DR: CPU TIME=        0. INTERNAL CONVERGENCE       REACHED AFTER     2 ITERATIONS.
 
@@ -3035,33 +3034,33 @@ QUIT "LIST" .                                                               0057
         MIGRATION AREA =  5.77432E+01
 
  OUT(  2) EIG: PRC= 1.07E-04 TAR= 1.00E-05 KEFF= 1.011545E+00 BUCK= 4.57567E-03
- OUT(  2) FLX:                             FNOR= 9.885868E-01 ACCE=     1.00000
+ OUT(  2) FLX:                             FNOR= 9.885866E-01 ACCE=     1.00000
           IN(  1) FLX: PRC= 5.88E-06 TAR= 5.00E-05 IGDEB=          362 ACCE=     1.00000
  FLU2DR: NO LEAKAGE-> REBALANCING ON
- FLU2DR: CPU TIME=        1. INTERNAL CONVERGENCE       REACHED AFTER     1 ITERATIONS.
+ FLU2DR: CPU TIME=        0. INTERNAL CONVERGENCE       REACHED AFTER     1 ITERATIONS.
 
  B1DIF: SOLUTION OF B1   EQUATIONS WITH TYPE K   
         NUMBER OF ITERATIONS =  1
         BUCKLING =  4.57567E-03
         K-EFFECTIVE =  1.011545  (  1.011545 )
-        K-INFINITE =  1.278809
+        K-INFINITE =  1.278810
         MIGRATION AREA =  5.77432E+01
 
- OUT(  3) EIG: PRC= 1.03E-07 TAR= 1.00E-05 KEFF= 1.011545E+00 BUCK= 4.57567E-03
- OUT(  3) FLX: PRC= 6.13E-06 TAR= 5.00E-05 FNOR= 9.885867E-01 ACCE=     1.00000
- FLU2DR: CPU TIME=        1. EXTERNAL CONVERGENCE       REACHED AFTER     3 ITERATIONS.
+ OUT(  3) EIG: PRC= 4.80E-08 TAR= 1.00E-05 KEFF= 1.011545E+00 BUCK= 4.57567E-03
+ OUT(  3) FLX: PRC= 5.88E-06 TAR= 5.00E-05 FNOR= 9.885866E-01 ACCE=     1.00000
+ FLU2DR: CPU TIME=        0. EXTERNAL CONVERGENCE       REACHED AFTER     3 ITERATIONS.
 
- ++ TRACKING CALLED=   7 TIMES FINAL KINF=1.278809E+00 FINAL KEFF=1.011545E+00 B2= 4.57567E-03 PRECISION= 1.03E-07
+ ++ TRACKING CALLED=   7 TIMES FINAL KINF=1.278809E+00 FINAL KEFF=1.011545E+00 B2= 4.57567E-03 PRECISION= 4.80E-08
  ++ TOTAL NUMBER OF FLUX CALCULATIONS=      2527
 ->@END MODULE   : FLU:        
--->>TIME SPENT IN MODULE FLU:        :      1.000
-<|EDITION := EDI: LIBRARY TRACK FLUX ::                                   |<0052
+-->>TIME SPENT IN MODULE FLU:        :      0.000
+<|EDITION := EDI: LIBRARY TRACK FLUX ::                                   |<0051
 ->@BEGIN MODULE : EDI:        
 ->@DESCRIPTION  : Editing module                                                          
 ->@CREDITS      : A. Hebert, G. Marleau                                                   
 ->@COPYRIGHTS   : ECOLE POLYTECHNIQUE DE MONTREAL  
                   GNU LESSER GENERAL PUBLIC LICENSE
-<|  EDIT 3 MICR RES MERG COMP COND 4.0 SAVE  ;                            |<0053
+<|  EDIT 3 MICR RES MERG COMP COND 4.0 SAVE  ;                            |<0052
 
  EDITION-RELATED OPTIONS
  -----------------------
@@ -3109,7 +3108,7 @@ QUIT "LIST" .                                                               0057
  G R O U P   :   2
  REGION   AVERAGE     INTEGRATED     COLLISION    ABSORPTION    NU*FISSION      LEAKAGE     PRODUCTION        SCATTERING RATES
            FLUX          FLUX          RATE          RATE          RATE          RATE          RATE      WITHIN GROUP  OUT OF GROUP
-    1   4.02540E+00   6.39073E+00   7.53484E+00   4.73885E-01   7.98091E-01   1.44428E-02   1.46946E-08   7.06037E+00   5.83102E-04
+    1   4.02541E+00   6.39074E+00   7.53484E+00   4.73885E-01   7.98091E-01   1.44429E-02   1.46946E-08   7.06037E+00   5.83102E-04
 
  MERGED/CONDENSED SET OF X-S SAVED IN LCM DIRECTORY 'REF-CASE0001'.
 
@@ -3120,14 +3119,14 @@ QUIT "LIST" .                                                               0057
  G R O U P   :   1
  REGION   AVERAGE         SPH          NTOT0       DIFFUSION     ABSORPTION     NUSIGF        FISSION          SCATTERING X-S
            FLUX          FACTOR         X-S       COEFFICIENT       X-S          X-S          SPECTRUM   WITHIN GROUP  OUT OF GROUP
-    1   1.95026E+01   1.00000E+00   5.12516E-01   1.35381E+00   1.02422E-02   6.89399E-03   1.00000E+00   4.86477E-01   1.57966E-02
+    1   1.95026E+01   1.00000E+00   5.12516E-01   1.35381E+00   1.02422E-02   6.89399E-03   1.00000E+00   4.86476E-01   1.57966E-02
 
  FLUX DISADVANTAGE FACTOR =   1.01312E+00
 
  G R O U P   :   2
  REGION   AVERAGE         SPH          NTOT0       DIFFUSION     ABSORPTION     NUSIGF        FISSION          SCATTERING X-S
            FLUX          FACTOR         X-S       COEFFICIENT       X-S          X-S          SPECTRUM   WITHIN GROUP  OUT OF GROUP
-    1   4.02540E+00   1.00000E+00   1.17903E+00   4.93910E-01   7.41518E-02   1.24883E-01   1.45269E-08   1.10478E+00   9.12418E-05
+    1   4.02541E+00   1.00000E+00   1.17903E+00   4.93909E-01   7.41518E-02   1.24882E-01   1.45269E-08   1.10478E+00   9.12418E-05
 
  FLUX DISADVANTAGE FACTOR =   9.45098E-01
 
@@ -3153,8 +3152,8 @@ QUIT "LIST" .                                                               0057
  TOTAL NUMBER OF WORDS ON DIRECTORY '/           ' =        90
 
 ->@END MODULE   : EDI:        
--->>TIME SPENT IN MODULE EDI:        :      0.000
-<|END: ;                                                                  |<0055
+-->>TIME SPENT IN MODULE EDI:        :      1.000
+<|END: ;                                                                  |<0054
 
 
  NORMAL END OF EXECUTION FOR DRAGON 4  Version 4.0.6 ($Revision: 1666 $)               
