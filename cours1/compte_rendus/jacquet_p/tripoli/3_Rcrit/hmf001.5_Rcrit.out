@@ -1,0 +1,1675 @@
+
+=====================================================================
+$Id: tripoli4.cc,v 2.13.2.10 2008/01/11 10:40:24 sost4 Exp $
+
+=====================================================================
+$Id: tripoli4.cc,v 2.13.2.10 2008/01/11 10:40:24 sost4 Exp $
+
+ HOSTNAME : physor-VBOXPJA
+
+ PROCESS ID is : 14578
+
+ DATE : Tue Nov 26 22:52:18 2013
+Version is v4.4.
+
+=====================================================================
+
+ data filename = hmf001.5
+ catalogname = t4path.jef2
+
+
+ dictionary file : /home/physor/bin/TRIPOLI.4.4/tripoli/Env/jef2.dictionary
+ mass file : /home/physor/bin/TRIPOLI.4.4/tripoli/mass_rmd.mas95
+ Q fission directory : /home/physor/bin/TRIPOLI.4.4/tripoli/Qfission
+ electron cross section  directory : /home/physor/bin/TRIPOLI.4.4/tripoli/Mott_rutherford
+
+ 	 reading geometry : 
+
+ 	 checking association of compositions and volumes :  ok 
+
+/*
+TRIPOLI-4.3 Criticality sample calculation - hmf001 
+Calculations performed by Y. K. Lee - Oct. 2003
+
+Reference:
+NEA/NSC/DOC(95)03/II HEU-MET-FAST-001   9/2002 revision 2
+Bare, Highly Enriched Uranium Sphere (Godiva), geometry_simple
+*/
+
+GEOMETRIE
+TITRE
+
+TYPE 1 	SPHERE 8.7407
+VOLU 1  COMBI  1       0 0 0  FINV
+FING
+
+COMPOSITION 1
+	PONCTUAL 300  URANIUM   3
+U234	4.9184E-04
+U235	2.4007E-03
+U238	4.4555E-02
+FIN_COMPO
+
+GEOMCOMP
+	URANIUM   1   1
+FIN_GEOMCOMP
+
+LIST_SOURCE 1    
+        SOURCE 
+	NEUTRON  PONCTUAL  0 0 0
+	ANGULAR_DISTRIBUTION   ISOTROPIC 
+	ENERGETIC_DISTRIBUTION SPECTRE   WATT_SPECTRE
+        TIME_DISTRIBUTION  DIRAC 0
+	FIN_SOURCE
+FIN_LIST_SOURCE
+
+SIMULATION
+  	CRITICITE  BATCH 1000  SIZE 1000 EDITION 1000
+	ENERGY_INF NEUTRON 1.E-11
+	PARTICULES 1 NEUTRON
+FIN_SIMULATION
+
+
+ reading material : 9225 from  file : /home/physor/bin/TRIPOLI.4.4/tripoli/JEF2/T4XS/jef2.neutron.U234.bcd
+
+ reading material : 9228 from  file : /home/physor/bin/TRIPOLI.4.4/tripoli/JEF2/T4XS/jef2.neutron.U235.bcd
+
+ reading material : 9237 from  file : /home/physor/bin/TRIPOLI.4.4/tripoli/JEF2/T4XS/jef2.neutron.U238.bcd
+
+
+ Loading response functions ...
+ SOURCE INITIALIZATION ...
+
+	 initializing source number : 0
+
+		 Energetic density definition intensity = 1
+
+		 Energetic density simulation intensity = 1
+
+		 Angular intensity = 12.5664
+
+		 Time intensity = 1
+
+		 Geometric intensity = 1
+
+		 Calculated source simulation intensity = 12.5664
+
+		 Calculated source definition intensity = 12.5664
+
+	         SIMULATION INTENSITY = 12.5664
+
+   SUM OF SIMULATION INTENSITIES = 12.5664
+
+   GLOBAL SIMULATION INTENSITY = 12.5664
+
+   BIASED TOTAL SOURCE INTENSITY = 12.5664
+
+
+ initialization time (s): 0
+
+
+ Type and parameters of random generator before batch 1 : 
+	 DRAND48_RANDOM 64179 52918 12962 
+
+ batch number : 1
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 7.158	 sigma_n : 0.212853
+	 number of secondary particules: 377
+
+ Type and parameters of random generator before batch 2 : 
+	 DRAND48_RANDOM 954 49918 47291 
+
+ batch number : 2
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.94164	 sigma_n : 0.252553
+	 number of secondary particules: 274
+
+ Type and parameters of random generator before batch 3 : 
+	 DRAND48_RANDOM 65231 42966 34879 
+
+ batch number : 3
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.43768	 sigma_n : 0.237071
+	 number of secondary particules: 231
+
+ Type and parameters of random generator before batch 4 : 
+	 DRAND48_RANDOM 58607 18932 48897 
+
+ batch number : 4
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.98	 sigma_n : 0.253436
+	 number of secondary particules: 243
+
+ Type and parameters of random generator before batch 5 : 
+	 DRAND48_RANDOM 2115 860 53787 
+
+ batch number : 5
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.60243	 sigma_n : 0.200458
+	 number of secondary particules: 227
+
+ Type and parameters of random generator before batch 6 : 
+	 DRAND48_RANDOM 29453 20232 40155 
+
+ batch number : 6
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.97187	 sigma_n : 0.231584
+	 number of secondary particules: 209
+
+ Type and parameters of random generator before batch 7 : 
+	 DRAND48_RANDOM 37427 48968 35563 
+
+ batch number : 7
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.45467	 sigma_n : 0.255503
+	 number of secondary particules: 230
+
+ Type and parameters of random generator before batch 8 : 
+	 DRAND48_RANDOM 8422 11508 39097 
+
+ batch number : 8
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.99858	 sigma_n : 0.198251
+	 number of secondary particules: 220
+
+ Type and parameters of random generator before batch 9 : 
+	 DRAND48_RANDOM 26775 39131 5410 
+
+ batch number : 9
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.92028	 sigma_n : 0.225652
+	 number of secondary particules: 248
+
+ Type and parameters of random generator before batch 10 : 
+	 DRAND48_RANDOM 12154 1189 12775 
+
+ batch number : 10
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.6875	 sigma_n : 0.216258
+	 number of secondary particules: 209
+
+ Type and parameters of random generator before batch 11 : 
+	 DRAND48_RANDOM 49073 49179 5535 
+
+ batch number : 11
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.99716	 sigma_n : 0.236072
+	 number of secondary particules: 226
+
+ Type and parameters of random generator before batch 12 : 
+	 DRAND48_RANDOM 46366 13389 1168 
+
+ batch number : 12
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.72299	 sigma_n : 0.220207
+	 number of secondary particules: 213
+
+ Type and parameters of random generator before batch 13 : 
+	 DRAND48_RANDOM 57911 54158 25531 
+
+ batch number : 13
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.90922	 sigma_n : 0.278359
+	 number of secondary particules: 178
+
+ Type and parameters of random generator before batch 14 : 
+	 DRAND48_RANDOM 20703 16578 13362 
+
+ batch number : 14
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.13191	 sigma_n : 0.242766
+	 number of secondary particules: 231
+
+ Type and parameters of random generator before batch 15 : 
+	 DRAND48_RANDOM 46057 49006 8519 
+
+ batch number : 15
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.75316	 sigma_n : 0.220617
+	 number of secondary particules: 203
+
+ Type and parameters of random generator before batch 16 : 
+	 DRAND48_RANDOM 33609 25488 61973 
+
+ batch number : 16
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.38056	 sigma_n : 0.268237
+	 number of secondary particules: 199
+
+ Type and parameters of random generator before batch 17 : 
+	 DRAND48_RANDOM 55051 40138 8794 
+
+ batch number : 17
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.56498	 sigma_n : 0.249113
+	 number of secondary particules: 253
+
+ Type and parameters of random generator before batch 18 : 
+	 DRAND48_RANDOM 9856 17677 13478 
+
+ batch number : 18
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.39609	 sigma_n : 0.237796
+	 number of secondary particules: 193
+
+ Type and parameters of random generator before batch 19 : 
+	 DRAND48_RANDOM 46201 55668 9835 
+
+ batch number : 19
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.79574	 sigma_n : 0.235793
+	 number of secondary particules: 193
+
+ Type and parameters of random generator before batch 20 : 
+	 DRAND48_RANDOM 22006 59123 747 
+
+ batch number : 20
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.22969	 sigma_n : 0.257367
+	 number of secondary particules: 171
+
+ Type and parameters of random generator before batch 21 : 
+	 DRAND48_RANDOM 26405 53558 31188 
+
+ batch number : 21
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.33238	 sigma_n : 0.22911
+	 number of secondary particules: 209
+
+ Type and parameters of random generator before batch 22 : 
+	 DRAND48_RANDOM 58975 3890 55036 
+
+ batch number : 22
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.96264	 sigma_n : 0.252233
+	 number of secondary particules: 190
+
+	kcoll is converged at batch :22
+
+
+
+ Type and parameters of random generator before batch 23 : 
+	 DRAND48_RANDOM 39350 48254 18382 
+
+ batch number : 23
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.85596	 sigma_n : 0.2383
+	 number of secondary particules: 201
+
+ Type and parameters of random generator before batch 24 : 
+	 DRAND48_RANDOM 26150 30578 5965 
+
+ batch number : 24
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.0158	 sigma_n : 0.258946
+	 number of secondary particules: 180
+
+ Type and parameters of random generator before batch 25 : 
+	 DRAND48_RANDOM 1448 39621 9975 
+
+ batch number : 25
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.02279	 sigma_n : 0.237209
+	 number of secondary particules: 211
+
+ Type and parameters of random generator before batch 26 : 
+	 DRAND48_RANDOM 46023 34588 4720 
+
+ batch number : 26
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.98851	 sigma_n : 0.22463
+	 number of secondary particules: 194
+
+ Type and parameters of random generator before batch 27 : 
+	 DRAND48_RANDOM 21655 21595 4880 
+
+ batch number : 27
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.66477	 sigma_n : 0.211836
+	 number of secondary particules: 205
+
+ Type and parameters of random generator before batch 28 : 
+	 DRAND48_RANDOM 54782 33692 9655 
+
+ batch number : 28
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.91995	 sigma_n : 0.239524
+	 number of secondary particules: 174
+
+ Type and parameters of random generator before batch 29 : 
+	 DRAND48_RANDOM 27154 55917 17280 
+
+ batch number : 29
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.76273	 sigma_n : 0.210546
+	 number of secondary particules: 214
+
+ Type and parameters of random generator before batch 30 : 
+	 DRAND48_RANDOM 47334 34210 2501 
+
+ batch number : 30
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.0125	 sigma_n : 0.217293
+	 number of secondary particules: 240
+
+ Type and parameters of random generator before batch 31 : 
+	 DRAND48_RANDOM 19875 55288 4334 
+
+ batch number : 31
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.80362	 sigma_n : 0.220744
+	 number of secondary particules: 185
+
+ Type and parameters of random generator before batch 32 : 
+	 DRAND48_RANDOM 22963 48781 4460 
+
+ batch number : 32
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.9385	 sigma_n : 0.254361
+	 number of secondary particules: 216
+
+ Type and parameters of random generator before batch 33 : 
+	 DRAND48_RANDOM 25552 52872 32827 
+
+ batch number : 33
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.82793	 sigma_n : 0.221442
+	 number of secondary particules: 196
+
+ Type and parameters of random generator before batch 34 : 
+	 DRAND48_RANDOM 17557 20310 31621 
+
+ batch number : 34
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.7792	 sigma_n : 0.213803
+	 number of secondary particules: 195
+
+ Type and parameters of random generator before batch 35 : 
+	 DRAND48_RANDOM 7895 38905 3342 
+
+ batch number : 35
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.03938	 sigma_n : 0.226242
+	 number of secondary particules: 226
+
+ Type and parameters of random generator before batch 36 : 
+	 DRAND48_RANDOM 60592 11494 20708 
+
+ batch number : 36
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.34848	 sigma_n : 0.240684
+	 number of secondary particules: 198
+
+ Type and parameters of random generator before batch 37 : 
+	 DRAND48_RANDOM 36145 2386 23093 
+
+ batch number : 37
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.44122	 sigma_n : 0.23147
+	 number of secondary particules: 245
+
+ Type and parameters of random generator before batch 38 : 
+	 DRAND48_RANDOM 22541 52092 11307 
+
+ batch number : 38
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.85513	 sigma_n : 0.241952
+	 number of secondary particules: 233
+
+ Type and parameters of random generator before batch 39 : 
+	 DRAND48_RANDOM 43459 4062 20010 
+
+ batch number : 39
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.72145	 sigma_n : 0.212644
+	 number of secondary particules: 244
+
+ Type and parameters of random generator before batch 40 : 
+	 DRAND48_RANDOM 8199 13216 21175 
+
+ batch number : 40
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.88456	 sigma_n : 0.219865
+	 number of secondary particules: 214
+
+ Type and parameters of random generator before batch 41 : 
+	 DRAND48_RANDOM 44321 38635 28678 
+
+ batch number : 41
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.87057	 sigma_n : 0.219427
+	 number of secondary particules: 186
+
+ Type and parameters of random generator before batch 42 : 
+	 DRAND48_RANDOM 44811 14415 3103 
+
+ batch number : 42
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.96443	 sigma_n : 0.237811
+	 number of secondary particules: 244
+
+ Type and parameters of random generator before batch 43 : 
+	 DRAND48_RANDOM 46199 55047 7282 
+
+ batch number : 43
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.66197	 sigma_n : 0.212311
+	 number of secondary particules: 202
+
+ Type and parameters of random generator before batch 44 : 
+	 DRAND48_RANDOM 61254 9084 33098 
+
+ batch number : 44
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.23803	 sigma_n : 0.246595
+	 number of secondary particules: 207
+
+ Type and parameters of random generator before batch 45 : 
+	 DRAND48_RANDOM 49929 21404 930 
+
+ batch number : 45
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.92382	 sigma_n : 0.251882
+	 number of secondary particules: 194
+
+ Type and parameters of random generator before batch 46 : 
+	 DRAND48_RANDOM 61161 15927 20590 
+
+ batch number : 46
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.98499	 sigma_n : 0.230546
+	 number of secondary particules: 231
+
+ Type and parameters of random generator before batch 47 : 
+	 DRAND48_RANDOM 48494 50380 17484 
+
+ batch number : 47
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.26	 sigma_n : 0.234805
+	 number of secondary particules: 219
+
+ Type and parameters of random generator before batch 48 : 
+	 DRAND48_RANDOM 50223 60438 22140 
+
+ batch number : 48
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.30236	 sigma_n : 0.26191
+	 number of secondary particules: 214
+
+ Type and parameters of random generator before batch 49 : 
+	 DRAND48_RANDOM 42663 13210 1833 
+
+ batch number : 49
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.08633	 sigma_n : 0.248641
+	 number of secondary particules: 196
+
+ Type and parameters of random generator before batch 50 : 
+	 DRAND48_RANDOM 15695 25723 4181 
+
+ batch number : 50
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.86241	 sigma_n : 0.228366
+	 number of secondary particules: 220
+
+ Type and parameters of random generator before batch 51 : 
+	 DRAND48_RANDOM 11928 2414 48879 
+
+ batch number : 51
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.5027	 sigma_n : 0.241517
+	 number of secondary particules: 197
+
+ Type and parameters of random generator before batch 52 : 
+	 DRAND48_RANDOM 45959 23409 12473 
+
+ batch number : 52
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.54813	 sigma_n : 0.230051
+	 number of secondary particules: 224
+
+ Type and parameters of random generator before batch 53 : 
+	 DRAND48_RANDOM 57673 13452 558 
+
+ batch number : 53
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.51432	 sigma_n : 0.21983
+	 number of secondary particules: 240
+
+ Type and parameters of random generator before batch 54 : 
+	 DRAND48_RANDOM 29797 54643 9712 
+
+ batch number : 54
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.82976	 sigma_n : 0.233856
+	 number of secondary particules: 224
+
+ Type and parameters of random generator before batch 55 : 
+	 DRAND48_RANDOM 34932 2766 13217 
+
+ batch number : 55
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.00279	 sigma_n : 0.2569
+	 number of secondary particules: 232
+
+ Type and parameters of random generator before batch 56 : 
+	 DRAND48_RANDOM 43860 35082 4898 
+
+ batch number : 56
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.77562	 sigma_n : 0.232111
+	 number of secondary particules: 201
+
+ Type and parameters of random generator before batch 57 : 
+	 DRAND48_RANDOM 47744 29625 1054 
+
+ batch number : 57
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.95186	 sigma_n : 0.214734
+	 number of secondary particules: 224
+
+ Type and parameters of random generator before batch 58 : 
+	 DRAND48_RANDOM 29835 58211 2334 
+
+ batch number : 58
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.91433	 sigma_n : 0.227548
+	 number of secondary particules: 248
+
+ Type and parameters of random generator before batch 59 : 
+	 DRAND48_RANDOM 42984 32161 987 
+
+ batch number : 59
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.94077	 sigma_n : 0.228011
+	 number of secondary particules: 220
+
+ Type and parameters of random generator before batch 60 : 
+	 DRAND48_RANDOM 63972 23845 18493 
+
+ batch number : 60
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.07246	 sigma_n : 0.256632
+	 number of secondary particules: 219
+
+ Type and parameters of random generator before batch 61 : 
+	 DRAND48_RANDOM 12658 58301 53718 
+
+ batch number : 61
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.65082	 sigma_n : 0.21275
+	 number of secondary particules: 212
+
+ Type and parameters of random generator before batch 62 : 
+	 DRAND48_RANDOM 5421 225 28053 
+
+ batch number : 62
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.16859	 sigma_n : 0.263896
+	 number of secondary particules: 180
+
+ Type and parameters of random generator before batch 63 : 
+	 DRAND48_RANDOM 11818 57766 12428 
+
+ batch number : 63
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.66528	 sigma_n : 0.224048
+	 number of secondary particules: 209
+
+ Type and parameters of random generator before batch 64 : 
+	 DRAND48_RANDOM 55403 43921 30103 
+
+ batch number : 64
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.46556	 sigma_n : 0.225119
+	 number of secondary particules: 199
+
+ Type and parameters of random generator before batch 65 : 
+	 DRAND48_RANDOM 5512 5122 30937 
+
+ batch number : 65
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.35983	 sigma_n : 0.220018
+	 number of secondary particules: 209
+
+ Type and parameters of random generator before batch 66 : 
+	 DRAND48_RANDOM 3032 4182 352 
+
+ batch number : 66
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.82483	 sigma_n : 0.248565
+	 number of secondary particules: 214
+
+ Type and parameters of random generator before batch 67 : 
+	 DRAND48_RANDOM 54916 38453 5666 
+
+ batch number : 67
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.22115	 sigma_n : 0.196671
+	 number of secondary particules: 236
+
+ Type and parameters of random generator before batch 68 : 
+	 DRAND48_RANDOM 41415 53197 5775 
+
+ batch number : 68
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.67439	 sigma_n : 0.213548
+	 number of secondary particules: 187
+
+ Type and parameters of random generator before batch 69 : 
+	 DRAND48_RANDOM 43499 18710 2656 
+
+ batch number : 69
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.23243	 sigma_n : 0.243513
+	 number of secondary particules: 214
+
+ Type and parameters of random generator before batch 70 : 
+	 DRAND48_RANDOM 5784 41429 10489 
+
+ batch number : 70
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.81395	 sigma_n : 0.232849
+	 number of secondary particules: 224
+
+ Type and parameters of random generator before batch 71 : 
+	 DRAND48_RANDOM 53744 52504 2541 
+
+ batch number : 71
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.70143	 sigma_n : 0.212518
+	 number of secondary particules: 206
+
+ Type and parameters of random generator before batch 72 : 
+	 DRAND48_RANDOM 53466 35806 55354 
+
+ batch number : 72
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.56241	 sigma_n : 0.261473
+	 number of secondary particules: 198
+
+ Type and parameters of random generator before batch 73 : 
+	 DRAND48_RANDOM 30499 37748 907 
+
+ batch number : 73
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.15193	 sigma_n : 0.234901
+	 number of secondary particules: 176
+
+ Type and parameters of random generator before batch 74 : 
+	 DRAND48_RANDOM 63995 17529 1217 
+
+ batch number : 74
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.70474	 sigma_n : 0.221587
+	 number of secondary particules: 206
+
+ Type and parameters of random generator before batch 75 : 
+	 DRAND48_RANDOM 7843 7703 41298 
+
+ batch number : 75
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.56356	 sigma_n : 0.269005
+	 number of secondary particules: 209
+
+ Type and parameters of random generator before batch 76 : 
+	 DRAND48_RANDOM 19433 24569 37592 
+
+ batch number : 76
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.75843	 sigma_n : 0.212281
+	 number of secondary particules: 213
+
+ Type and parameters of random generator before batch 77 : 
+	 DRAND48_RANDOM 58678 21645 49332 
+
+ batch number : 77
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.03181	 sigma_n : 0.226111
+	 number of secondary particules: 257
+
+ Type and parameters of random generator before batch 78 : 
+	 DRAND48_RANDOM 47703 4031 5068 
+
+ batch number : 78
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.51393	 sigma_n : 0.228118
+	 number of secondary particules: 232
+
+ Type and parameters of random generator before batch 79 : 
+	 DRAND48_RANDOM 38709 47631 8529 
+
+ batch number : 79
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.98567	 sigma_n : 0.224527
+	 number of secondary particules: 206
+
+ Type and parameters of random generator before batch 80 : 
+	 DRAND48_RANDOM 37383 47255 37229 
+
+ batch number : 80
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.09296	 sigma_n : 0.221914
+	 number of secondary particules: 212
+
+ Type and parameters of random generator before batch 81 : 
+	 DRAND48_RANDOM 8741 9405 5307 
+
+ batch number : 81
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.90503	 sigma_n : 0.22415
+	 number of secondary particules: 222
+
+ Type and parameters of random generator before batch 82 : 
+	 DRAND48_RANDOM 47253 56528 52915 
+
+ batch number : 82
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.9606	 sigma_n : 0.240748
+	 number of secondary particules: 205
+
+ Type and parameters of random generator before batch 83 : 
+	 DRAND48_RANDOM 13121 12033 3778 
+
+ batch number : 83
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.16575	 sigma_n : 0.214429
+	 number of secondary particules: 230
+
+ Type and parameters of random generator before batch 84 : 
+	 DRAND48_RANDOM 2744 20224 38342 
+
+ batch number : 84
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.60845	 sigma_n : 0.238113
+	 number of secondary particules: 219
+
+ Type and parameters of random generator before batch 85 : 
+	 DRAND48_RANDOM 5921 58440 1145 
+
+ batch number : 85
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.22581	 sigma_n : 0.248697
+	 number of secondary particules: 242
+
+ Type and parameters of random generator before batch 86 : 
+	 DRAND48_RANDOM 673 59070 26324 
+
+ batch number : 86
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.10556	 sigma_n : 0.241579
+	 number of secondary particules: 228
+
+ Type and parameters of random generator before batch 87 : 
+	 DRAND48_RANDOM 4605 38283 159 
+
+ batch number : 87
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.75172	 sigma_n : 0.217597
+	 number of secondary particules: 238
+
+ Type and parameters of random generator before batch 88 : 
+	 DRAND48_RANDOM 45516 17199 13849 
+
+ batch number : 88
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.36691	 sigma_n : 0.250107
+	 number of secondary particules: 237
+
+ Type and parameters of random generator before batch 89 : 
+	 DRAND48_RANDOM 39801 22116 35348 
+
+ batch number : 89
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.14422	 sigma_n : 0.247259
+	 number of secondary particules: 208
+
+ Type and parameters of random generator before batch 90 : 
+	 DRAND48_RANDOM 19646 18156 884 
+
+ batch number : 90
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.08071	 sigma_n : 0.200772
+	 number of secondary particules: 228
+
+ Type and parameters of random generator before batch 91 : 
+	 DRAND48_RANDOM 35147 44955 10400 
+
+ batch number : 91
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.53492	 sigma_n : 0.202275
+	 number of secondary particules: 215
+
+ Type and parameters of random generator before batch 92 : 
+	 DRAND48_RANDOM 52032 62497 11670 
+
+ batch number : 92
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.8232	 sigma_n : 0.242823
+	 number of secondary particules: 185
+
+ Type and parameters of random generator before batch 93 : 
+	 DRAND48_RANDOM 51452 23837 18555 
+
+ batch number : 93
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.86207	 sigma_n : 0.214503
+	 number of secondary particules: 198
+
+ Type and parameters of random generator before batch 94 : 
+	 DRAND48_RANDOM 1703 20507 9485 
+
+ batch number : 94
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.39411	 sigma_n : 0.241225
+	 number of secondary particules: 219
+
+ Type and parameters of random generator before batch 95 : 
+	 DRAND48_RANDOM 45073 34100 7559 
+
+ batch number : 95
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.91534	 sigma_n : 0.220711
+	 number of secondary particules: 226
+
+ Type and parameters of random generator before batch 96 : 
+	 DRAND48_RANDOM 26678 33932 54363 
+
+ batch number : 96
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.80201	 sigma_n : 0.231101
+	 number of secondary particules: 224
+
+ Type and parameters of random generator before batch 97 : 
+	 DRAND48_RANDOM 9961 46612 13308 
+
+ batch number : 97
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.74069	 sigma_n : 0.229892
+	 number of secondary particules: 197
+
+ Type and parameters of random generator before batch 98 : 
+	 DRAND48_RANDOM 25776 57910 36767 
+
+ batch number : 98
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.80171	 sigma_n : 0.233253
+	 number of secondary particules: 215
+
+ Type and parameters of random generator before batch 99 : 
+	 DRAND48_RANDOM 48300 15130 27466 
+
+ batch number : 99
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.91047	 sigma_n : 0.220724
+	 number of secondary particules: 200
+
+ Type and parameters of random generator before batch 100 : 
+	 DRAND48_RANDOM 55276 15277 52687 
+
+ batch number : 100
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.01083	 sigma_n : 0.241485
+	 number of secondary particules: 246
+
+ Type and parameters of random generator before batch 101 : 
+	 DRAND48_RANDOM 9560 61252 10467 
+
+ batch number : 101
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.04202	 sigma_n : 0.241597
+	 number of secondary particules: 220
+
+ Type and parameters of random generator before batch 102 : 
+	 DRAND48_RANDOM 44352 51247 6115 
+
+ batch number : 102
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.33476	 sigma_n : 0.25262
+	 number of secondary particules: 220
+
+ Type and parameters of random generator before batch 103 : 
+	 DRAND48_RANDOM 21255 42694 37 
+
+ batch number : 103
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.0427	 sigma_n : 0.23873
+	 number of secondary particules: 195
+
+ Type and parameters of random generator before batch 104 : 
+	 DRAND48_RANDOM 54732 63970 21199 
+
+ batch number : 104
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.09478	 sigma_n : 0.230184
+	 number of secondary particules: 205
+
+ Type and parameters of random generator before batch 105 : 
+	 DRAND48_RANDOM 3928 37484 928 
+
+ batch number : 105
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.22388	 sigma_n : 0.251089
+	 number of secondary particules: 206
+
+ Type and parameters of random generator before batch 106 : 
+	 DRAND48_RANDOM 24245 41341 51707 
+
+ batch number : 106
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.93136	 sigma_n : 0.23164
+	 number of secondary particules: 221
+
+ Type and parameters of random generator before batch 107 : 
+	 DRAND48_RANDOM 45811 51807 17147 
+
+ batch number : 107
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.7883	 sigma_n : 0.21457
+	 number of secondary particules: 192
+
+ Type and parameters of random generator before batch 108 : 
+	 DRAND48_RANDOM 3532 15886 9649 
+
+ batch number : 108
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.62363	 sigma_n : 0.211268
+	 number of secondary particules: 215
+
+ Type and parameters of random generator before batch 109 : 
+	 DRAND48_RANDOM 13049 40756 2203 
+
+ batch number : 109
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.22747	 sigma_n : 0.247259
+	 number of secondary particules: 231
+
+ Type and parameters of random generator before batch 110 : 
+	 DRAND48_RANDOM 56303 25552 16950 
+
+ batch number : 110
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.37322	 sigma_n : 0.235785
+	 number of secondary particules: 219
+
+ Type and parameters of random generator before batch 111 : 
+	 DRAND48_RANDOM 52264 38379 27118 
+
+ batch number : 111
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.03056	 sigma_n : 0.241864
+	 number of secondary particules: 189
+
+ Type and parameters of random generator before batch 112 : 
+	 DRAND48_RANDOM 15668 556 951 
+
+ batch number : 112
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.77029	 sigma_n : 0.212968
+	 number of secondary particules: 262
+
+ Type and parameters of random generator before batch 113 : 
+	 DRAND48_RANDOM 44714 45387 1748 
+
+ batch number : 113
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.9986	 sigma_n : 0.229516
+	 number of secondary particules: 193
+
+ Type and parameters of random generator before batch 114 : 
+	 DRAND48_RANDOM 15697 11248 2767 
+
+ batch number : 114
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.92713	 sigma_n : 0.226343
+	 number of secondary particules: 265
+
+ Type and parameters of random generator before batch 115 : 
+	 DRAND48_RANDOM 36687 30841 15408 
+
+ batch number : 115
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.95881	 sigma_n : 0.226998
+	 number of secondary particules: 209
+
+ Type and parameters of random generator before batch 116 : 
+	 DRAND48_RANDOM 27500 15833 11374 
+
+ batch number : 116
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.08828	 sigma_n : 0.227397
+	 number of secondary particules: 249
+
+ Type and parameters of random generator before batch 117 : 
+	 DRAND48_RANDOM 39803 63339 1492 
+
+ batch number : 117
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.30758	 sigma_n : 0.193649
+	 number of secondary particules: 196
+
+ Type and parameters of random generator before batch 118 : 
+	 DRAND48_RANDOM 43179 54590 6952 
+
+ batch number : 118
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.81962	 sigma_n : 0.234329
+	 number of secondary particules: 200
+
+ Type and parameters of random generator before batch 119 : 
+	 DRAND48_RANDOM 46322 357 8297 
+
+ batch number : 119
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.7621	 sigma_n : 0.221752
+	 number of secondary particules: 218
+
+ Type and parameters of random generator before batch 120 : 
+	 DRAND48_RANDOM 3761 17476 14048 
+
+ batch number : 120
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.69134	 sigma_n : 0.207201
+	 number of secondary particules: 163
+
+ Type and parameters of random generator before batch 121 : 
+	 DRAND48_RANDOM 43601 13959 14440 
+
+ batch number : 121
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.67513	 sigma_n : 0.201923
+	 number of secondary particules: 192
+
+ Type and parameters of random generator before batch 122 : 
+	 DRAND48_RANDOM 5903 32395 8247 
+
+ batch number : 122
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.47297	 sigma_n : 0.213086
+	 number of secondary particules: 217
+
+ Type and parameters of random generator before batch 123 : 
+	 DRAND48_RANDOM 35992 35238 20746 
+
+ batch number : 123
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.21828	 sigma_n : 0.223362
+	 number of secondary particules: 199
+
+ Type and parameters of random generator before batch 124 : 
+	 DRAND48_RANDOM 56675 41987 3859 
+
+ batch number : 124
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.91114	 sigma_n : 0.230895
+	 number of secondary particules: 195
+
+ Type and parameters of random generator before batch 125 : 
+	 DRAND48_RANDOM 6147 60297 3807 
+
+ batch number : 125
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.56957	 sigma_n : 0.220092
+	 number of secondary particules: 216
+
+ Type and parameters of random generator before batch 126 : 
+	 DRAND48_RANDOM 10943 54122 9418 
+
+ batch number : 126
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.80893	 sigma_n : 0.222586
+	 number of secondary particules: 241
+
+ Type and parameters of random generator before batch 127 : 
+	 DRAND48_RANDOM 17217 42912 10701 
+
+ batch number : 127
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.11872	 sigma_n : 0.229768
+	 number of secondary particules: 242
+
+ Type and parameters of random generator before batch 128 : 
+	 DRAND48_RANDOM 46151 39063 8085 
+
+ batch number : 128
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.81259	 sigma_n : 0.23252
+	 number of secondary particules: 205
+
+ Type and parameters of random generator before batch 129 : 
+	 DRAND48_RANDOM 56295 34999 21791 
+
+ batch number : 129
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.85201	 sigma_n : 0.243241
+	 number of secondary particules: 213
+
+ Type and parameters of random generator before batch 130 : 
+	 DRAND48_RANDOM 10250 10972 5962 
+
+ batch number : 130
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.5844	 sigma_n : 0.225648
+	 number of secondary particules: 225
+
+ Type and parameters of random generator before batch 131 : 
+	 DRAND48_RANDOM 55008 13566 8095 
+
+ batch number : 131
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.00683	 sigma_n : 0.235463
+	 number of secondary particules: 222
+
+ Type and parameters of random generator before batch 132 : 
+	 DRAND48_RANDOM 24976 51165 20530 
+
+ batch number : 132
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.59917	 sigma_n : 0.228077
+	 number of secondary particules: 175
+
+ Type and parameters of random generator before batch 133 : 
+	 DRAND48_RANDOM 19970 55124 12267 
+
+ batch number : 133
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.48138	 sigma_n : 0.198425
+	 number of secondary particules: 188
+
+ Type and parameters of random generator before batch 134 : 
+	 DRAND48_RANDOM 46074 50373 16452 
+
+ batch number : 134
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.59426	 sigma_n : 0.234929
+	 number of secondary particules: 204
+
+ Type and parameters of random generator before batch 135 : 
+	 DRAND48_RANDOM 40712 38890 2404 
+
+ batch number : 135
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.07821	 sigma_n : 0.227695
+	 number of secondary particules: 210
+
+ Type and parameters of random generator before batch 136 : 
+	 DRAND48_RANDOM 54720 12142 42939 
+
+ batch number : 136
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.14965	 sigma_n : 0.249381
+	 number of secondary particules: 250
+
+ Type and parameters of random generator before batch 137 : 
+	 DRAND48_RANDOM 23063 42813 17968 
+
+ batch number : 137
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.91436	 sigma_n : 0.231416
+	 number of secondary particules: 236
+
+ Type and parameters of random generator before batch 138 : 
+	 DRAND48_RANDOM 10706 62423 23403 
+
+ batch number : 138
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.94925	 sigma_n : 0.239364
+	 number of secondary particules: 229
+
+ Type and parameters of random generator before batch 139 : 
+	 DRAND48_RANDOM 41003 60851 24068 
+
+ batch number : 139
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.88472	 sigma_n : 0.217615
+	 number of secondary particules: 218
+
+ Type and parameters of random generator before batch 140 : 
+	 DRAND48_RANDOM 40318 18943 53911 
+
+ batch number : 140
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.69199	 sigma_n : 0.207215
+	 number of secondary particules: 212
+
+ Type and parameters of random generator before batch 141 : 
+	 DRAND48_RANDOM 1860 52873 6511 
+
+ batch number : 141
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.75252	 sigma_n : 0.233117
+	 number of secondary particules: 219
+
+ Type and parameters of random generator before batch 142 : 
+	 DRAND48_RANDOM 54162 10206 56 
+
+ batch number : 142
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.0096	 sigma_n : 0.244711
+	 number of secondary particules: 204
+
+ Type and parameters of random generator before batch 143 : 
+	 DRAND48_RANDOM 14283 16950 1525 
+
+ batch number : 143
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.48704	 sigma_n : 0.212904
+	 number of secondary particules: 233
+
+ Type and parameters of random generator before batch 144 : 
+	 DRAND48_RANDOM 40632 40302 5588 
+
+ batch number : 144
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.72131	 sigma_n : 0.213169
+	 number of secondary particules: 204
+
+ Type and parameters of random generator before batch 145 : 
+	 DRAND48_RANDOM 49297 8297 7177 
+
+ batch number : 145
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.77542	 sigma_n : 0.226666
+	 number of secondary particules: 235
+
+ Type and parameters of random generator before batch 146 : 
+	 DRAND48_RANDOM 57740 55937 59725 
+
+ batch number : 146
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.81326	 sigma_n : 0.223677
+	 number of secondary particules: 242
+
+ Type and parameters of random generator before batch 147 : 
+	 DRAND48_RANDOM 50442 43824 63116 
+
+ batch number : 147
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.76999	 sigma_n : 0.242162
+	 number of secondary particules: 218
+
+ Type and parameters of random generator before batch 148 : 
+	 DRAND48_RANDOM 21550 6720 6397 
+
+ batch number : 148
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.89174	 sigma_n : 0.255386
+	 number of secondary particules: 200
+
+ Type and parameters of random generator before batch 149 : 
+	 DRAND48_RANDOM 5566 60300 24225 
+
+ batch number : 149
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.6321	 sigma_n : 0.225452
+	 number of secondary particules: 214
+
+ Type and parameters of random generator before batch 150 : 
+	 DRAND48_RANDOM 11751 20026 21497 
+
+ batch number : 150
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.99026	 sigma_n : 0.241366
+	 number of secondary particules: 234
+
+ Type and parameters of random generator before batch 151 : 
+	 DRAND48_RANDOM 29908 63024 15630 
+
+ batch number : 151
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.68082	 sigma_n : 0.213038
+	 number of secondary particules: 179
+
+ Type and parameters of random generator before batch 152 : 
+	 DRAND48_RANDOM 51774 50940 5399 
+
+ batch number : 152
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.7493	 sigma_n : 0.219125
+	 number of secondary particules: 168
+
+ Type and parameters of random generator before batch 153 : 
+	 DRAND48_RANDOM 23026 63140 49977 
+
+ batch number : 153
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.77092	 sigma_n : 0.207973
+	 number of secondary particules: 203
+
+ Type and parameters of random generator before batch 154 : 
+	 DRAND48_RANDOM 31807 41595 24620 
+
+ batch number : 154
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.46676	 sigma_n : 0.254289
+	 number of secondary particules: 219
+
+ Type and parameters of random generator before batch 155 : 
+	 DRAND48_RANDOM 62237 38064 27220 
+
+ batch number : 155
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.54875	 sigma_n : 0.208537
+	 number of secondary particules: 210
+
+ Type and parameters of random generator before batch 156 : 
+	 DRAND48_RANDOM 33712 62218 39287 
+
+ batch number : 156
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.53112	 sigma_n : 0.213212
+	 number of secondary particules: 206
+
+ Type and parameters of random generator before batch 157 : 
+	 DRAND48_RANDOM 2302 24282 42219 
+
+ batch number : 157
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.7234	 sigma_n : 0.233882
+	 number of secondary particules: 251
+
+ Type and parameters of random generator before batch 158 : 
+	 DRAND48_RANDOM 63842 60847 3502 
+
+ batch number : 158
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.80641	 sigma_n : 0.23056
+	 number of secondary particules: 225
+
+ Type and parameters of random generator before batch 159 : 
+	 DRAND48_RANDOM 58563 8866 609 
+
+ batch number : 159
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.11538	 sigma_n : 0.22385
+	 number of secondary particules: 227
+
+ Type and parameters of random generator before batch 160 : 
+	 DRAND48_RANDOM 5643 33909 24910 
+
+ batch number : 160
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.7461	 sigma_n : 0.26923
+	 number of secondary particules: 235
+
+ Type and parameters of random generator before batch 161 : 
+	 DRAND48_RANDOM 5718 48763 11172 
+
+ batch number : 161
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.1619	 sigma_n : 0.225362
+	 number of secondary particules: 243
+
+ Type and parameters of random generator before batch 162 : 
+	 DRAND48_RANDOM 58096 30232 102 
+
+ batch number : 162
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.68908	 sigma_n : 0.215067
+	 number of secondary particules: 197
+
+ Type and parameters of random generator before batch 163 : 
+	 DRAND48_RANDOM 2036 15083 1982 
+
+ batch number : 163
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.12637	 sigma_n : 0.234719
+	 number of secondary particules: 211
+
+ Type and parameters of random generator before batch 164 : 
+	 DRAND48_RANDOM 36931 45575 62882 
+
+ batch number : 164
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.49379	 sigma_n : 0.207725
+	 number of secondary particules: 202
+
+ Type and parameters of random generator before batch 165 : 
+	 DRAND48_RANDOM 22375 16380 4202 
+
+ batch number : 165
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.19499	 sigma_n : 0.238677
+	 number of secondary particules: 210
+
+ Type and parameters of random generator before batch 166 : 
+	 DRAND48_RANDOM 37112 55384 616 
+
+ batch number : 166
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.29167	 sigma_n : 0.243247
+	 number of secondary particules: 218
+
+ Type and parameters of random generator before batch 167 : 
+	 DRAND48_RANDOM 11483 53256 10114 
+
+ batch number : 167
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.73007	 sigma_n : 0.243571
+	 number of secondary particules: 248
+
+ Type and parameters of random generator before batch 168 : 
+	 DRAND48_RANDOM 47203 6230 4041 
+
+ batch number : 168
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.25957	 sigma_n : 0.257086
+	 number of secondary particules: 228
+
+ Type and parameters of random generator before batch 169 : 
+	 DRAND48_RANDOM 20379 53637 479 
+
+ batch number : 169
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.67945	 sigma_n : 0.214779
+	 number of secondary particules: 195
+
+ Type and parameters of random generator before batch 170 : 
+	 DRAND48_RANDOM 50308 17556 7041 
+
+ batch number : 170
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 5.18407	 sigma_n : 0.222414
+	 number of secondary particules: 206
+
+ Type and parameters of random generator before batch 171 : 
+	 DRAND48_RANDOM 53285 2286 3023 
+
+ batch number : 171
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.87887	 sigma_n : 0.210761
+	 number of secondary particules: 241
+
+ Type and parameters of random generator before batch 172 : 
+	 DRAND48_RANDOM 45753 54245 438 
+
+ batch number : 172
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.71526	 sigma_n : 0.220368
+	 number of secondary particules: 185
+
+ Type and parameters of random generator before batch 173 : 
+	 DRAND48_RANDOM 20392 46740 15916 
+
+ batch number : 173
+
+  quota sampling and descendant statistics: 
+	 mean number of collision per neutron history: 4.6616	 sigma_n : 0.213294
+	 number of secondary particules: 187
+
+ Type and parameters of random generator before batch 174 : 
+	 DRAND48_RANDOM 31914 49274 48456 
+
+ batch number : 174
