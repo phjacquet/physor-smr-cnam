@@ -1,0 +1,423 @@
+ DDDDDD   RRRRRR     AAA     GGGGG    OOOOO   NN     NN
+ DDDDDDD  RRRRRRR   AAAAA   GGGGGGG  OOOOOOO  NNN    NN
+ DD   DD  RR   RR  AA   AA  GG       OO   OO  NNNN   NN
+ DD   DD  RRRRRR   AA   AA  GG  GGG  OO   OO  NN NN  NN
+ DD   DD  RRRR     AAAAAAA  GG  GGG  OO   OO  NN  NN NN
+ DD   DD  RR RR    AAAAAAA  GG   GG  OO   OO  NN   NNNN
+ DDDDDDD  RR  RR   AA   AA  GGGGGGG  OOOOOOO  NN    NNN
+ DDDDDD   RR   RR  AA   AA   GGGGG    OOOOO   NN     NN
+
+ VERSION DRAGON 4  Version 4.0.6 ($Revision: 1666 $)                   $Date: 2012-12-10 10:12:13 -0500 (Mon, 10 Dec 2012) $           
+ GROUPE D'ANALYSE NUCLEAIRE
+ ECOLE POLYTECHNIQUE DE MONTREAL
+
+
+
+ COPYRIGHT NOTICE FOR THIS VERSION OF DRAGON:
+ --------------------------------------------
+ Copyright (C) 2002 Ecole Polytechnique de Montreal 
+ This library is free software; you can redistribute it
+ and/or modify it under the terms of the GNU Lesser General
+ Public License as published by the Free Software Foundation;
+ either version 2.1 of the License, or (at your option) any
+ later version 
+
+
+
+
+* CLE-2000 VERS 2.1 * R.ROY, EPM COPYRIGHT 1999 *                           LINE
+*----                                                                       0001
+* GODIVA                                                                    0002
+*----                                                                       0003
+                                                                            0004
+LINKED_LIST                                                                 0005
+  LIBMIX   LIBMIXS                                                          0006
+  GCELL                                                                     0007
+  TRACK SYS FLUX                                                            0008
+  EDC                                                                       0009
+  DATABASE DBC                                                              0010
+  ;                                                                         0011
+MODULE                                                                      0012
+  GEO: LIB:                                                                 0013
+  SHI: USS:                                                                 0014
+  SYBILT: EXCELT: SNT: ASM: FLU: EDI:                                       0015
+  DELETE: END:                                                              0016
+  PSP: UTL: COMPO: EVO:                                                     0017
+  ;                                                                         0018
+*----                                                                       0019
+*  Microscopic cross sections from JEF2 draglib file                        0020
+*----                                                                       0021
+LIBMIX := LIB: :: EDIT 0                                                    0022
+     NMIX 1                                                                 0023
+     CTRA WIMS                                                              0024
+     SUBG                                                                   0025
+     ANIS 2                                                                 0026
+     DEPL LIB: DRAGON FIL: DLIB_J2_361                                      0027
+     MIXS LIB: DRAGON FIL: DLIB_J2_361                                      0028
+  MIX 1 300.0                                                               0029
+     U234 = 'U234'    4.9184E-4  1                                          0030
+     U235 = 'U235'    4.4994E-2  1                                          0031
+     U238 = 'U238'    2.4984E-3  1                                          0032
+     H1H2O = '3001'   7.83774E-2                                            0033
+;                                                                           0034
+*----                                                                       0035
+*  Spherical geometry                                                       0036
+*----                                                                       0037
+GCELL := GEO: :: SPHERE  1                                                  0038
+           R+ VOID                                                          0039
+           MIX  1                                                           0040
+           RADIUS 0.0 8.7407                                                0041
+           SPLITR 15                                                        0042
+           ;                                                                0043
+*----                                                                       0044
+*  Analysis of geometry                                                     0045
+*----                                                                       0046
+TRACK := SNT: GCELL ::                                                      0047
+  TITLE 'Fuel'                                                              0048
+  EDIT 1 MAXR 30                                                            0049
+  DIAM 1 SN 16                                                              0050
+  SCAT 2                                                                    0051
+  QUAB 7                                                                    0052
+;                                                                           0053
+*----                                                                       0054
+*  Self Shielding                                                           0055
+*----                                                                       0056
+LIBMIXS := USS: LIBMIX TRACK :: EDIT 5 ARM ;                                0057
+                                                                            0058
+*----                                                                       0059
+*  SN problem definition                                                    0060
+*----                                                                       0061
+SYS := ASM: LIBMIXS TRACK :: ARM ;                                          0062
+                                                                            0063
+*----                                                                       0064
+*  Problem solution                                                         0065
+*----                                                                       0066
+FLUX := FLU: SYS LIBMIXS TRACK  ::                                          0067
+     TYPE K                                                                 0068
+     EXTE 100 1E-4 THER 5 1E-4 ;                                            0069
+                                                                            0070
+*----                                                                       0071
+*  Solution edition and processing                                          0072
+*----                                                                       0073
+EDC := EDI: LIBMIXS TRACK FLUX ::                                           0074
+  EDIT 0                                                                    0075
+  MERG COMP COND 7.4080E06 3.6790E06 6.7210E05 1.1110E05 1.9310E04          0076
+          3.3550E03 1.5850E03 7.4850E02 2.7540E02 1.3010E02                 0077
+          6.1440E01 2.9000E01 1.3700E01 8.3200E00 5.0400E00                 0078
+          2.3800E00 1.2900E00 6.5000E-01 3.5000E-01 2.0000E-01              0079
+          1.2000E-01 8.0000E-02 5.0000E-02 2.0000E-02                       0080
+          1.0000E-02                                                        0081
+  SAVE ON 'FCCg' ;                                                          0082
+                                                                            0083
+                                                                            0084
+END: ;                                                                      0085
+QUIT .                                                                  IMPLICIT
+
+->@BEGIN MODULE : LIB:        
+->@DESCRIPTION  : Microscopic xs-library processing                                       
+->@CREDITS      : A. Hebert, G. Marleau                                                   
+->@COPYRIGHTS   : ECOLE POLYTECHNIQUE DE MONTREAL  
+                  GNU LESSER GENERAL PUBLIC LICENSE
+
+
+ LCMLIB: CONTENT OF ACTIVE DIRECTORY '/           ' OF THE XSM FILE 'DLIB_J2_361 ':
+
+ BLOCK NAME----------    LENGTH    TYPE
+
+    1  'Ba140       '        -1    DIRECTORY       
+    2  'Gd158       '        -1    DIRECTORY       
+    3  'C0          '        -1    DIRECTORY       
+    4  'N14         '        -1    DIRECTORY       
+    5  'Ca0         '        -1    DIRECTORY       
+    6  'U236        '        -1    DIRECTORY       
+    7  'Te124       '        -1    DIRECTORY       
+    8  'Sn118       '        -1    DIRECTORY       
+    9  'Cr53        '        -1    DIRECTORY       
+   10  'Se78        '        -1    DIRECTORY       
+   11  'Cd115m      '        -1    DIRECTORY       
+   12  'Pu240       '        -1    DIRECTORY       
+   13  'Zr93        '        -1    DIRECTORY       
+   14  'Pd108       '        -1    DIRECTORY       
+   15  'Sm154       '        -1    DIRECTORY       
+   16  'N15         '        -1    DIRECTORY       
+   17  'DEPL-CHAIN  '        -1    DIRECTORY       
+   18  'Mo95        '        -1    DIRECTORY       
+   19  'I130        '        -1    DIRECTORY       
+   20  'Ba138       '        -1    DIRECTORY       
+   21  'Tc99        '        -1    DIRECTORY       
+   22  'Ge72        '        -1    DIRECTORY       
+   23  'O16         '        -1    DIRECTORY       
+   24  'Kr80        '        -1    DIRECTORY       
+   25  'Te123       '        -1    DIRECTORY       
+   26  'Pr143       '        -1    DIRECTORY       
+   27  'Zn64        '        -1    DIRECTORY       
+   28  'Am243       '        -1    DIRECTORY       
+   29  'O17         '        -1    DIRECTORY       
+   30  'La139       '        -1    DIRECTORY       
+   31  'Mo96        '        -1    DIRECTORY       
+   32  'Ti0         '        -1    DIRECTORY       
+   33  'Li7         '        -1    DIRECTORY       
+   34  'Co59        '        -1    DIRECTORY       
+   35  'Te125       '        -1    DIRECTORY       
+   36  'I131        '        -1    DIRECTORY       
+   37  'Fe56        '        -1    DIRECTORY       
+   38  'Ge73        '        -1    DIRECTORY       
+   39  'Zr94        '        -1    DIRECTORY       
+   40  'Kr86        '        -1    DIRECTORY       
+   41  'B10         '        -1    DIRECTORY       
+   42  'Pd110       '        -1    DIRECTORY       
+   43  'Nd142       '        -1    DIRECTORY       
+   44  'Eu151       '        -1    DIRECTORY       
+   45  'Ni64        '        -1    DIRECTORY       
+   46  'Pu236       '        -1    DIRECTORY       
+   47  'B11         '        -1    DIRECTORY       
+   48  'Th230       '        -1    DIRECTORY       
+   49  'Cm246       '        -1    DIRECTORY       
+   50  'Pb0         '        -1    DIRECTORY       
+   51  'Ag109       '        -1    DIRECTORY       
+   52  'Cm241       '        -1    DIRECTORY       
+   53  'Eu153       '        -1    DIRECTORY       
+   54  'I135        '        -1    DIRECTORY       
+   55  'Cm245       '        -1    DIRECTORY       
+   56  'Zr0         '        -1    DIRECTORY       
+   57  'Cm244       '        -1    DIRECTORY       
+   58  'La140       '        -1    DIRECTORY       
+   59  'Ge74        '        -1    DIRECTORY       
+   60  'Cm243       '        -1    DIRECTORY       
+   61  'Pu241       '        -1    DIRECTORY       
+   62  'Nd143       '        -1    DIRECTORY       
+   63  'Zr95        '        -1    DIRECTORY       
+   64  'Bi209       '        -1    DIRECTORY       
+   65  'Te126       '        -1    DIRECTORY       
+   66  'Ni61        '        -1    DIRECTORY       
+   67  'Cr54        '        -1    DIRECTORY       
+   68  'Se80        '        -1    DIRECTORY       
+   69  'Kr82        '        -1    DIRECTORY       
+   70  'Ru99        '        -1    DIRECTORY       
+   71  'Ag107       '        -1    DIRECTORY       
+   72  'He3         '        -1    DIRECTORY       
+   73  'Eu152       '        -1    DIRECTORY       
+   74  'He4         '        -1    DIRECTORY       
+   75  'Cd116       '        -1    DIRECTORY       
+   76  'Li6         '        -1    DIRECTORY       
+   77  'U237        '        -1    DIRECTORY       
+   78  'V0          '        -1    DIRECTORY       
+   79  'H1          '        -1    DIRECTORY       
+   80  'Kr83        '        -1    DIRECTORY       
+   81  'Sr88        '        -1    DIRECTORY       
+   82  'Te128       '        -1    DIRECTORY       
+   83  'Xe128       '        -1    DIRECTORY       
+   84  'W184        '        -1    DIRECTORY       
+   85  'Cm248       '        -1    DIRECTORY       
+   86  'Ge76        '        -1    DIRECTORY       
+   87  'Sr87        '        -1    DIRECTORY       
+   88  'Se82        '        -1    DIRECTORY       
+   89  'Ru100       '        -1    DIRECTORY       
+   90  'Ag111       '        -1    DIRECTORY       
+   91  'Nd144       '        -1    DIRECTORY       
+   92  'Eu154       '        -1    DIRECTORY       
+   93  'Am242       '        -1    DIRECTORY       
+   94  'Sr86        '        -1    DIRECTORY       
+   95  'Th232       '        -1    DIRECTORY       
+   96  'Rb87        '        -1    DIRECTORY       
+   97  'Rb85        '        -1    DIRECTORY       
+   98  'Ce140       '        -1    DIRECTORY       
+   99  'Zr96        '        -1    DIRECTORY       
+  100  'U238        '        -1    DIRECTORY       
+  101  'H2          '        -1    DIRECTORY       
+  102  'Cm247       '        -1    DIRECTORY       
+  103  'Mo97        '        -1    DIRECTORY       
+  104  'Te127m      '        -1    DIRECTORY       
+  105  'In113       '        -1    DIRECTORY       
+  106  'H3          '        -1    DIRECTORY       
+  107  'Pu237       '        -1    DIRECTORY       
+  108  'Xe131       '        -1    DIRECTORY       
+  109  'Ce142       '        -1    DIRECTORY       
+  110  'Nd150       '        -1    DIRECTORY       
+  111  'H1_H2O      '        -1    DIRECTORY       
+  112  'Y89         '        -1    DIRECTORY       
+  113  'As75        '        -1    DIRECTORY       
+  114  'Nd148       '        -1    DIRECTORY       
+  115  'Np237       '        -1    DIRECTORY       
+  116  'Cf249       '        -1    DIRECTORY       
+  117  'Nd147       '        -1    DIRECTORY       
+  118  'Fe57        '        -1    DIRECTORY       
+  119  'Nd146       '        -1    DIRECTORY       
+  120  'Nd145       '        -1    DIRECTORY       
+  121  'Te129m      '        -1    DIRECTORY       
+  122  'H2_D2O      '        -1    DIRECTORY       
+  123  'Pa233       '        -1    DIRECTORY       
+  124  'Sr90        '        -1    DIRECTORY       
+  125  'H1_CH2      '        -1    DIRECTORY       
+  126  'W182        '        -1    DIRECTORY       
+  127  'Be9         '        -1    DIRECTORY       
+  128  'Cd110       '        -1    DIRECTORY       
+  129  'Mo98        '        -1    DIRECTORY       
+  130  'Eu155       '        -1    DIRECTORY       
+  131  'Bk249       '        -1    DIRECTORY       
+  132  'C0_GR       '        -1    DIRECTORY       
+  133  'In115       '        -1    DIRECTORY       
+  134  'Nb93        '        -1    DIRECTORY       
+  135  'Sr89        '        -1    DIRECTORY       
+  136  'Ce141       '        -1    DIRECTORY       
+  137  'Pa231       '        -1    DIRECTORY       
+  138  'Te130       '        -1    DIRECTORY       
+  139  'Br79        '        -1    DIRECTORY       
+  140  'Nb94        '        -1    DIRECTORY       
+  141  'Ru103       '        -1    DIRECTORY       
+  142  'Sn123       '        -1    DIRECTORY       
+  143  'Dy162       '        -1    DIRECTORY       
+  144  'Xe136       '        -1    DIRECTORY       
+  145  'Cd111       '        -1    DIRECTORY       
+  146  'Pm148m      '        -1    DIRECTORY       
+  147  'ENERGY      '       362    REAL            
+  148  'Dy161       '        -1    DIRECTORY       
+  149  'Sn122       '        -1    DIRECTORY       
+  150  'Ru102       '        -1    DIRECTORY       
+  151  'Xe135       '        -1    DIRECTORY       
+  152  'Dy160       '        -1    DIRECTORY       
+  153  'Sn120       '        -1    DIRECTORY       
+  154  'Sn119       '        -1    DIRECTORY       
+  155  'Tb160       '        -1    DIRECTORY       
+  156  'Pm148       '        -1    DIRECTORY       
+  157  'Tb159       '        -1    DIRECTORY       
+  158  'Gd160       '        -1    DIRECTORY       
+  159  'Ru101       '        -1    DIRECTORY       
+  160  'Xe134       '        -1    DIRECTORY       
+  161  'Pu238       '        -1    DIRECTORY       
+  162  'Xe129       '        -1    DIRECTORY       
+  163  'Xe133       '        -1    DIRECTORY       
+  164  'Pm147       '        -1    DIRECTORY       
+  165  'Pu242       '        -1    DIRECTORY       
+  166  'Xe132       '        -1    DIRECTORY       
+  167  'Eu156       '        -1    DIRECTORY       
+  168  'Gd154       '        -1    DIRECTORY       
+  169  'Mn55        '        -1    DIRECTORY       
+  170  'Xe130       '        -1    DIRECTORY       
+  171  'Mo99        '        -1    DIRECTORY       
+  172  'Ru106       '        -1    DIRECTORY       
+  173  'Hf176       '        -1    DIRECTORY       
+  174  'Sm147       '        -1    DIRECTORY       
+  175  'Cs135       '        -1    DIRECTORY       
+  176  'Cm242       '        -1    DIRECTORY       
+  177  'Sn126       '        -1    DIRECTORY       
+  178  'README      '        18    CHARACTER       
+  179  'Cu0         '        -1    DIRECTORY       
+  180  'Cf250       '        -1    DIRECTORY       
+  181  'Ru105       '        -1    DIRECTORY       
+  182  'Hf174       '        -1    DIRECTORY       
+  183  'Y90         '        -1    DIRECTORY       
+  184  'Cs134       '        -1    DIRECTORY       
+  185  'Pm151       '        -1    DIRECTORY       
+  186  'Sn125       '        -1    DIRECTORY       
+  187  'U232        '        -1    DIRECTORY       
+  188  'Ni58        '        -1    DIRECTORY       
+  189  'Ru104       '        -1    DIRECTORY       
+  190  'Dy164       '        -1    DIRECTORY       
+  191  'Sn115       '        -1    DIRECTORY       
+  192  'Sn124       '        -1    DIRECTORY       
+  193  'Cs133       '        -1    DIRECTORY       
+  194  'Ce143       '        -1    DIRECTORY       
+  195  'Pm149       '        -1    DIRECTORY       
+  196  'Eu157       '        -1    DIRECTORY       
+  197  'Dy163       '        -1    DIRECTORY       
+  198  'Sb124       '        -1    DIRECTORY       
+  199  'Gd155       '        -1    DIRECTORY       
+  200  'Hf179       '        -1    DIRECTORY       
+  201  'Np238       '        -1    DIRECTORY       
+  202  'S34         '        -1    DIRECTORY       
+  203  'Sn116       '        -1    DIRECTORY       
+  204  'S33         '        -1    DIRECTORY       
+  205  'Nb95        '        -1    DIRECTORY       
+  206  'Rh105       '        -1    DIRECTORY       
+  207  'Sm149       '        -1    DIRECTORY       
+  208  'Am242m      '        -1    DIRECTORY       
+  209  'Cs137       '        -1    DIRECTORY       
+  210  'Se76        '        -1    DIRECTORY       
+  211  'Sb123       '        -1    DIRECTORY       
+  212  'Hf178       '        -1    DIRECTORY       
+  213  'Cf251       '        -1    DIRECTORY       
+  214  'U233        '        -1    DIRECTORY       
+  215  'SIGNATURE   '         3    CHARACTER       ='L_DRAGLIB   '
+  216  'Y91         '        -1    DIRECTORY       
+  217  'Rh103       '        -1    DIRECTORY       
+  218  'Cd112       '        -1    DIRECTORY       
+  219  'Te132       '        -1    DIRECTORY       
+  220  'Sm148       '        -1    DIRECTORY       
+  221  'Cs136       '        -1    DIRECTORY       
+  222  'VERSION     '         3    CHARACTER       
+  223  'Hf177       '        -1    DIRECTORY       
+  224  'Sb121       '        -1    DIRECTORY       
+  225  'Ce144       '        -1    DIRECTORY       
+  226  'Cr50        '        -1    DIRECTORY       
+  227  'Kr84        '        -1    DIRECTORY       
+  228  'Sb126       '        -1    DIRECTORY       
+  229  'Fe58        '        -1    DIRECTORY       
+  230  'Gd156       '        -1    DIRECTORY       
+  231  'Cl0         '        -1    DIRECTORY       
+  232  'Zr91        '        -1    DIRECTORY       
+  233  'Ho165       '        -1    DIRECTORY       
+  234  'Pu243       '        -1    DIRECTORY       
+  235  'Mo100       '        -1    DIRECTORY       
+  236  'Pd105       '        -1    DIRECTORY       
+  237  'Sm151       '        -1    DIRECTORY       
+  238  'Cr52        '        -1    DIRECTORY       
+  239  'U234        '        -1    DIRECTORY       
+  240  'Ba135       '        -1    DIRECTORY       
+  241  'Pu239       '        -1    DIRECTORY       
+  242  'Cf252       '        -1    DIRECTORY       
+  243  'Sb125       '        -1    DIRECTORY       
+  244  'Br81        '        -1    DIRECTORY       
+  245  'Cd113       '        -1    DIRECTORY       
+  246  'Si0         '        -1    DIRECTORY       
+  247  'Hf180       '        -1    DIRECTORY       
+  248  'P31         '        -1    DIRECTORY       
+  249  'I127        '        -1    DIRECTORY       
+  250  'S36         '        -1    DIRECTORY       
+  251  'Pd104       '        -1    DIRECTORY       
+  252  'Sm150       '        -1    DIRECTORY       
+  253  'Ni62        '        -1    DIRECTORY       
+  254  'Ba134       '        -1    DIRECTORY       
+  255  'Pr141       '        -1    DIRECTORY       
+  256  'Zr90        '        -1    DIRECTORY       
+  257  'S32         '        -1    DIRECTORY       
+  258  'F19         '        -1    DIRECTORY       
+  259  'K0          '        -1    DIRECTORY       
+  260  'Gd157       '        -1    DIRECTORY       
+  261  'Pd107       '        -1    DIRECTORY       
+  262  'Er167       '        -1    DIRECTORY       
+  263  'Sm153       '        -1    DIRECTORY       
+  264  'Ni60        '        -1    DIRECTORY       
+  265  'Na23        '        -1    DIRECTORY       
+  266  'U235        '        -1    DIRECTORY       
+  267  'Ba137       '        -1    DIRECTORY       
+  268  'Zr92        '        -1    DIRECTORY       
+  269  'Np239       '        -1    DIRECTORY       
+  270  'W183        '        -1    DIRECTORY       
+  271  'Te122       '        -1    DIRECTORY       
+  272  'Cd114       '        -1    DIRECTORY       
+  273  'Cf253       '        -1    DIRECTORY       
+  274  'Mg0         '        -1    DIRECTORY       
+  275  'Kr85        '        -1    DIRECTORY       
+  276  'Sn117       '        -1    DIRECTORY       
+  277  'I129        '        -1    DIRECTORY       
+  278  'Er166       '        -1    DIRECTORY       
+  279  'Fe54        '        -1    DIRECTORY       
+  280  'Sm152       '        -1    DIRECTORY       
+  281  'Pd106       '        -1    DIRECTORY       
+  282  'Al27        '        -1    DIRECTORY       
+  283  'Ba136       '        -1    DIRECTORY       
+  284  'Se77        '        -1    DIRECTORY       
+  285  'Pr142       '        -1    DIRECTORY       
+  286  'Mo0         '        -1    DIRECTORY       
+  287  'W186        '        -1    DIRECTORY       
+  288  'Am241       '        -1    DIRECTORY       
+
+
+ TOTAL NUMBER OF WORDS ON DIRECTORY '/           ' =       386
+
+ LIBDRA: MATERIAL/ISOTOPE 'H1H2O   0001' = '3001        ' IS MISSING ON DRAGON FILE NAMED DLIB_J2_361 .                             
+
+ DESTROY DA FILE = _FIL001       UNIT =         99
+
+ ABORT REQUESTED.
