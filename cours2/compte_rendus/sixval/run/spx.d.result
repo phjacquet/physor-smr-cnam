@@ -2049,7 +2049,7 @@ QUIT "LIST" .                                                               0074
  LIBDRB: INVALID VALUE OF ZNPHI (  1.958E+00) IN GROUP 128. DILUTION=  3.200E+01 (  3.200E+01). KPHIR= 173.                         
  LIBDRB: INVALID VALUE OF ZNPHI (  1.270E+00) IN GROUP 144. DILUTION=  3.308E+01 (  3.308E+01). KPHIR= 173.                         
 ->@END MODULE   : SHI:        
--->>TIME SPENT IN MODULE SHI:        :      4.000
+-->>TIME SPENT IN MODULE SHI:        :      3.000
 <|SYS := ASM: LIBRARY TRACK ;                                             |<0064
 ->@BEGIN MODULE : ASM:        
 ->@DESCRIPTION  : To built system matrices (CP and IC)                                    
@@ -2141,7 +2141,7 @@ QUIT "LIST" .                                                               0074
           IN(  2) FLX: PRC= 8.00E-05 TAR= 5.00E-05 IGDEB=          309 ACCE=     1.00000
                   FIRST UNCONVERGED GROUP PRC= 0.51E-04
  FLU2DR: NO LEAKAGE-> REBALANCING ON
- FLU2DR: CPU TIME=        1. INTERNAL CONVERGENCE *NOT* REACHED AFTER     2 ITERATIONS.
+ FLU2DR: CPU TIME=        0. INTERNAL CONVERGENCE *NOT* REACHED AFTER     2 ITERATIONS.
 
  B1DIF: SOLUTION OF B1   EQUATIONS WITH TYPE K   
         NUMBER OF ITERATIONS =  1
